@@ -1,7 +1,251 @@
+```html
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Joe's IT Portfolio</title>
+    <link rel="icon" type="image/png" sizes="96x96" href="images/favicon.png" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header class="header">
+        <h1>Joe's IT Portfolio</h1>
+      </header>
+
+      <section class="card full-width">
+        <img src="images/your-photo.jpg" alt="Joe" class="profile-pic" />
+        <h2>Hello and welcome to my portfolio,</h2>
+        <p>
+          I’m eager to transition into a career in IT support, bringing a
+          passion for troubleshooting, customer service, and growing my IT knowledge.
+        </p>
+        <h2>
+          <a
+            href="https://www.linkedin.com/in/joeslinkedin"
+            target="_blank"
+            class="linkedin-link"
+          >
+            Joe Szolcek
+            <img
+              src="images/linkedin.png"
+              alt="LinkedIn"
+              class="linkedin-icon"
+            />
+          </a>
+        </h2>
+        <div class="button-group">
+          <a href="contact.html" target="_blank"><button>Contact Me</button></a>
+          <a href="files/JoeSzolcek_CV.pdf" download><button>Download CV</button></a>
+        </div>
+      </section>
+
+      <section class="certifications">
+        <!-- Network+ Certification Card -->
+        <div class="cert-card">
+          <div class="card-inner">
+            <div class="card-front">
+              <div class="cert-text">
+                <h4>
+                  <a href="https://www.comptia.org/certifications/network" target="_blank">CompTIA Network+</a>
+                </h4>
+                <p>Knowledge and skills in networking, including wired/wireless technologies and basic security.</p>
+              </div>
+              <img src="images/networkplus.png" alt="Network+ Badge" class="cert-img" />
+            </div>
+            <div class="card-back">
+              <img src="images/networkplus.png" alt="Network+ Badge" class="cert-back-img" />
+            </div>
+          </div>
+        </div>
+        
+        <!-- A+ Certification Card -->
+        <div class="cert-card">
+          <div class="card-inner">
+            <div class="card-front">
+              <div class="cert-text">
+                <h4>
+                  <a href="https://www.comptia.org/certifications/a" target="_blank">CompTIA A+</a>
+                </h4>
+                <p>PC hardware, software, troubleshooting, and network fundamentals.</p>
+              </div>
+              <img src="images/aplus.png" alt="A+ Badge" class="cert-img" />
+            </div>
+            <div class="card-back">
+              <img src="images/aplus.png" alt="A+ Badge" class="cert-back-img" />
+            </div>
+          </div>
+        </div>
+
+        <!-- AZ-900 Certification Card -->
+        <div class="cert-card">
+          <div class="card-inner">
+            <div class="card-front">
+              <div class="cert-text">
+                <h4>
+                  <a href="https://learn.microsoft.com/en-us/certifications/azure-fundamentals/" target="_blank">AZ-900</a>
+                </h4>
+                <p>Knowledge of cloud concepts, core Azure services, plus Azure management and governance features and tools.</p>
+              </div>
+              <img src="images/az900.png" alt="AZ-900 Badge" class="cert-img" />
+            </div>
+            <div class="card-back">
+              <img src="images/az900.png" alt="AZ-900 Badge" class="cert-back-img" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="training-skills">
+        <h3>Training & Skills</h3>
+        <div class="certifications">
+          <!-- Customer Support & Service -->
+          <div class="cert-card">
+            <div class="card-inner">
+              <div class="card-front">
+                <div class="cert-text">
+                  <h4>Customer Support & Service</h4>
+                  <p>Several years experience providing customer support in a law firm handling client queries and liaising with other government bodies and other companies.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ITIL 4 Self-Study Card -->
+          <div class="cert-card self-study">
+            <div class="card-inner">
+              <div class="card-front">
+                <div class="cert-text">
+                  <h4>
+                    ITIL 4 <span class="disclaimer">(self-study)</span>
+                  </h4>
+                  <p>
+                    Completed full ITIL 4 Foundation syllabus via self-guided study.
+                  </p>
+                </div>
+                <img src="images/itil4-badge.png" alt="ITIL 4 Self-Study" class="cert-img" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Additional Skill Cards -->
+          <div class="cert-card">
+            <div class="card-inner">
+              <div class="card-front">
+                <div class="cert-text">
+                  <h4>Network Troubleshooting & Support</h4>
+                  <p>Experience diagnosing and resolving network connectivity issues, TCP/IP, DHCP, VLANs, and routing/switching.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="cert-card">
+            <div class="card-inner">
+              <div class="card-front">
+                <div class="cert-text">
+                  <h4>Infrastructure & Configuration</h4>
+                  <p>Understanding of Active Directory, user management, virtualization (Proxmox, VirtualBox homelab setups), and hardware maintenance and upgrades.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="cert-card">
+            <div class="card-inner">
+              <div class="card-front">
+                <div class="cert-text">
+                  <h4>IT Security & Firewalls</h4>
+                  <p>Knowledge of VPNs, firewalls, and network security best practices.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="cert-card">
+            <div class="card-inner">
+              <div class="card-front">
+                <div class="cert-text">
+                  <h4>Monitoring & Documentation</h4>
+                  <p>Exposure to network monitoring tools, ticketing systems, and creating IT documentation.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="cert-card">
+            <div class="card-inner">
+              <div class="card-front">
+                <div class="cert-text">
+                  <h4>Scripting & Automation</h4>
+                  <p>Interest in learning scripting for automation and efficiency improvements.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="cert-card">
+            <div class="card-inner">
+              <div class="card-front">
+                <div class="cert-text">
+                  <h4>Collaboration & Problem-Solving</h4>
+                  <p>Strong analytical skills, proactive mindset, and experience working in team environments.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="cert-card">
+            <div class="card-inner">
+              <div class="card-front">
+                <div class="cert-text">
+                  <h4>Web Development</h4>
+                  <p>Developed basic websites using HTML, CSS, and JavaScript, including this portfolio.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="cert-card">
+            <div class="card-inner">
+              <div class="card-front">
+                <div class="cert-text">
+                  <h4>Graphic Design</h4>
+                  <p>Crafted logos in Photoshop to enhance brand identity and leave a memorable impact.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <p>
+          &copy; 2025 Joe's IT Portfolio |
+          <a href="https://www.linkedin.com/in/joe-szolcek/" target="_blank">LinkedIn</a>
+        </p>
+      </footer>
+    </div>
+  </body>
+</html>
+```
+
+```css
+/* styles.css */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+.linkedin-icon {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  vertical-align: middle;
+  margin-left: 5px;
 }
 
 body {
@@ -21,7 +265,7 @@ body {
 .header {
   text-align: center;
   padding: 20px 0;
-  background-color: rgba(51, 51, 51, 0.4); /* 50% transparency */
+  background-color: rgba(51, 51, 51, 0.4);
   margin-bottom: 30px;
 }
 
@@ -59,10 +303,18 @@ button {
   padding: 10px 20px;
   border-radius: 5px;
   cursor: pointer;
+  font-weight: bold;
 }
 
 button:hover {
   background-color: #0056b3;
+}
+
+.button-group {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  margin-top: 15px;
 }
 
 .certifications {
@@ -74,7 +326,7 @@ button:hover {
 .cert-card {
   background: transparent;
   width: 100%;
-  height: 280px;
+  height: 180px;
   perspective: 1000px;
 }
 
@@ -95,7 +347,7 @@ button:hover {
   position: absolute;
   width: 100%;
   height: 100%;
-  padding: 20px;
+  padding: 10px 15px;
   border-radius: 8px;
   backface-visibility: hidden;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
@@ -139,25 +391,72 @@ button:hover {
 
 .cert-card p {
   color: white;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
 }
 
 .card.full-width p {
   font-size: 1.5rem;
-  line-height: 1.6; /* Optional, for better readability */
+  line-height: 1.6;
 }
 
 .cert-img,
 .cert-back-img {
-  width: 150px;
+  width: 120px;
   height: auto;
   border-radius: 4px;
+}
+
+/* Self-study card styling */
+.cert-card.self-study .card-front {
+  background-color: rgba(255, 165, 0, 0.3);
+}
+
+.cert-card.self-study .cert-img {
+  filter: grayscale(80%);
+}
+
+.disclaimer {
+  font-size: 0.8rem;
+  font-weight: normal;
+  color: #ddd;
+}
+
+/* Training & Skills Section */
+.training-skills h3 {
+  font-size: 2rem;
+  margin: 30px 0 15px;
+  color: #ffab40;
+}
+
+.training-skills .certifications {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+/* Disable flip and neon blue background for Training & Skills */
+.training-skills .cert-card {
+  perspective: none;
+}
+
+.training-skills .cert-card .card-inner {
+  transition: none !important;
+}
+
+.training-skills .cert-card:hover .card-inner {
+  transform: none !important;
+}
+
+.training-skills .cert-card .card-front,
+.training-skills .cert-card .card-back {
+  background-color: rgba(0, 255, 255, 0.2) !important;
+  box-shadow: 0 2px 8px rgba(0, 255, 255, 0.4);
 }
 
 .footer {
   text-align: center;
   padding: 20px;
-  background-color: rgba(51, 51, 51, 0.5); /* 50% transparency */
+  background-color: rgba(51, 51, 51, 0.5);
   color: white;
   margin-top: 40px;
 }
@@ -187,3 +486,4 @@ button:hover {
     font-size: 2.5rem;
   }
 }
+```
