@@ -21,7 +21,7 @@ body {
 .header {
   text-align: center;
   padding: 20px 0;
-  background-color: #333;
+  background-color: rgba(51, 51, 51, 0.5); /* 50% transparency */
   margin-bottom: 30px;
 }
 
@@ -142,6 +142,11 @@ button:hover {
   font-size: 1.5rem;
 }
 
+.card.full-width p {
+  font-size: 1.5rem;
+  line-height: 1.6; /* Optional, for better readability */
+}
+
 .cert-img,
 .cert-back-img {
   width: 100px;
@@ -152,7 +157,7 @@ button:hover {
 .footer {
   text-align: center;
   padding: 20px;
-  background-color: #333;
+  background-color: rgba(51, 51, 51, 0.5); /* 50% transparency */
   color: white;
   margin-top: 40px;
 }
