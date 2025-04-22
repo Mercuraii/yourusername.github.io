@@ -81,9 +81,8 @@ button:hover {
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
   width: 100%;
-  transition: transform 0.3s ease; /* Smooth transition for scaling */
-  overflow: hidden; /* Prevents overflow during scaling */
-  min-height: 200px; /* Ensures sufficient height */
+  transition: transform 0.3s ease;
+  overflow: hidden;
 }
 
 .cert-card:hover {
@@ -93,18 +92,13 @@ button:hover {
 .cert-text {
   flex: 1;
   margin-right: 20px;
-  min-width: 0; /* Prevents text overflow */
-  transition: transform 0.3s ease; /* Smooth transition for scaling */
-}
-
-.cert-card:hover .cert-text {
-  transform: scale(1.05); /* Scale up by 5% on hover */
+  min-width: 0;
 }
 
 .cert-card h4 {
   color: white;
   margin-bottom: 10px;
-  font-size: 1.5rem; /* Increased font size */
+  font-size: 1.7rem; /* Increased font size */
   font-weight: bold;
 }
 
