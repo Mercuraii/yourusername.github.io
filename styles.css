@@ -31,7 +31,7 @@ body {
 }
 
 .card {
-  background-color: #222;
+  background-color: rgba(0, 0, 0, 0.4); /* Transparent black tint */
   border: 1px solid #444;
   padding: 20px;
   border-radius: 8px;
@@ -71,85 +71,47 @@ button:hover {
   gap: 30px;
 }
 
-/* Flip Card Container */
 .cert-card {
-  perspective: 1000px;
-  width: 100%;
-  height: 200px;
-}
-
-/* Inner Flip Card */
-.cert-inner {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  transition: transform 1s;
-  transform-style: preserve-3d;
-}
-
-/* Flip on hover */
-.cert-card:hover .cert-inner {
-  transform: rotateY(180deg);
-}
-
-/* Front and Back Shared */
-.cert-front,
-.cert-back {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-}
-
-/* Front */
-.cert-front {
-  background-color: #222;
-  color: white;
-  padding: 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-
-/* Back */
-.cert-back {
-  background-color: #111;
-  transform: rotateY(180deg);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.cert-back img {
-  max-width: 80%;
-  max-height: 80%;
+  background-color: rgba(0, 0, 0, 0.4); /* Transparent black tint */
+  border: 1px solid #444;
+  padding: 20px;
   border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  transition: transform 0.3s ease;
+  overflow: hidden;
 }
 
-/* Text Styling */
+.cert-card:hover {
+  transform: scale(1.05); /* Slightly increases size on hover */
+}
+
 .cert-text {
   flex: 1;
   margin-right: 20px;
+  min-width: 0;
 }
 
 .cert-card h4 {
-  font-size: 1.7rem;
-  font-weight: bold;
+  color: white;
   margin-bottom: 10px;
+  font-size: 1.7rem; /* Increased font size */
+  font-weight: bold;
 }
 
 .cert-card h4 a {
   color: white;
   text-decoration: none;
-  border-bottom: 4px solid #1d3c6e;
+  transition: color 0.3s ease, text-decoration 0.3s ease;
+  border-bottom: 3px solid transparent; /* Default transparent border */
 }
 
 .cert-card h4 a:hover {
-  color: #3498db;
-  border-bottom: 4px solid #3498db;
+  color: #3498db; /* Change text color on hover */
+  border-bottom: 3px solid #1d3c6e; /* Dark blue underline on hover */
 }
 
 .cert-card p {
@@ -180,7 +142,7 @@ button:hover {
 }
 
 @media (max-width: 768px) {
-  .cert-front {
+  .cert-card {
     flex-direction: column;
     text-align: center;
   }
