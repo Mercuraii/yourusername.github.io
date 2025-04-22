@@ -31,7 +31,7 @@ body {
 }
 
 .card {
-  background-color: rgba(0, 0, 0, 0.4); /* Transparent black tint */
+  background-color: #222;
   border: 1px solid #444;
   padding: 20px;
   border-radius: 8px;
@@ -71,27 +71,48 @@ button:hover {
   gap: 30px;
 }
 
-.cert-card-container {
-  perspective: 1000px; /* Gives the flipping effect */
-}
-
 .cert-card {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: rgba(0, 0, 0, 0.4); /* Transparent black tint */
-  border: 1px solid #444;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-  width: 100%;
-  transition: transform 1s ease; /* Flip transition speed */
-  transform-style: preserve-3d; /* Ensures the child elements flip correctly */
   position: relative;
+  width: 100%;
+  height: 200px;
+  perspective: 1000px; /* Makes the flip effect more visible */
 }
 
-.cert-card:hover {
-  transform: rotateY(180deg); /* Flip the card on hover */
+.cert-card .card-inner {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transition: transform 1s; /* Slow down the flip */
+  transform-style: preserve-3d;
+  transform: rotateY(0deg); /* Start with the front visible */
+}
+
+.cert-card:hover .card-inner {
+  transform: rotateY(180deg); /* Flips the card on hover */
+}
+
+.cert-card .card-front,
+.cert-card .card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden; /* Hide the back side when not flipped */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cert-card .card-front {
+  background-color: #222;
+  padding: 20px;
+}
+
+.cert-card .card-back {
+  background-color: #333;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  transform: rotateY(180deg); /* Initially hide the back */
 }
 
 .cert-text {
@@ -127,7 +148,6 @@ button:hover {
   width: 100px;
   height: auto;
   border-radius: 4px;
-  backface-visibility: hidden; /* Ensures the back of the image is not visible when flipped */
 }
 
 .footer {
