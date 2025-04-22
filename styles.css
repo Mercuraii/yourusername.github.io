@@ -82,6 +82,7 @@ button:hover {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
   width: 100%;
   transition: transform 0.3s ease; /* Smooth transition for scaling */
+  overflow: hidden; /* Prevents overflow during scaling */
 }
 
 .cert-card:hover {
@@ -91,6 +92,11 @@ button:hover {
 .cert-text {
   flex: 1;
   margin-right: 20px;
+  transition: transform 0.3s ease; /* Smooth transition for scaling */
+}
+
+.cert-card:hover .cert-text {
+  transform: scale(1.2); /* Scale up by 20% on hover */
 }
 
 .cert-card h4 {
