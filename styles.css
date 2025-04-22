@@ -4,6 +4,12 @@
   box-sizing: border-box;
 }
 
+.linkedin-icon {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+}
+
 body {
   background-image: url("images/BG-Dark.jpg");
   background-size: cover;
