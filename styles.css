@@ -1,27 +1,46 @@
-body {
-    font-family: Arial, sans-serif;
+/* Reset default styles */
+* {
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
+    box-sizing: border-box;
 }
 
+/* General body styling */
+body {
+    background-color: black; /* Black background */
+    color: white; /* White text */
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+}
+
+/* Container for the entire page content */
 .container {
-    width: 80%;
-    margin: auto;
+    max-width: 1200px;
+    margin: 0 auto;
     padding: 20px;
 }
 
-header {
-    background-color: #333;
-    color: white;
+/* Header styling */
+.header {
     text-align: center;
-    padding: 50px 0;
+    padding: 40px;
+    background-color: #333;
 }
 
-h1 {
-    margin: 0;
+.header h1 {
+    font-size: 3rem; /* Increase header title size */
+    color: white;
+    margin-bottom: 20px;
 }
 
+/* Main content section styling */
+.main-content {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+/* Profile picture styling */
 .profile-pic {
     border-radius: 50%;
     width: 150px;
@@ -29,39 +48,60 @@ h1 {
     object-fit: cover;
 }
 
-.cta-button {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px 20px;
+/* Card styling */
+.card {
+    background-color: #222; /* Darker card background */
+    border: 1px solid #444;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card h3 {
+    margin-bottom: 10px;
+}
+
+/* Links styling */
+a {
     text-decoration: none;
+    color: #3498db; /* Blue link color */
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Button styling */
+button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
     border-radius: 5px;
+    cursor: pointer;
 }
 
-section#certifications {
-    margin: 50px 0;
+button:hover {
+    background-color: #0056b3;
 }
 
-.certification {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 20px 0;
-}
-
-.certification-info {
-    flex: 1;
-    padding-right: 20px;
-}
-
-.certification-image {
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
-}
-
-footer {
+/* Footer styling */
+.footer {
     text-align: center;
     padding: 20px;
     background-color: #333;
     color: white;
+    margin-top: 40px;
+}
+
+.footer a {
+    color: #3498db; /* Blue link in footer */
+}
+
+/* Make layout responsive */
+@media (max-width: 768px) {
+    .main-content {
+        flex-direction: column;
+        gap: 10px;
+    }
 }
