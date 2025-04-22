@@ -6,10 +6,10 @@
 
 body {
   background-image: url("images/BG-Dark.jpg");
-  background-size: cover; /* Ensures the image covers the entire background */
-  background-position: center center; /* Centers the background image */
-  background-attachment: fixed; /* Keeps the background fixed while scrolling */
-  color: white; /* Sets text color to white for contrast */
+  background-size: cover;
+  background-position: center center;
+  background-attachment: fixed;
+  color: white;
 }
 
 .container {
@@ -91,11 +91,6 @@ button:hover {
 .cert-text {
   flex: 1;
   margin-right: 20px;
-  transition: transform 0.3s ease; /* Smooth transition for scaling */
-}
-
-.cert-card:hover .cert-text {
-  transform: scale(1.2); /* Scale up by 20% on hover */
 }
 
 .cert-card h4 {
