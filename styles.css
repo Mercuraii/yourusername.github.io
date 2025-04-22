@@ -142,6 +142,11 @@ button:hover {
   font-size: 1.5rem;
 }
 
+.card.full-width p {
+  font-size: 1.5rem;
+  line-height: 1.6; /* Optional, for better readability */
+}
+
 .cert-img,
 .cert-back-img {
   width: 100px;
