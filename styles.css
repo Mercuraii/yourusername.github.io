@@ -87,6 +87,11 @@ button:hover {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
   width: 100%;
   perspective: 1000px; /* Enable 3D for flip effect */
+  transition: transform 1s ease; /* Transition for reset before flip */
+}
+
+.cert-card:hover {
+  transform: scale(1.05); /* Slightly increase size on hover before flip */
 }
 
 .cert-card .card-inner {
@@ -119,8 +124,8 @@ button:hover {
     34,
     34,
     34,
-    0.6
-  ); /* Slightly transparent black background for front */
+    0.3
+  ); /* More transparent black background for front */
 }
 
 .card-back {
