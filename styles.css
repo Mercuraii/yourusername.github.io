@@ -102,6 +102,16 @@ button:hover {
   font-weight: bold;
 }
 
+.cert-card h4 a {
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.cert-card h4 a:hover {
+  color: #3498db; /* Change to blue on hover */
+}
+
 .cert-card p {
   color: white;
 }
