@@ -71,6 +71,10 @@ button:hover {
   gap: 30px;
 }
 
+.cert-card-container {
+  perspective: 1000px; /* Gives the flipping effect */
+}
+
 .cert-card {
   display: flex;
   justify-content: space-between;
@@ -81,12 +85,13 @@ button:hover {
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
   width: 100%;
-  transition: transform 0.3s ease;
-  overflow: hidden;
+  transition: transform 1s ease; /* Flip transition speed */
+  transform-style: preserve-3d; /* Ensures the child elements flip correctly */
+  position: relative;
 }
 
 .cert-card:hover {
-  transform: scale(1.05); /* Slightly increases size on hover */
+  transform: rotateY(180deg); /* Flip the card on hover */
 }
 
 .cert-text {
@@ -122,6 +127,7 @@ button:hover {
   width: 100px;
   height: auto;
   border-radius: 4px;
+  backface-visibility: hidden; /* Ensures the back of the image is not visible when flipped */
 }
 
 .footer {
