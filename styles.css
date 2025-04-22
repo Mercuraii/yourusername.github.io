@@ -5,10 +5,11 @@
 }
 
 body {
-  background-color: black;
-  color: white;
-  font-family: Arial, sans-serif;
-  line-height: 1.6;
+  background-image: url("images/BG-Dark.jpg");
+  background-size: cover; /* Ensures the image covers the entire background */
+  background-position: center center; /* Centers the background image */
+  background-attachment: fixed; /* Keeps the background fixed while scrolling */
+  color: white; /* Sets text color to white for contrast */
 }
 
 .container {
