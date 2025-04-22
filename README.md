@@ -32,3 +32,5 @@ Feel free to fork or use as a reference for building your own IT portfolio site.
 ---
 
 🛠️ Always learning. Always improving. Together. 
+
+📄 All content is my own. Please don't reuse without permission.
