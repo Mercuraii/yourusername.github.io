@@ -31,7 +31,7 @@ body {
 }
 
 .card {
-  background-color: #222;
+  background-color: rgba(34, 34, 34, 0.5); /* Increased transparency */
   border: 1px solid #444;
   padding: 20px;
   border-radius: 8px;
@@ -75,12 +75,7 @@ button:hover {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: rgba(
-    34,
-    34,
-    34,
-    0.8
-  ); /* Almost transparent with a bit of black tint */
+  background-color: rgba(34, 34, 34, 0.6); /* Increased transparency */
   border: 1px solid #444;
   padding: 20px;
   border-radius: 8px;
@@ -124,7 +119,7 @@ button:hover {
     34,
     34,
     34,
-    0.3
+    0.2
   ); /* More transparent black background for front */
 }
 
