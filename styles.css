@@ -105,11 +105,13 @@ button:hover {
 .cert-card h4 a {
   color: white;
   text-decoration: none;
-  transition: color 0.3s ease;
+  transition: color 0.3s ease, text-decoration 0.3s ease;
+  border-bottom: 3px solid transparent; /* Default transparent border */
 }
 
 .cert-card h4 a:hover {
-  color: #3498db; /* Change to blue on hover */
+  color: #3498db; /* Change text color on hover */
+  border-bottom: 3px solid #1d3c6e; /* Dark blue underline on hover */
 }
 
 .cert-card p {
