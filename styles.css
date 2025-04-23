@@ -82,6 +82,20 @@ button:hover {
   margin-top: 15px;
 }
 
+.flex-cert-sections {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  justify-content: space-between;
+  margin-top: 30px;
+}
+
+.certifications-section,
+.training-skills-section {
+  flex: 1;
+  min-width: 300px;
+}
+
 .certifications h3,
 .training-skills h3 {
   font-size: 2rem;
@@ -265,5 +279,9 @@ button:hover {
 
   .cert-card {
     width: 100%;
+  }
+
+  .flex-cert-sections {
+    flex-direction: column;
   }
 }
