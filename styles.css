@@ -87,9 +87,15 @@ button:hover {
   font-size: 2rem;
   margin: 30px 0 15px;
   color: #ffab40;
+  width: 100%;
 }
 
 .certifications {
+  display: flex;
+  flex-direction: column;
+}
+
+.certifications .certifications-row {
   display: flex;
   flex-wrap: wrap;
   gap: 30px;
@@ -195,6 +201,11 @@ button:hover {
 
 /* Training & Skills Section */
 .training-skills .certifications {
+  display: flex;
+  flex-direction: column;
+}
+
+.training-skills .certifications-row {
   display: flex;
   flex-wrap: wrap;
   gap: 30px;
