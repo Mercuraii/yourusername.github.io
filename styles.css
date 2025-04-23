@@ -153,7 +153,7 @@ button:hover {
 .cv-title {
   text-decoration: underline;
   font-size: 1rem;
-  color: #fff200;
+  color: #ffffff;
   margin-bottom: 5px;
 }
 
@@ -251,6 +251,11 @@ button:hover {
   width: 140px;
   height: auto;
   border-radius: 4px;
+}
+
+body.light-theme .certifications-section h3,
+body.light-theme .training-skills-section h3 {
+  color: #000;
 }
 
 /* Responsive */
