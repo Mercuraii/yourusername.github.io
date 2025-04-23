@@ -75,6 +75,13 @@ button:hover {
   background-color: #0056b3;
 }
 
+.button-group {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  margin-top: 15px;
+}
+
 .certifications {
   display: flex;
   flex-direction: column;
@@ -210,7 +217,7 @@ button:hover {
 }
 
 @media (max-width: 768px) {
-  .card-front,
+  \n .card-front,
   .card-back {
     flex-direction: column;
     text-align: center;
