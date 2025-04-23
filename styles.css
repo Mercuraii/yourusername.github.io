@@ -81,23 +81,17 @@ button:hover {
 }
 
 .cv-options {
-  display: flex;
+  display: none;
   gap: 10px;
   position: absolute;
   top: 0;
   left: 100%;
-  opacity: 0;
-  transform: scaleX(0);
-  transform-origin: left;
   transition: all 0.3s ease-in-out;
 }
 
 .cv-dropdown:hover .cv-options {
-  opacity: 1;
-  transform: scaleX(1);
-}
-
-/* Section Headers */
+  display: flex;
+} /* Section Headers */
 .certifications-section h3,
 .training-skills-section h3 {
   font-size: 2rem;
