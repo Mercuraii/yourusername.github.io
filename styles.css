@@ -101,8 +101,8 @@ button:hover {
 /* Section Headers */
 .certifications-section h3,
 .training-skills-section h3 {
-  font-size: 1.8rem;
-  color: #fff200;
+  font-size: 1.4rem;
+  color: #ffffff;
   margin-bottom: 15px;
 }
 
@@ -126,7 +126,7 @@ button:hover {
 }
 
 .training-skills-section .cert-card {
-  background: rgba(0, 100, 0, 0.4);
+  background: rgba(0, 134, 0, 0.4);
 }
 
 .card-inner {
