@@ -36,9 +36,27 @@
         </h2>
         <div class="button-group">
           <a href="contact.html" target="_blank"><button>Contact Me</button></a>
-          <a href="files/JoeSzolcek-CV.pdf" download
-            ><button>Download My CV</button></a
-          >
+
+          <div class="cv-dropdown">
+            <!-- main button -->
+            <a href="files/JoeSzolcek-CV.pdf" download>
+              <button>Download My CV</button>
+            </a>
+
+            <!-- hidden on load, shows on hover: -->
+            <div class="cv-options">
+              <h4 class="cv-title">CV Format Options</h4>
+              <a href="files/JoeSzolcek-CV.pdf" download
+                ><button>.PDF</button></a
+              >
+              <a href="files/JoeSzolcek-CV.doc" download
+                ><button>.Word</button></a
+              >
+              <a href="files/JoeSzolcek-CV.odt" download
+                ><button>LibreOffice</button></a
+              >
+            </div>
+          </div>
         </div>
       </section>
 
@@ -51,7 +69,7 @@
               <div class="card-inner">
                 <div class="card-front">
                   <div class="cert-text">
-                    <h4>>CompTIA Network+</h4>
+                    <h4>CompTIA Network+</h4>
                     <p>
                       Networking fundamentals, wired/wireless, security basics.
                     </p>
@@ -82,7 +100,7 @@
               <div class="card-inner">
                 <div class="card-front">
                   <div class="cert-text">
-                    <h4>>CompTIA A+</h4>
+                    <h4>CompTIA A+</h4>
                     <p>
                       Hardware, software, troubleshooting, network fundamentals.
                     </p>
@@ -141,13 +159,7 @@
               <div class="card-inner">
                 <div class="card-front">
                   <div class="cert-text">
-                    <h4>
-                      <a
-                        href="https://www.axelos.com/certifications/itil-certifications/itil-foundation"
-                        target="_blank"
-                        >ITIL 4 Foundation</a
-                      >
-                    </h4>
+                    <h4>ITIL 4 Foundation</h4>
                     <p>
                       Service management, four dimensions, guiding principles.
                     </p>
@@ -187,5 +199,22 @@
         </p>
       </footer>
     </div>
+    <script>
+      const dropdown = document.querySelector(".cv-dropdown");
+      const opts = dropdown.querySelector(".cv-options");
+      let timer;
+
+      dropdown.addEventListener("mouseenter", () => {
+        clearTimeout(timer);
+        opts.classList.add("visible");
+      });
+
+      dropdown.addEventListener("mouseleave", () => {
+        clearTimeout(timer);
+        timer = setTimeout(() => {
+          opts.classList.remove("visible");
+        }, 3000);
+      });
+    </script>
   </body>
 </html>
