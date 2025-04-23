@@ -61,6 +61,7 @@ body {
   width: 150px;
   height: 150px;
   object-fit: cover;
+  font-size: 1.1rem;
 }
 
 button {
