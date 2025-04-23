@@ -64,10 +64,10 @@ button:hover {
   margin-top: 15px;
 }
 
-/* CV Dropdown: JS-controlled show/hide */
+/* —— CV Dropdown (fixed) —— */
 .cv-dropdown {
   position: relative;
-  display: inline-block; /* keep it inline with other buttons */
+  display: inline-block; /* stay inline with other buttons */
 }
 
 .cv-options {
@@ -85,8 +85,10 @@ button:hover {
   transition: all 0.3s ease-in-out;
 }
 
-.cv-options.visible {
-  display: flex; /* shown when JS adds “visible” */
+/* show when hovered OR when JS adds “visible” */
+.cv-options.visible,
+.cv-dropdown:hover .cv-options {
+  display: flex;
 }
 
 .cv-title {
@@ -133,7 +135,7 @@ button:hover {
   height: 100%;
 }
 
-/* Flip only on certification cards */
+/* Flip on cert cards */
 .certifications-section .cert-card .card-inner {
   transition: transform 2s;
   transform-style: preserve-3d;
