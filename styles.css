@@ -7,6 +7,15 @@
   box-sizing: border-box;
 }
 
+.linkedin-link {
+  color: white;
+  text-decoration: underline;
+}
+
+.linkedin-link:hover {
+  text-decoration: underline;
+}
+
 body {
   background: url("images/BG-Dark.jpg") center/cover fixed;
   color: #fff;
