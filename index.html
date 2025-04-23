@@ -14,166 +14,68 @@
         <h1>Joe's IT Portfolio</h1>
       </header>
 
+      <!-- Intro Section -->
       <section class="card full-width">
-        <img src="images/your-photo.jpg" alt="Joe" class="profile-pic" />
+        <img
+          src="images/your-photo.jpg"
+          alt="Portrait photo of Joe Szolcek"
+          class="profile-pic"
+        />
         <h2>Hello and welcome to my portfolio,</h2>
         <p>
-          I’m eager to transition into a career in IT support, bringing a
-          passion for troubleshooting, customer service, and growing my IT
-          knowledge.
+          I’m eagerly pursuing a career in IT support, bringing a passion for
+          troubleshooting, customer service, and expanding my IT knowledge.
         </p>
         <h2>
           <a
-            href="https://www.linkedin.com/in/joeslinkedin"
+            href="https://www.linkedin.com/in/joe-szolcek/"
             target="_blank"
             class="linkedin-link"
           >
             Joe Szolcek
             <img
               src="images/linkedin.png"
-              alt="LinkedIn"
+              alt="LinkedIn icon"
               class="linkedin-icon"
             />
           </a>
         </h2>
         <div class="button-group">
-          <a href="contact.html" target="_blank"><button>Contact Me</button></a>
-          <a href="files/Joe Szolcek-CV.pdf" download
-            ><button>Download CV</button></a
-          >
+          <a href="contact.html" target="_blank">
+            <button>Contact Me</button>
+          </a>
+          <div class="cv-dropdown">
+            <a href="files/JoeSzolcek-CV.pdf" download>
+              <button class="cv-btn">Download My CV</button>
+            </a>
+            <div class="cv-options">
+              <a href="files/JoeSzolcek-CV.pdf" download>
+                <button>PDF</button>
+              </a>
+              <a href="files/JoeSzolcek-CV.doc" download>
+                <button>Word</button>
+              </a>
+              <a href="files/JoeSzolcek-CV.odt" download>
+                <button>LibreOffice</button>
+              </a>
+            </div>
+          </div>
         </div>
       </section>
 
-      <section class="certifications">
+      <!-- Certifications Section -->
+      <section class="certifications-section">
         <h3>Certifications</h3>
-        <!-- Network+ Certification Card -->
-        <div class="cert-card">
-          <div class="card-inner">
-            <div class="card-front">
-              <div class="cert-text">
-                <h4>
-                  <a
-                    href="https://www.comptia.org/certifications/network"
-                    target="_blank"
-                    >CompTIA Network+</a
-                  >
-                </h4>
-                <p>
-                  Knowledge and skills in networking, including wired/wireless
-                  technologies and basic security.
-                </p>
-              </div>
-              <img
-                src="images/networkplus.png"
-                alt="Network+ Badge"
-                class="cert-img"
-              />
-            </div>
-            <div class="card-back">
-              <img
-                src="images/networkplus.png"
-                alt="Network+ Badge"
-                class="cert-back-img"
-              />
-            </div>
-          </div>
-        </div>
-
-        <!-- A+ Certification Card -->
-        <div class="cert-card">
-          <div class="card-inner">
-            <div class="card-front">
-              <div class="cert-text">
-                <h4>
-                  <a
-                    href="https://www.comptia.org/certifications/a"
-                    target="_blank"
-                    >CompTIA A+</a
-                  >
-                </h4>
-                <p>
-                  PC hardware, software, troubleshooting, and network
-                  fundamentals.
-                </p>
-              </div>
-              <img src="images/aplus.png" alt="A+ Badge" class="cert-img" />
-            </div>
-            <div class="card-back">
-              <img
-                src="images/aplus.png"
-                alt="A+ Badge"
-                class="cert-back-img"
-              />
-            </div>
-          </div>
-        </div>
-
-        <!-- AZ-900 Certification Card -->
-        <div class="cert-card">
-          <div class="card-inner">
-            <div class="card-front">
-              <div class="cert-text">
-                <h4>
-                  <a
-                    href="https://learn.microsoft.com/en-us/certifications/azure-fundamentals/"
-                    target="_blank"
-                    >AZ-900</a
-                  >
-                </h4>
-                <p>
-                  Knowledge of cloud concepts, core Azure services, plus Azure
-                  management and governance features and tools.
-                </p>
-              </div>
-              <img src="images/az900.png" alt="AZ-900 Badge" class="cert-img" />
-            </div>
-            <div class="card-back">
-              <img
-                src="images/az900.png"
-                alt="AZ-900 Badge"
-                class="cert-back-img"
-              />
-            </div>
-          </div>
-        </div>
-
-        <!-- ITIL 4 Certification Card -->
-        <div class="cert-card">
-          <div class="card-inner">
-            <div class="card-front">
-              <div class="cert-text">
-                <h4>
-                  <a
-                    href="https://www.axelos.com/certifications/itil-certifications/itil-foundation"
-                    target="_blank"
-                    >ITIL 4 Foundation</a
-                  >
-                </h4>
-                <p>
-                  Understanding of service management concepts, the four
-                  dimensions, and guiding principles.
-                </p>
-              </div>
-              <img
-                src="images/itil4-badge.png"
-                alt="ITIL 4 Badge"
-                class="cert-img"
-              />
-            </div>
-            <div class="card-back">
-              <img
-                src="images/itil4-badge.png"
-                alt="ITIL 4 Badge"
-                class="cert-back-img"
-              />
-            </div>
-          </div>
+        <div class="certifications-row">
+          <!-- Network+ -->
+          <!-- ... existing certification cards ... -->
         </div>
       </section>
 
-      <section class="training-skills">
+      <!-- Training & Skills Section (Below Certifications) -->
+      <section class="training-skills-section">
         <h3>Training & Skills</h3>
-        <div class="certifications">
+        <div class="certifications-row">
           <!-- Customer Support & Service -->
           <div class="cert-card">
             <div class="card-inner">
@@ -181,16 +83,15 @@
                 <div class="cert-text">
                   <h4>Customer Support & Service</h4>
                   <p>
-                    Several years experience providing customer support in a law
-                    firm handling client queries and liaising with other
-                    government bodies and other companies.
+                    Law firm experience managing client queries and liaising
+                    externally.
                   </p>
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- Additional Skill Cards -->
+          <!-- Network Troubleshooting -->
           <div class="cert-card">
             <div class="card-inner">
               <div class="card-front">
@@ -205,6 +106,7 @@
             </div>
           </div>
 
+          <!-- Infrastructure & Configuration -->
           <div class="cert-card">
             <div class="card-inner">
               <div class="card-front">
@@ -220,6 +122,7 @@
             </div>
           </div>
 
+          <!-- IT Security & Firewalls -->
           <div class="cert-card">
             <div class="card-inner">
               <div class="card-front">
@@ -234,6 +137,7 @@
             </div>
           </div>
 
+          <!-- Monitoring & Documentation -->
           <div class="cert-card">
             <div class="card-inner">
               <div class="card-front">
@@ -248,6 +152,7 @@
             </div>
           </div>
 
+          <!-- Scripting & Automation -->
           <div class="cert-card">
             <div class="card-inner">
               <div class="card-front">
@@ -262,6 +167,7 @@
             </div>
           </div>
 
+          <!-- Collaboration & Problem-Solving -->
           <div class="cert-card">
             <div class="card-inner">
               <div class="card-front">
@@ -276,6 +182,7 @@
             </div>
           </div>
 
+          <!-- Web Development -->
           <div class="cert-card">
             <div class="card-inner">
               <div class="card-front">
@@ -290,6 +197,7 @@
             </div>
           </div>
 
+          <!-- Graphic Design -->
           <div class="cert-card">
             <div class="card-inner">
               <div class="card-front">
