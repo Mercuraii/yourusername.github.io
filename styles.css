@@ -144,6 +144,8 @@ button:hover {
 
 .certifications-section .cert-card {
   background: rgba(1, 51, 202, 0.489);
+  border: 1px solid #444; /* Add a grey border */
+  border-radius: 8px;
 }
 
 .training-skills-section .cert-card {
