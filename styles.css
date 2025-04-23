@@ -84,54 +84,52 @@ button:hover {
 
 .flex-cert-sections {
   display: flex;
-  flex-wrap: wrap;
   gap: 40px;
   justify-content: space-between;
   margin-top: 30px;
+  flex-wrap: wrap;
 }
 
 .certifications-section,
 .training-skills-section {
   flex: 1;
-  min-width: 300px;
+  min-width: 45%;
 }
 
 .certifications h3,
 .training-skills h3 {
   font-size: 2rem;
-  margin: 30px 0 15px;
+  margin-bottom: 15px;
   color: #ffab40;
-  width: 100%;
 }
 
-.certifications {
-  display: flex;
-  flex-direction: column;
-}
-
-.certifications .certifications-row {
+.certifications-row {
   display: flex;
   flex-wrap: wrap;
   gap: 30px;
 }
 
 .cert-card {
-  background: transparent;
+  background: rgba(0, 50, 200, 0.2);
   width: 45%;
   height: 180px;
   perspective: 1000px;
 }
 
-.card-inner {
+.training-skills-section .cert-card {
+  background: rgba(0, 100, 0, 0.4);
+}
+
+.cert-card .card-inner {
   position: relative;
   width: 100%;
   height: 100%;
-  transition: transform 2s;
-  transform-style: preserve-3d;
 }
 
 .cert-card:hover .card-inner {
   transform: rotateY(180deg);
+  transition: transform 2s;
+  transform-style: preserve-3d;
 }
 
 .card-front,
@@ -149,8 +147,7 @@ button:hover {
 }
 
 .card-front {
-  background-color: rgba(0, 0, 50, 0.6);
-  flex-direction: row;
+  background-color: transparent;
 }
 
 .card-back {
@@ -162,126 +159,32 @@ button:hover {
 .cert-text {
   flex: 1;
   margin-right: 20px;
-  min-width: 0;
 }
 
 .cert-card h4 {
-  font-size: 1.7rem;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-
-.cert-card h4 a {
-  color: white;
-  text-decoration: none;
-  border-bottom: 3px solid #1d3c6e;
-}
-
-.cert-card h4 a:hover {
-  color: #3498db;
+  font-size: 1.4rem;
+  margin-bottom: 8px;
 }
 
 .cert-card p {
-  color: white;
-  font-size: 1.3rem;
-}
-
-.card.full-width p {
-  font-size: 1.5rem;
-  line-height: 1.6;
+  font-size: 1.1rem;
 }
 
 .cert-img,
 .cert-back-img {
-  width: 120px;
-  height: auto;
-  border-radius: 4px;
-}
-
-/* Self-study card styling */
-.cert-card.self-study .card-front {
-  background-color: rgba(255, 165, 0, 0.3);
-}
-
-.cert-card.self-study .cert-img {
-  filter: grayscale(80%);
-}
-
-.disclaimer {
-  font-size: 0.8rem;
-  font-weight: normal;
-  color: #ddd;
-}
-
-/* Training & Skills Section */
-.training-skills .certifications {
-  display: flex;
-  flex-direction: column;
-}
-
-.training-skills .certifications-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 30px;
-}
-
-/* Disable flip and use darker green for Training & Skills */
-.training-skills .cert-card {
-  perspective: none;
-}
-
-.training-skills .cert-card .card-inner {
-  transition: none !important;
-}
-
-.training-skills .cert-card:hover .card-inner {
-  transform: none !important;
-}
-
-.training-skills .cert-card .card-front,
-.training-skills .cert-card .card-back {
-  background-color: rgba(0, 100, 0, 0.4) !important;
-  box-shadow: 0 2px 8px rgba(0, 255, 0, 0.3);
-}
-
-.footer {
-  text-align: center;
-  padding: 20px;
-  background-color: rgba(51, 51, 51, 0.5);
-  color: white;
-  margin-top: 40px;
-}
-
-.footer a {
-  color: #3498db;
-  text-decoration: none;
-}
-
-.footer a:hover {
-  text-decoration: underline;
+  width: 80px;
 }
 
 @media (max-width: 768px) {
-  .card-front,
-  .card-back {
-    flex-direction: column;
-    text-align: center;
+  .certifications-section,
+  .training-skills-section {
+    min-width: 100%;
   }
-
-  .cert-img,
-  .cert-back-img {
-    width: 80px;
-  }
-
-  .header h1 {
-    font-size: 2.5rem;
-  }
-
-  .cert-card {
-    width: 100%;
-  }
-
   .flex-cert-sections {
     flex-direction: column;
+  }
+  .cert-card {
+    width: 100%;
+    margin-bottom: 20px;
   }
 }
