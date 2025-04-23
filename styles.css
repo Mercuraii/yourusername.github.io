@@ -54,7 +54,7 @@ body.light-theme {
 }
 
 .back-link {
-  color: #fff;
+  color: #2400ef;
   text-decoration: underline;
   display: inline-block;
   margin-top: 10px;
@@ -62,7 +62,7 @@ body.light-theme {
 }
 
 .back-link:hover {
-  color: #0000ff;
+  color: #00c8ff;
 }
 
 body {
