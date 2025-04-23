@@ -147,7 +147,7 @@ button:hover {
 .cert-card h4 a {
   color: white;
   text-decoration: none;
-  border-bottom: 3px solid #1d3c6e;
+  border-bottom: 3px solid #3498db;
 }
 
 .cert-card h4 a:hover {
@@ -217,7 +217,7 @@ button:hover {
 }
 
 @media (max-width: 768px) {
-  \n .card-front,
+  .card-front,
   .card-back {
     flex-direction: column;
     text-align: center;
