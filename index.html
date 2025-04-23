@@ -159,13 +159,7 @@
               <div class="card-inner">
                 <div class="card-front">
                   <div class="cert-text">
-                    <h4>
-                      <a
-                        href="https://www.axelos.com/certifications/itil-certifications/itil-foundation"
-                        target="_blank"
-                        >ITIL 4 Foundation</a
-                      >
-                    </h4>
+                    <h4>ITIL 4 Foundation</h4>
                     <p>
                       Service management, four dimensions, guiding principles.
                     </p>
@@ -205,5 +199,22 @@
         </p>
       </footer>
     </div>
+    <script>
+      const dropdown = document.querySelector(".cv-dropdown");
+      const opts = dropdown.querySelector(".cv-options");
+      let timer;
+
+      dropdown.addEventListener("mouseenter", () => {
+        clearTimeout(timer);
+        opts.classList.add("visible");
+      });
+
+      dropdown.addEventListener("mouseleave", () => {
+        clearTimeout(timer);
+        timer = setTimeout(() => {
+          opts.classList.remove("visible");
+        }, 3000);
+      });
+    </script>
   </body>
 </html>

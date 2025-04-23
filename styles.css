@@ -19,17 +19,6 @@ body {
   padding: 20px;
 }
 
-.header {
-  text-align: center;
-  padding: 20px 0;
-  background: rgba(51, 51, 51, 0.4);
-  margin-bottom: 30px;
-}
-
-.header h1 {
-  font-size: 3.5rem;
-}
-
 /* Card Components */
 .card {
   background: rgba(0, 0, 0, 0.5);
@@ -75,23 +64,39 @@ button:hover {
   margin-top: 15px;
 }
 
-/* CV Dropdown */
+/* CV Dropdown: JS-controlled show/hide */
 .cv-dropdown {
   position: relative;
+  display: inline-block; /* keep it inline with other buttons */
 }
 
 .cv-options {
-  display: none;
-  gap: 10px;
+  display: none; /* hidden by default */
+  flex-direction: column;
   position: absolute;
   top: 0;
-  left: 100%;
+  left: 110%; /* just to the right */
+  background: rgba(0, 0, 0, 0.5);
+  padding: 10px;
+  border: 1px solid #444;
+  border-radius: 5px;
+  gap: 8px;
+  z-index: 10;
   transition: all 0.3s ease-in-out;
 }
 
-.cv-dropdown:hover .cv-options {
-  display: flex;
-} /* Section Headers */
+.cv-options.visible {
+  display: flex; /* shown when JS adds “visible” */
+}
+
+.cv-title {
+  text-decoration: underline;
+  font-size: 1rem;
+  color: #fff200;
+  margin-bottom: 5px;
+}
+
+/* Section Headers */
 .certifications-section h3,
 .training-skills-section h3 {
   font-size: 2rem;
@@ -180,40 +185,6 @@ button:hover {
   width: 80px;
   height: auto;
   border-radius: 4px;
-}
-
-/* wrapper for the hover dropdown */
-.cv-dropdown {
-  position: relative;
-  display: inline-block; /* keep it inline with your other button */
-}
-
-/* hidden until hover */
-.cv-options {
-  display: none;
-  flex-direction: column;
-  position: absolute;
-  top: 0;
-  left: 110%; /* just to the right */
-  background: rgba(0, 0, 0, 0.5);
-  padding: 10px;
-  border: 1px solid #444;
-  border-radius: 5px;
-  gap: 8px;
-  z-index: 10;
-}
-
-/* show on hover */
-.cv-dropdown:hover .cv-options {
-  display: flex;
-}
-
-/* title styling */
-.cv-title {
-  text-decoration: underline;
-  font-size: 1rem;
-  color: #fff200;
-  margin-bottom: 5px;
 }
 
 /* Responsive */
