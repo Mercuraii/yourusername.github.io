@@ -7,6 +7,14 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
+    <div class="theme-toggle-container">
+      <label class="switch">
+        <input type="checkbox" id="theme-toggle" />
+        <span class="slider"></span>
+      </label>
+      <span id="theme-icon" class="theme-icon">🌙</span>
+    </div>
+
     <div class="container">
       <header class="header">
         <h1>Contact Me</h1>
@@ -15,8 +23,8 @@
 
       <section class="card full-width">
         <p>
-          If you'd like to get in touch, feel free to reach out using the form
-          below or connect with me on
+          If you'd like to get in touch, feel free to reach to me via email or
+          linked in:
           <a href="https://www.linkedin.com/in/joe-szolcek/" target="_blank"
             >LinkedIn</a
           >.
@@ -24,7 +32,7 @@
         <div class="contact-grid">
           <!-- LinkedIn card -->
           <div class="contact-card">
-            <h3>LinkedIn</h3>
+            <h3>My LinkedIn</h3>
             <a href="https://www.linkedin.com/in/joe-szolcek/" target="_blank">
               <img
                 src="images/linkedin.png"
@@ -32,11 +40,20 @@
                 class="contact-icon"
               />
             </a>
+            <p class="contact-text">
+              Connect with me on LinkedIn <br />
+              <a
+                href="https://www.linkedin.com/in/joe-szolcek/"
+                target="_blank"
+                style="color: white"
+                ><u>https://www.linkedin.com/in/joe-szolcek/</u></a
+              >
+            </p>
           </div>
 
           <!-- Email card -->
           <div class="contact-card">
-            <h3>Email</h3>
+            <h3>Email Me</h3>
             <a href="mailto:jszolcek@yahoo.com">
               <img
                 src="images/email.jpeg"
@@ -44,6 +61,10 @@
                 class="contact-icon"
               />
             </a>
+            <p class="contact-text">
+              Drop me a message anytime:<br />
+              <u>jszolcek@yahoo.com</u>
+            </p>
           </div>
         </div>
       </section>
@@ -52,5 +73,8 @@
         <p>&copy; 2025 Joe's IT Portfolio</p>
       </footer>
     </div>
+
+    <script src="theme.js"></script>
+    <script src="script.js"></script>
   </body>
 </html>

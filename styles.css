@@ -13,7 +13,8 @@ html {
 
 /* Base Styles (Dark Theme by Default) */
 body {
-  background: url("images/BG-Dark.jpg") center/cover fixed;
+  perspective: 800px; /* add 3D perspective */
+  background-color: #000; /* solid black behind BG image */
   color: #fff;
   font-family: sans-serif;
   transition: background-color 0.3s, color 0.3s;
@@ -21,7 +22,7 @@ body {
 
 /* Light Theme Styles */
 body.light-theme {
-  background: url("images/BG-Light.jpg") center/cover fixed;
+  background-color: #fff; /* solid white behind BG image */
   color: #000;
 }
 
@@ -54,7 +55,7 @@ body.light-theme {
 }
 
 .back-link {
-  color: #fff;
+  color: #2400ef;
   text-decoration: underline;
   display: inline-block;
   margin-top: 10px;
@@ -62,13 +63,7 @@ body.light-theme {
 }
 
 .back-link:hover {
-  color: #0000ff;
-}
-
-body {
-  background: url("images/BG-Dark.jpg") center/cover fixed;
-  color: #fff;
-  font-family: sans-serif;
+  color: #00c8ff;
 }
 
 .container {
@@ -144,6 +139,15 @@ button:hover {
   transition: all 0.3s ease-in-out;
 }
 
+.theme-toggle-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 100;
+  max-width: 100%; /* Prevent it from going off-screen */
+  overflow: hidden; /* Ensure no overflow happens */
+}
+
 /* show when hovered OR when JS adds “visible” */
 .cv-options.visible,
 .cv-dropdown:hover .cv-options {
@@ -153,7 +157,7 @@ button:hover {
 .cv-title {
   text-decoration: underline;
   font-size: 1rem;
-  color: #fff200;
+  color: #ffffff;
   margin-bottom: 5px;
 }
 
@@ -183,13 +187,11 @@ button:hover {
 .certifications-section .cert-card {
   background: rgba(1, 51, 202, 0.489);
   border: 1px solid #444; /* Add a grey border */
-  border-radius: 8px;
 }
 
 .training-skills-section .cert-card {
   background: rgba(0, 134, 0, 0.4);
   border: 1px solid #444; /* Add a grey border */
-  border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
@@ -253,6 +255,11 @@ button:hover {
   border-radius: 4px;
 }
 
+body.light-theme .certifications-section h3,
+body.light-theme .training-skills-section h3 {
+  color: #000;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .certifications-row,
@@ -284,7 +291,7 @@ button:hover {
 
 .contact-card h3 {
   margin-bottom: 15px;
-  color: #fff200;
+  color: #ffffff;
 }
 
 .contact-icon {
@@ -295,4 +302,91 @@ button:hover {
 
 .contact-icon:hover {
   transform: scale(1.1);
+}
+
+/* Toggle Switch */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 28px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #999;
+  transition: 0.4s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: #0d00ff;
+}
+
+input:checked + .slider:before {
+  transform: translateX(22px);
+}
+
+.contact-text {
+  text-align: center;
+  margin-top: 0.5em;
+  font-size: 0.9em;
+  color: #ffffff;
+}
+
+/* Theme-icon styling */
+.theme-icon {
+  display: block;
+  text-align: center;
+  font-size: 1.3rem;
+  margin-top: 6px;
+  transition: color 0.3s;
+  color: #fff;
+}
+body.light-theme .theme-icon {
+  color: #000;
+}
+
+/* 3D Background Layer */
+.bg-3d {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("images/BG-Dark.jpg") center/cover no-repeat;
+  transform-style: preserve-3d;
+  transform-origin: center center;
+  will-change: transform;
+  pointer-events: none;
+  z-index: -2;
+  transition: transform 0.1s ease-out;
+}
+
+/* Swap to light bg when in light theme */
+body.light-theme .bg-3d {
+  background: url("images/BG-Light.jpg") center/cover no-repeat;
 }
