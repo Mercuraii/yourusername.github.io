@@ -6,6 +6,8 @@
     <title>Joe's IT Portfolio</title>
     <link rel="icon" type="image/png" sizes="96x96" href="images/favicon.png" />
     <link rel="stylesheet" href="styles.css" />
+    <!-- Dark/Light Theme Toggle Button -->
+    <button id="theme-toggle" class="theme-toggle-btn">🌙</button>
   </head>
   <body>
     <div class="container">
@@ -28,7 +30,7 @@
           >
             Joe Szolcek
             <img
-              src="images/linkedin.png"
+              src="images/linkedin-icon.png"
               alt="LinkedIn icon"
               class="linkedin-icon"
             />
@@ -36,9 +38,27 @@
         </h2>
         <div class="button-group">
           <a href="contact.html" target="_blank"><button>Contact Me</button></a>
-          <a href="files/JoeSzolcek-CV.pdf" download
-            ><button>Download My CV</button></a
-          >
+
+          <div class="cv-dropdown">
+            <!-- main button -->
+            <a href="files/Joe Szolcek-CV.pdf" download>
+              <button>Download My CV</button>
+            </a>
+
+            <!-- hidden on load, shows on hover: -->
+            <div class="cv-options">
+              <h4 class="cv-title">CV Format Options</h4>
+              <a href="files/Joe Szolcek-CV.pdf" download
+                ><button>.PDF</button></a
+              >
+              <a href="files/JoeSzolcek-CV.doc" download
+                ><button>.Word</button></a
+              >
+              <a href="files/JoeSzolcek-CV.odt" download
+                ><button>LibreOffice</button></a
+              >
+            </div>
+          </div>
         </div>
       </section>
 
@@ -51,7 +71,7 @@
               <div class="card-inner">
                 <div class="card-front">
                   <div class="cert-text">
-                    <h4>>CompTIA Network+</h4>
+                    <h4>CompTIA Network+</h4>
                     <p>
                       Networking fundamentals, wired/wireless, security basics.
                     </p>
@@ -82,7 +102,7 @@
               <div class="card-inner">
                 <div class="card-front">
                   <div class="cert-text">
-                    <h4>>CompTIA A+</h4>
+                    <h4>CompTIA A+</h4>
                     <p>
                       Hardware, software, troubleshooting, network fundamentals.
                     </p>
@@ -141,13 +161,7 @@
               <div class="card-inner">
                 <div class="card-front">
                   <div class="cert-text">
-                    <h4>
-                      <a
-                        href="https://www.axelos.com/certifications/itil-certifications/itil-foundation"
-                        target="_blank"
-                        >ITIL 4 Foundation</a
-                      >
-                    </h4>
+                    <h4>ITIL 4 Foundation</h4>
                     <p>
                       Service management, four dimensions, guiding principles.
                     </p>
@@ -175,6 +189,98 @@
           </div>
         </section>
 
+        <section class="training-skills-section">
+          <h3>Training & Skills</h3>
+          <div class="certifications-row">
+            <!-- Customer Support -->
+            <div class="cert-card self-study">
+              <div class="card-inner">
+                <div class="card-front">
+                  <div class="cert-text">
+                    <h4>Customer Support & Service</h4>
+                    <p>
+                      Three years of customer support experience managing client
+                      queries and liaising externally in a law firm via email,
+                      telephone and in person.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Network Troubleshooting -->
+            <div class="cert-card">
+              <div class="card-inner">
+                <div class="card-front">
+                  <div class="cert-text">
+                    <h4>Network Troubleshooting</h4>
+                    <p>
+                      Diagnosing connectivity issues: TCP/IP, DHCP, VLANs,
+                      routing.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Infrastructure -->
+            <div class="cert-card">
+              <div class="card-inner">
+                <div class="card-front">
+                  <div class="cert-text">
+                    <h4>Infrastructure & Configuration</h4>
+                    <p>
+                      Active Directory, virtualization, hardware upgrades &
+                      maintenance.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Security -->
+            <div class="cert-card">
+              <div class="card-inner">
+                <div class="card-front">
+                  <div class="cert-text">
+                    <h4>IT Security & Firewalls</h4>
+                    <p>VPNs, firewall setup, network security best practice.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Monitoring -->
+            <div class="cert-card">
+              <div class="card-inner">
+                <div class="card-front">
+                  <div class="cert-text">
+                    <h4>Monitoring & Documentation</h4>
+                    <p>
+                      Network monitoring tools, ticketing, IT documentation.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Scripting -->
+            <div class="cert-card">
+              <div class="card-inner">
+                <div class="card-front">
+                  <div class="cert-text">
+                    <h4>Scripting & Automation</h4>
+                    <p>
+                      Pursuing scripting for automation and efficiency
+                      improvements.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <!-- The rest of your page (training/skills, footer, etc.) stays unchanged -->
       </div>
 
@@ -187,5 +293,23 @@
         </p>
       </footer>
     </div>
+    <script>
+      const dropdown = document.querySelector(".cv-dropdown");
+      const opts = dropdown.querySelector(".cv-options");
+      let timer;
+
+      dropdown.addEventListener("mouseenter", () => {
+        clearTimeout(timer);
+        opts.classList.add("visible");
+      });
+
+      dropdown.addEventListener("mouseleave", () => {
+        clearTimeout(timer);
+        timer = setTimeout(() => {
+          opts.classList.remove("visible");
+        }, 3000);
+      });
+    </script>
+    <script src="script.js"></script>
   </body>
 </html>
