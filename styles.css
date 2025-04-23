@@ -145,10 +145,12 @@ button:hover {
 }
 
 .theme-toggle-container {
-  position: absolute;
+  position: fixed;
   top: 20px;
   right: 20px;
   z-index: 100;
+  max-width: 100%; /* Prevent it from going off-screen */
+  overflow: hidden; /* Ensure no overflow happens */
 }
 
 /* show when hovered OR when JS adds “visible” */
@@ -353,4 +355,11 @@ input:checked + .slider {
 
 input:checked + .slider:before {
   transform: translateX(22px);
+}
+
+.contact-text {
+  text-align: center;
+  margin-top: 0.5em;
+  font-size: 0.9em;
+  color: #555;
 }
