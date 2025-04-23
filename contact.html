@@ -10,6 +10,7 @@
     <div class="container">
       <header class="header">
         <h1>Contact Me</h1>
+        <p><a href="index.html" class="back-link">← Back to Home</a></p>
       </header>
 
       <section class="card full-width">
@@ -20,19 +21,31 @@
             >LinkedIn</a
           >.
         </p>
+        <div class="contact-grid">
+          <!-- LinkedIn card -->
+          <div class="contact-card">
+            <h3>LinkedIn</h3>
+            <a href="https://www.linkedin.com/in/joe-szolcek/" target="_blank">
+              <img
+                src="images/linkedin.png"
+                alt="LinkedIn logo"
+                class="contact-icon"
+              />
+            </a>
+          </div>
 
-        <form class="contact-form">
-          <label for="name">Name:</label>
-          <input type="text" id="name" name="name" required />
-
-          <label for="email">Email:</label>
-          <input type="email" id="email" name="email" required />
-
-          <label for="message">Message:</label>
-          <textarea id="message" name="message" rows="5" required></textarea>
-
-          <button type="submit">Send Message</button>
-        </form>
+          <!-- Email card -->
+          <div class="contact-card">
+            <h3>Email</h3>
+            <a href="mailto:jszolcek@yahoo.com">
+              <img
+                src="images/email.jpeg"
+                alt="Email icon"
+                class="contact-icon"
+              />
+            </a>
+          </div>
+        </div>
       </section>
 
       <footer class="footer">
