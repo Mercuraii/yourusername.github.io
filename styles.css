@@ -144,6 +144,13 @@ button:hover {
   transition: all 0.3s ease-in-out;
 }
 
+.theme-toggle-container {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 100;
+}
+
 /* show when hovered OR when JS adds “visible” */
 .cv-options.visible,
 .cv-dropdown:hover .cv-options {
@@ -153,7 +160,7 @@ button:hover {
 .cv-title {
   text-decoration: underline;
   font-size: 1rem;
-  color: #fff200;
+  color: #ffffff;
   margin-bottom: 5px;
 }
 
@@ -251,6 +258,11 @@ button:hover {
   width: 140px;
   height: auto;
   border-radius: 4px;
+}
+
+body.light-theme .certifications-section h3,
+body.light-theme .training-skills-section h3 {
+  color: #000;
 }
 
 /* Responsive */
