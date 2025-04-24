@@ -430,3 +430,27 @@ body.light-theme .linkedin-link {
 body.light-theme .linkedin-link:hover {
   color: #000 !important;
 }
+
+/* —— Section headers switch black in light, white in dark —— */
+.certifications-section h3,
+.training-skills-section h3 {
+  transition: color 0.3s;
+}
+
+/* Light mode: black headers */
+body.light-theme .certifications-section h3,
+body.light-theme .training-skills-section h3 {
+  color: #000 !important;
+}
+
+/* Dark mode (no .light-theme): white headers */
+body:not(.light-theme) .certifications-section h3,
+body:not(.light-theme) .training-skills-section h3 {
+  color: #fff !important;
+}
+
+/* —— Keep footer copyright white even in light mode —— */
+body.light-theme .footer p,
+body.light-theme .footer p a {
+  color: #fff !important;
+}
