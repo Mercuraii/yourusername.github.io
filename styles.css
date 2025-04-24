@@ -375,8 +375,6 @@ input:checked + .slider:before {
 body.light-theme .theme-icon {
   color: #000;
 }
-
-/* 3D Video Background Layer */
 /* 3D Video Background Layer */
 .bg-3d {
   position: fixed;
@@ -384,13 +382,24 @@ body.light-theme .theme-icon {
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  background: url("images/BG-dark.jpg") center/cover no-repeat;
-  z-index: -2;
-  pointer-events: none;
+  object-fit: cover; /* make the video fill the screen */
+  pointer-events: none; /* so it doesn’t block clicks */
+  z-index: -2; /* sit behind all content */
+
+  /* FADE-IN FROM BLACK */
+  background-color: #000; /* start on black */
+  opacity: 0; /* start invisible */
+  transition: opacity 2s ease-in; /* fade in over 2 seconds */
 }
 
-/* Swap to light bg when in light theme */
-.bg-3d {
-  background: url("images/BG-dark.jpg") center/cover no-repeat;
+/* Hide video on small screens if you like */
+@media (max-width: 768px) {
+  .bg-3d {
+    display: none;
+  }
+}
+
+/* Swap to light-theme fallback image */
+body.light-theme .bg-3d {
+  background: url("images/BG-Light.jpg") center/cover no-repeat;
 }
