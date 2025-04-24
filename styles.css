@@ -370,18 +370,18 @@ body.light-theme .theme-icon {
   color: #000;
 }
 
-/* 3D Background Layer */
+/* 3D Video Background Layer */
 .bg-3d {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: url("images/BG-Dark.jpg") center/cover no-repeat;
+  object-fit: cover; /* make the video fill the screen */
   transform-style: preserve-3d;
   transform-origin: center center;
   will-change: transform;
-  pointer-events: none;
+  pointer-events: none; /* so it doesn’t block clicks */
   z-index: -2;
   transition: transform 0.1s ease-out;
 }
