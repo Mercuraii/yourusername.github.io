@@ -20,3 +20,10 @@ themeToggleButton.addEventListener("click", () => {
   localStorage.setItem("theme", isLight ? "light" : "dark");
   themeIcon.textContent = isLight ? "☀️" : "🌙";
 });
+
+window.addEventListener("load", () => {
+  const bg = document.querySelector(".bg-3d");
+  if (bg) {
+    bg.style.opacity = 1; // Fade in the video
+  }
+});
