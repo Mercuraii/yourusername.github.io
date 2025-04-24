@@ -1,25 +1,28 @@
 // Theme Toggle Script
 const themeToggleButton = document.getElementById("theme-toggle");
+const themeIcon = document.getElementById("theme-icon");
 const currentTheme = localStorage.getItem("theme") || "dark";
 
-// Set the initial theme based on localStorage or default to dark
+// Set initial theme and icon
 if (currentTheme === "light") {
   document.body.classList.add("light-theme");
-  themeToggleButton.textContent = "🌞"; // Change the icon to sun
+  themeToggleButton.checked = true;
+  themeIcon.textContent = "🌞";
 } else {
   document.body.classList.remove("light-theme");
-  themeToggleButton.textContent = "🌙"; // Change the icon to moon
+  themeToggleButton.checked = false;
+  themeIcon.textContent = "🌙";
 }
 
-// Toggle theme on button click
+// Toggle theme on switch
 themeToggleButton.addEventListener("click", () => {
   if (document.body.classList.contains("light-theme")) {
     document.body.classList.remove("light-theme");
     localStorage.setItem("theme", "dark");
-    themeToggleButton.textContent = "🌙"; // Moon icon for dark theme
+    themeIcon.textContent = "🌙";
   } else {
     document.body.classList.add("light-theme");
     localStorage.setItem("theme", "light");
-    themeToggleButton.textContent = "🌞"; // Sun icon for light theme
+    themeIcon.textContent = "🌞";
   }
 });

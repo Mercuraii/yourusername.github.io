@@ -363,3 +363,14 @@ input:checked + .slider:before {
   font-size: 0.9em;
   color: #ffffff;
 }
+
+.theme-icon {
+  display: block;
+  text-align: center;
+  font-size: 1.2rem;
+  margin-top: 5px;
+  color: #fff;
+}
+body.light-theme .theme-icon {
+  color: #000;
+}
