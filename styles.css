@@ -403,3 +403,21 @@ body.light-theme .theme-icon {
 body.light-theme .bg-3d {
   background: url("images/BG-Light.jpg") center/cover no-repeat;
 }
+
+/* —— Light-mode card & certificate overrides —— */
+body.light-theme .card,
+body.light-theme .cert-card {
+  background: #fff; /* white background */
+  border-color: #ccc; /* light grey border */
+  color: #000; /* default text in cards turns black */
+}
+
+/* Ensure any headings or paragraphs inside those cards stay black */
+body.light-theme .card h2,
+body.light-theme .card h3,
+body.light-theme .card h4,
+body.light-theme .card p,
+body.light-theme .cert-card .cert-text h4,
+body.light-theme .cert-card .cert-text p {
+  color: #000 !important;
+}
