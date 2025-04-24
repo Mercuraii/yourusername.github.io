@@ -372,18 +372,10 @@ body.light-theme .theme-icon {
 
 /* 3D Video Background Layer */
 .bg-3d {
-  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover; /* make the video fill the screen */
-  transform-style: preserve-3d;
-  transform-origin: center center;
-  will-change: transform;
-  pointer-events: none; /* so it doesn’t block clicks */
-  z-index: -2;
-  transition: transform 0.1s ease-out;
 }
 
 /* Swap to light bg when in light theme */
