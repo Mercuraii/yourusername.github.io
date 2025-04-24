@@ -273,6 +273,12 @@ body.light-theme .training-skills-section h3 {
   }
 }
 
+@media (max-width: 768px) {
+  .bg-3d {
+    display: none;
+  }
+}
+
 .contact-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -379,6 +385,6 @@ body.light-theme .theme-icon {
 }
 
 /* Swap to light bg when in light theme */
-body.light-theme .bg-3d {
-  background: url("images/BG-Light.jpg") center/cover no-repeat;
+.bg-3d {
+  background: url("images/BG-dark.jpg") center/cover no-repeat;
 }
