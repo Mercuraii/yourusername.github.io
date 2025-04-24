@@ -13,16 +13,18 @@ html {
 
 /* Base Styles (Dark Theme by Default) */
 body {
-  perspective: 800px; /* add 3D perspective */
-  background-color: #000; /* solid black behind BG image */
+  perspective: 800px;              /* add 3D perspective */
+  background-color: #000;          /* solid black behind BG image */
   color: #fff;
   font-family: sans-serif;
   transition: background-color 0.3s, color 0.3s;
+  max-width: 100vw;                 /* Prevent body from going beyond the viewport width */
+  overflow-x: hidden;               /* Hide horizontal overflow */
 }
 
 /* Light Theme Styles */
 body.light-theme {
-  background-color: #fff; /* solid white behind BG image */
+  background-color: #fff;          /* solid white behind BG image */
   color: #000;
 }
 
@@ -31,7 +33,7 @@ body.light-theme {
   position: fixed;
   top: 20px;
   right: 20px;
-  left: auto; /* ensure it isn’t also stuck to the left */
+  left: auto;                      /* ensure it isn’t also stuck to the left */
   z-index: 100;
   overflow: hidden;
 }
@@ -176,6 +178,12 @@ button:hover {
   height: 200px;
   border-radius: 8px;
   overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  padding: 10px;                    /* Prevent text from sticking to edges */
+  box-sizing: border-box;           /* Ensure padding/borders are inside the width */
 }
 .certifications-section .cert-card {
   background: rgba(1, 51, 202, 0.489);
@@ -187,11 +195,19 @@ button:hover {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
-/* Flip Effect for Certifications Only */
-.certifications-section .cert-card .card-inner {
+/* Fix issue with absolute positioning and text flow */
+.card-inner {
   position: relative;
   width: 100%;
   height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+/* Flip Effect for Certifications Only */
+.certifications-section .cert-card .card-inner {
   transition: transform 2s;
   transform-style: preserve-3d;
 }
@@ -208,7 +224,7 @@ button:hover {
   padding: 10px 15px;
   backface-visibility: hidden;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
@@ -397,13 +413,4 @@ body.light-theme .bg-3d {
     position: static !important;
     transform: none !important;
   }
-  .cert-card .card-front,
-  .cert-card .card-back {
-    position: static !important;
-    width: auto !important;
-    height: auto !important;
-    backface-visibility: visible !important;
-    box-shadow: none !important;
-    padding: 10px !important;
-  }
-}
+  .
