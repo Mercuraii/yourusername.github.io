@@ -6,7 +6,12 @@
     <title>Joe's IT Portfolio</title>
     <link rel="icon" type="image/png" sizes="96x96" href="images/favicon.png" />
     <link rel="stylesheet" href="styles.css" />
-    <!-- Dark/Light Theme Toggle Button -->
+  </head>
+  <body>
+    <!-- 3D moving background layer -->
+    <div class="bg-3d"></div>
+
+    <!-- Dark/Light Theme Toggle -->
     <div class="theme-toggle-container">
       <label class="switch">
         <input type="checkbox" id="theme-toggle" />
@@ -14,8 +19,7 @@
       </label>
       <span id="theme-icon" class="theme-icon">🌙</span>
     </div>
-  </head>
-  <body>
+
     <div class="container">
       <section class="card full-width">
         <img
@@ -46,12 +50,9 @@
           <a href="contact.html" target="_blank"><button>Contact Me</button></a>
 
           <div class="cv-dropdown">
-            <!-- main button -->
             <a href="files/Joe Szolcek-CV.pdf" download>
               <button>Download My CV</button>
             </a>
-
-            <!-- hidden on load, shows on hover: -->
             <div class="cv-options">
               <h4 class="cv-title">CV Format Options</h4>
               <a href="files/Joe Szolcek-CV.pdf" download
@@ -69,6 +70,7 @@
       </section>
 
       <div class="flex-cert-sections">
+        <!-- Certifications Section -->
         <section class="certifications-section">
           <h3>Certifications</h3>
           <div class="certifications-row">
@@ -195,6 +197,7 @@
           </div>
         </section>
 
+        <!-- Training & Skills Section -->
         <section class="training-skills-section">
           <h3>Training & Skills</h3>
           <div class="certifications-row">
@@ -205,9 +208,8 @@
                   <div class="cert-text">
                     <h4>Customer Support & Service</h4>
                     <p>
-                      Three years of customer support experience managing client
-                      queries and liaising externally in a law firm via email,
-                      telephone and in person.
+                      Three years of client support experience via email, phone,
+                      in-person.
                     </p>
                   </div>
                 </div>
@@ -221,8 +223,8 @@
                   <div class="cert-text">
                     <h4>Network Troubleshooting</h4>
                     <p>
-                      Diagnosing connectivity issues: TCP/IP, DHCP, VLANs,
-                      routing.
+                      Diagnosing TCP/IP, DHCP, VLAN, routing connectivity
+                      issues.
                     </p>
                   </div>
                 </div>
@@ -244,13 +246,15 @@
               </div>
             </div>
 
-            <!-- Security -->
+            <!-- IT Security -->
             <div class="cert-card">
               <div class="card-inner">
                 <div class="card-front">
                   <div class="cert-text">
                     <h4>IT Security & Firewalls</h4>
-                    <p>VPNs, firewall setup, network security best practice.</p>
+                    <p>
+                      VPNs, firewall setup, network security best practices.
+                    </p>
                   </div>
                 </div>
               </div>
@@ -263,7 +267,8 @@
                   <div class="cert-text">
                     <h4>Monitoring & Documentation</h4>
                     <p>
-                      Network monitoring tools, ticketing, IT documentation.
+                      Network monitoring tools, ticketing, IT documentation
+                      skills.
                     </p>
                   </div>
                 </div>
@@ -286,8 +291,6 @@
             </div>
           </div>
         </section>
-
-        <!-- The rest of your page (training/skills, footer, etc.) stays unchanged -->
       </div>
 
       <footer class="footer">
@@ -299,23 +302,26 @@
         </p>
       </footer>
     </div>
+
+    <!-- CV dropdown hover-delay script -->
     <script>
       const dropdown = document.querySelector(".cv-dropdown");
       const opts = dropdown.querySelector(".cv-options");
       let timer;
-
       dropdown.addEventListener("mouseenter", () => {
         clearTimeout(timer);
         opts.classList.add("visible");
       });
-
       dropdown.addEventListener("mouseleave", () => {
         clearTimeout(timer);
-        timer = setTimeout(() => {
-          opts.classList.remove("visible");
-        }, 3000);
+        timer = setTimeout(() => opts.classList.remove("visible"), 3000);
       });
     </script>
+
+    <!-- 3D-background movement -->
+    <script src="3d-bg.js"></script>
+
+    <!-- Theme toggle & icon script -->
     <script src="script.js"></script>
   </body>
 </html>
