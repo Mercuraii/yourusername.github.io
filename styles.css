@@ -14,7 +14,7 @@ html {
 /* Base Styles (Dark Theme by Default) */
 body {
   perspective: 800px; /* add 3D perspective */
-  background: url("images/BG-Dark.jpg") center/cover fixed;
+  background-color: #000; /* solid black behind BG image */
   color: #fff;
   font-family: sans-serif;
   transition: background-color 0.3s, color 0.3s;
@@ -22,7 +22,7 @@ body {
 
 /* Light Theme Styles */
 body.light-theme {
-  background: url("images/BG-Light.jpg") center/cover fixed;
+  background-color: #fff; /* solid white behind BG image */
   color: #000;
 }
 
