@@ -421,3 +421,12 @@ body.light-theme .cert-card .cert-text h4,
 body.light-theme .cert-card .cert-text p {
   color: #000 !important;
 }
+
+/* —— Light-mode link color override —— */
+body.light-theme .linkedin-link {
+  color: #000 !important;
+}
+
+body.light-theme .linkedin-link:hover {
+  color: #000 !important;
+}
