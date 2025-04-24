@@ -269,7 +269,9 @@ body.light-theme .training-skills-section h3 {
 
   .cert-card {
     width: 100%;
-    height: auto;
+    /* restore its height or at least a min-height */
+    min-height: 200px; /* ensure inner flip‐cards have space */
+    height: auto; /* optional—min-height is what actually matters */
   }
 }
 
