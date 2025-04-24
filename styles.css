@@ -93,9 +93,9 @@ body.light-theme {
   width: 150px;
   height: 150px;
   object-fit: cover;
-  font-size: 1.1rem;
 }
 
+/* Buttons */
 button {
   background: #0d00ff;
   color: #fff;
@@ -118,18 +118,18 @@ button:hover {
   margin-top: 15px;
 }
 
-/* —— CV Dropdown (fixed) —— */
+/* CV Dropdown */
 .cv-dropdown {
   position: relative;
-  display: inline-block; /* stay inline with other buttons */
+  display: inline-block;
 }
 
 .cv-options {
-  display: none; /* hidden by default */
+  display: none;
   flex-direction: column;
   position: absolute;
   top: 0;
-  left: 110%; /* just to the right */
+  left: 110%;
   background: rgba(0, 0, 0, 0.5);
   padding: 10px;
   border: 1px solid #444;
@@ -139,16 +139,6 @@ button:hover {
   transition: all 0.3s ease-in-out;
 }
 
-.theme-toggle-container {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  z-index: 100;
-  max-width: 100%; /* Prevent it from going off-screen */
-  overflow: hidden; /* Ensure no overflow happens */
-}
-
-/* show when hovered OR when JS adds “visible” */
 .cv-options.visible,
 .cv-dropdown:hover .cv-options {
   display: flex;
@@ -157,7 +147,7 @@ button:hover {
 .cv-title {
   text-decoration: underline;
   font-size: 1rem;
-  color: #ffffff;
+  color: #fff;
   margin-bottom: 5px;
 }
 
@@ -165,8 +155,9 @@ button:hover {
 .certifications-section h3,
 .training-skills-section h3 {
   font-size: 1.4rem;
-  color: #ffffff;
+  color: #fff;
   margin-bottom: 15px;
+  transition: color 0.3s;
 }
 
 /* Cards Row */
@@ -177,6 +168,7 @@ button:hover {
   margin-bottom: 30px;
 }
 
+/* Certificate & Skill Cards */
 .cert-card {
   width: 48%;
   height: 200px;
@@ -186,28 +178,25 @@ button:hover {
 
 .certifications-section .cert-card {
   background: rgba(1, 51, 202, 0.489);
-  border: 1px solid #444; /* Add a grey border */
+  border: 1px solid #444;
 }
 
 .training-skills-section .cert-card {
   background: rgba(0, 134, 0, 0.4);
-  border: 1px solid #444; /* Add a grey border */
+  border: 1px solid #444;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
+/* Flip Inner */
 .card-inner {
   position: relative;
   width: 100%;
   height: 100%;
-}
-
-/* Flip on cert cards */
-.certifications-section .cert-card .card-inner {
   transition: transform 2s;
   transform-style: preserve-3d;
 }
 
-.certifications-section .cert-card:hover .card-inner {
+.cert-card:hover .card-inner {
   transform: rotateY(180deg);
 }
 
@@ -234,6 +223,7 @@ button:hover {
   justify-content: center;
 }
 
+/* Text inside cards */
 .cert-text {
   flex: 1;
   margin-right: 20px;
@@ -255,30 +245,45 @@ button:hover {
   border-radius: 4px;
 }
 
-body.light-theme .certifications-section h3,
-body.light-theme .training-skills-section h3 {
+/* Light-mode overrides for cards & links */
+body.light-theme .card,
+body.light-theme .cert-card {
+  background: #fff !important;
+  border-color: #ccc !important;
   color: #000;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .certifications-row,
-  .training-skills-section .certifications-row {
-    flex-direction: column;
-  }
-
-  .cert-card {
-    width: 100%;
-    height: 200px !important; /* force a fixed height so it can’t collapse */
-  }
+body.light-theme .card h2,
+body.light-theme .card h3,
+body.light-theme .card h4,
+body.light-theme .card p,
+body.light-theme .cert-card .cert-text h4,
+body.light-theme .cert-card .cert-text p {
+  color: #000 !important;
 }
 
-@media (max-width: 768px) {
-  .bg-3d {
-    display: none;
-  }
+body.light-theme .linkedin-link,
+body.light-theme .linkedin-link:hover {
+  color: #000 !important;
 }
 
+body.light-theme .certifications-section h3,
+body.light-theme .training-skills-section h3 {
+  color: #000 !important;
+}
+
+body:not(.light-theme) .certifications-section h3,
+body:not(.light-theme) .training-skills-section h3 {
+  color: #fff !important;
+}
+
+/* Footer stays white in light mode */
+body.light-theme .footer p,
+body.light-theme .footer p a {
+  color: #fff !important;
+}
+
+/* Contact Grid */
 .contact-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -296,18 +301,8 @@ body.light-theme .training-skills-section h3 {
 }
 
 .contact-card h3 {
+  color: #fff;
   margin-bottom: 15px;
-  color: #ffffff;
-}
-
-.contact-icon {
-  width: 60px;
-  height: auto;
-  transition: transform 0.2s ease;
-}
-
-.contact-icon:hover {
-  transform: scale(1.1);
 }
 
 /* Toggle Switch */
@@ -337,8 +332,8 @@ body.light-theme .training-skills-section h3 {
 }
 
 .slider:before {
-  position: absolute;
   content: "";
+  position: absolute;
   height: 20px;
   width: 20px;
   left: 4px;
@@ -357,10 +352,10 @@ input:checked + .slider:before {
 }
 
 .contact-text {
+  color: #fff;
+  font-size: 0.9em;
   text-align: center;
   margin-top: 0.5em;
-  font-size: 0.9em;
-  color: #ffffff;
 }
 
 /* Theme-icon styling */
@@ -372,9 +367,11 @@ input:checked + .slider:before {
   transition: color 0.3s;
   color: #fff;
 }
+
 body.light-theme .theme-icon {
   color: #000;
 }
+
 /* 3D Video Background Layer */
 .bg-3d {
   position: fixed;
@@ -382,75 +379,50 @@ body.light-theme .theme-icon {
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover; /* make the video fill the screen */
-  pointer-events: none; /* so it doesn’t block clicks */
-  z-index: -2; /* sit behind all content */
+  object-fit: cover;
+  pointer-events: none;
+  z-index: -2;
 
   /* FADE-IN FROM BLACK */
-  background-color: #000; /* start on black */
-  opacity: 0; /* start invisible */
-  transition: opacity 2s ease-in; /* fade in over 2 seconds */
+  background-color: #000;
+  opacity: 0;
+  transition: opacity 2s ease-in;
 }
 
-/* Hide video on small screens if you like */
-@media (max-width: 768px) {
-  .bg-3d {
-    display: none;
-  }
-}
-
-/* Swap to light-theme fallback image */
+/* Light-mode video fallback */
 body.light-theme .bg-3d {
   background: url("images/BG-Light.jpg") center/cover no-repeat;
 }
 
-/* —— Light-mode card & certificate overrides —— */
-body.light-theme .card,
-body.light-theme .cert-card {
-  background: #fff !important; /* white background */
-  border-color: #ccc !important; /* light grey border */
-  color: #000; /* default text in cards turns black */
-}
+/* Mobile-specific fixes */
+@media (max-width: 768px) {
+  /* Video removal if desired */
+  .bg-3d {
+    display: none;
+  }
 
-/* Ensure any headings or paragraphs inside those cards stay black */
-body.light-theme .card h2,
-body.light-theme .card h3,
-body.light-theme .card h4,
-body.light-theme .card p,
-body.light-theme .cert-card .cert-text h4,
-body.light-theme .cert-card .cert-text p {
-  color: #000 !important;
-}
+  /* Stack sections vertically */
+  .certifications-row,
+  .training-skills-section .certifications-row {
+    flex-direction: column;
+  }
 
-/* —— Light-mode link color override —— */
-body.light-theme .linkedin-link {
-  color: #000 !important;
-}
-
-body.light-theme .linkedin-link:hover {
-  color: #000 !important;
-}
-
-/* —— Section headers switch black in light, white in dark —— */
-.certifications-section h3,
-.training-skills-section h3 {
-  transition: color 0.3s;
-}
-
-/* Light mode: black headers */
-body.light-theme .certifications-section h3,
-body.light-theme .training-skills-section h3 {
-  color: #000 !important;
-}
-
-/* Dark mode (no .light-theme): white headers */
-body:not(.light-theme) .certifications-section h3,
-body:not(.light-theme) .training-skills-section h3 {
-  color: #fff !important;
-}
-
-/* —— Keep footer copyright white even in light mode —— */
-body.light-theme .footer p,
-body.light-theme .footer p a {
-  color: #fff !important;
+  /* Force card height and disable flip */
+  .cert-card {
+    width: 100%;
+    height: 200px !important;
+  }
+  .cert-card .card-inner {
+    position: static !important;
+    transform: none !important;
+  }
+  .cert-card .card-front,
+  .cert-card .card-back {
+    position: static !important;
+    width: auto !important;
+    height: auto !important;
+    backface-visibility: visible !important;
+    box-shadow: none !important;
+    padding: 10px !important;
+  }
 }
