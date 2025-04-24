@@ -13,6 +13,7 @@ html {
 
 /* Base Styles (Dark Theme by Default) */
 body {
+  perspective: 800px; /* add 3D perspective */
   background: url("images/BG-Dark.jpg") center/cover fixed;
   color: #fff;
   font-family: sans-serif;
@@ -63,12 +64,6 @@ body.light-theme {
 
 .back-link:hover {
   color: #00c8ff;
-}
-
-body {
-  background: url("images/BG-Dark.jpg") center/cover fixed;
-  color: #fff;
-  font-family: sans-serif;
 }
 
 .container {
@@ -192,13 +187,11 @@ button:hover {
 .certifications-section .cert-card {
   background: rgba(1, 51, 202, 0.489);
   border: 1px solid #444; /* Add a grey border */
-  border-radius: 8px;
 }
 
 .training-skills-section .cert-card {
   background: rgba(0, 134, 0, 0.4);
   border: 1px solid #444; /* Add a grey border */
-  border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
@@ -364,11 +357,13 @@ input:checked + .slider:before {
   color: #ffffff;
 }
 
+/* Theme-icon styling */
 .theme-icon {
   display: block;
   text-align: center;
-  font-size: 1.2rem;
-  margin-top: 5px;
+  font-size: 1.3rem;
+  margin-top: 6px;
+  transition: color 0.3s;
   color: #fff;
 }
 body.light-theme .theme-icon {
@@ -384,7 +379,9 @@ body.light-theme .theme-icon {
   height: 100%;
   background: url("images/BG-Dark.jpg") center/cover no-repeat;
   transform-style: preserve-3d;
+  transform-origin: center center;
   will-change: transform;
+  pointer-events: none;
   z-index: -2;
   transition: transform 0.1s ease-out;
 }
@@ -392,17 +389,4 @@ body.light-theme .theme-icon {
 /* Swap to light bg when in light theme */
 body.light-theme .bg-3d {
   background: url("images/BG-Light.jpg") center/cover no-repeat;
-}
-
-/* Theme‐icon styling */
-.theme-icon {
-  display: block;
-  text-align: center;
-  font-size: 1.3rem;
-  margin-top: 6px;
-  transition: color 0.3s;
-  color: #fff;
-}
-body.light-theme .theme-icon {
-  color: #000;
 }
