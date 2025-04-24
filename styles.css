@@ -26,11 +26,18 @@ body.light-theme {
   color: #000;
 }
 
-/* Theme Toggle Button */
-.theme-toggle-btn {
+/* Theme Toggle Container */
+.theme-toggle-container {
   position: fixed;
   top: 20px;
   right: 20px;
+  left: auto; /* ensure it isn’t also stuck to the left */
+  z-index: 100;
+  overflow: hidden;
+}
+
+/* Theme Toggle Button */
+.theme-toggle-btn {
   background-color: rgba(0, 0, 0, 0.7);
   color: #fff;
   border: none;
@@ -38,22 +45,20 @@ body.light-theme {
   border-radius: 5px;
   cursor: pointer;
   font-size: 18px;
-  z-index: 100;
 }
 
 .theme-toggle-btn:hover {
   background-color: rgba(0, 0, 0, 0.9);
 }
 
+/* Links */
 .linkedin-link {
   color: white;
   text-decoration: underline;
 }
-
 .linkedin-link:hover {
   text-decoration: underline;
 }
-
 .back-link {
   color: #2400ef;
   text-decoration: underline;
@@ -61,11 +66,11 @@ body.light-theme {
   margin-top: 10px;
   font-weight: bold;
 }
-
 .back-link:hover {
   color: #00c8ff;
 }
 
+/* Container */
 .container {
   max-width: 1100px;
   margin: 0 auto;
@@ -82,10 +87,12 @@ body.light-theme {
   margin-bottom: 30px;
 }
 
+/* Full-width Utility */
 .full-width {
   width: 100%;
 }
 
+/* Profile Picture */
 .profile-pic {
   display: block;
   margin: 0 auto 20px;
@@ -105,11 +112,9 @@ button {
   cursor: pointer;
   font-weight: bold;
 }
-
 button:hover {
   background: #06007e;
 }
-
 .button-group {
   display: flex;
   gap: 15px;
@@ -123,7 +128,6 @@ button:hover {
   position: relative;
   display: inline-block;
 }
-
 .cv-options {
   display: none;
   flex-direction: column;
@@ -138,12 +142,10 @@ button:hover {
   z-index: 10;
   transition: all 0.3s ease-in-out;
 }
-
 .cv-options.visible,
 .cv-dropdown:hover .cv-options {
   display: flex;
 }
-
 .cv-title {
   text-decoration: underline;
   font-size: 1rem;
@@ -175,31 +177,29 @@ button:hover {
   border-radius: 8px;
   overflow: hidden;
 }
-
 .certifications-section .cert-card {
   background: rgba(1, 51, 202, 0.489);
   border: 1px solid #444;
 }
-
 .training-skills-section .cert-card {
   background: rgba(0, 134, 0, 0.4);
   border: 1px solid #444;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
-/* Flip Inner */
-.card-inner {
+/* Flip Effect for Certifications Only */
+.certifications-section .cert-card .card-inner {
   position: relative;
   width: 100%;
   height: 100%;
   transition: transform 2s;
   transform-style: preserve-3d;
 }
-
-.cert-card:hover .card-inner {
+.certifications-section .cert-card:hover .card-inner {
   transform: rotateY(180deg);
 }
 
+/* Inner Card Faces */
 .card-front,
 .card-back {
   position: absolute;
@@ -212,11 +212,9 @@ button:hover {
   align-items: center;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
-
 .card-front {
   background: transparent;
 }
-
 .card-back {
   background: #222;
   transform: rotateY(180deg);
@@ -228,16 +226,13 @@ button:hover {
   flex: 1;
   margin-right: 20px;
 }
-
 .cert-card h4 {
   font-size: 1.4rem;
   margin-bottom: 8px;
 }
-
 .cert-card p {
   font-size: 1.1rem;
 }
-
 .cert-img,
 .cert-back-img {
   width: 140px;
@@ -252,7 +247,6 @@ body.light-theme .cert-card {
   border-color: #ccc !important;
   color: #000;
 }
-
 body.light-theme .card h2,
 body.light-theme .card h3,
 body.light-theme .card h4,
@@ -261,17 +255,14 @@ body.light-theme .cert-card .cert-text h4,
 body.light-theme .cert-card .cert-text p {
   color: #000 !important;
 }
-
 body.light-theme .linkedin-link,
 body.light-theme .linkedin-link:hover {
   color: #000 !important;
 }
-
 body.light-theme .certifications-section h3,
 body.light-theme .training-skills-section h3 {
   color: #000 !important;
 }
-
 body:not(.light-theme) .certifications-section h3,
 body:not(.light-theme) .training-skills-section h3 {
   color: #fff !important;
@@ -290,7 +281,6 @@ body.light-theme .footer p a {
   gap: 30px;
   margin-top: 30px;
 }
-
 .contact-card {
   background: rgba(0, 0, 0, 0.5);
   border: 1px solid #444;
@@ -299,7 +289,6 @@ body.light-theme .footer p a {
   text-align: center;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
-
 .contact-card h3 {
   color: #fff;
   margin-bottom: 15px;
@@ -312,13 +301,11 @@ body.light-theme .footer p a {
   width: 50px;
   height: 28px;
 }
-
 .switch input {
   opacity: 0;
   width: 0;
   height: 0;
 }
-
 .slider {
   position: absolute;
   cursor: pointer;
@@ -330,7 +317,6 @@ body.light-theme .footer p a {
   transition: 0.4s;
   border-radius: 34px;
 }
-
 .slider:before {
   content: "";
   position: absolute;
@@ -342,15 +328,14 @@ body.light-theme .footer p a {
   transition: 0.4s;
   border-radius: 50%;
 }
-
 input:checked + .slider {
   background-color: #0d00ff;
 }
-
 input:checked + .slider:before {
   transform: translateX(22px);
 }
 
+/* Contact text */
 .contact-text {
   color: #fff;
   font-size: 0.9em;
@@ -367,7 +352,6 @@ input:checked + .slider:before {
   transition: color 0.3s;
   color: #fff;
 }
-
 body.light-theme .theme-icon {
   color: #000;
 }
@@ -388,7 +372,6 @@ body.light-theme .theme-icon {
   opacity: 0;
   transition: opacity 2s ease-in;
 }
-
 /* Light-mode video fallback */
 body.light-theme .bg-3d {
   background: url("images/BG-Light.jpg") center/cover no-repeat;
@@ -396,18 +379,16 @@ body.light-theme .bg-3d {
 
 /* Mobile-specific fixes */
 @media (max-width: 768px) {
-  /* Video removal if desired */
+  /* Hide background video on mobile */
   .bg-3d {
     display: none;
   }
-
-  /* Stack sections vertically */
+  /* Stack cards vertically */
   .certifications-row,
   .training-skills-section .certifications-row {
     flex-direction: column;
   }
-
-  /* Force card height and disable flip */
+  /* Force card height & disable flip for mobile */
   .cert-card {
     width: 100%;
     height: 200px !important;
