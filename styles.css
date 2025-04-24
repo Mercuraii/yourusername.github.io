@@ -377,11 +377,17 @@ body.light-theme .theme-icon {
 }
 
 /* 3D Video Background Layer */
+/* 3D Video Background Layer */
 .bg-3d {
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
+  object-fit: cover;
+  background: url("images/BG-dark.jpg") center/cover no-repeat;
+  z-index: -2;
+  pointer-events: none;
 }
 
 /* Swap to light bg when in light theme */
