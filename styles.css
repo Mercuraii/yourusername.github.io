@@ -407,8 +407,8 @@ body.light-theme .bg-3d {
 /* —— Light-mode card & certificate overrides —— */
 body.light-theme .card,
 body.light-theme .cert-card {
-  background: #fff; /* white background */
-  border-color: #ccc; /* light grey border */
+  background: #fff !important; /* white background */
+  border-color: #ccc !important; /* light grey border */
   color: #000; /* default text in cards turns black */
 }
 
