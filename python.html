@@ -1,37 +1,42 @@
-from datetime import datetime #Habit defining class class Habit: def
-__init__(self, name, date, done=False): self.name=name #name of the habit e.g.
-"Learn Python" self.date=date self.done=done def mark_complete(self):
-self.done=True #sets the habit status to done #custom display for the habit def
-__str__ (self): status= "✓" if self.done else "✗" return
-f"{self.date}:{self.name} [{status}]" #list [] to store the habits habits = []
-#fn to add habit to list def add_habit(): name=input("Enter habit name: ") date
-= datetime.now() habit=Habit (name,date) # creates the habit object
-habits.append(habit) #add the habit to the list print("Habit added to tracker.")
-#fn to mark habit complete def mark_complete(): if not habits: print("No habits
-to mark complete.") return # Display the list of habits with index numbers
-starting from 1 for i, habit in enumerate(habits): #enumerate() built-in fn that
-returns each item in a list along with its index so 0. Item1 print(f"{i+1}.
-{habit}") try: # Ask the user to enter the number of the habit to mark complete
-choice=int(input("Please enter the number of the habit you have completed: "))-1
-# Check if the input is within a valid range if 0 <= choice <len(habits):
-habits[choice].mark_complete() print("Habit marked as complete.
-Congratulations!") else: print("Invalid selection.") # Handle non-integer input
-except ValueError: print("Please enter a valid habit number.") def
-view_habits(): if not habits: print("No habits yet.") else: for habit in habits:
-print(habit) def save_habits(): if not habits: print("No habits to save yet...")
-return try: # Open (or create) a file named 'habits.txt' in write mode with
-open("habits.txt", "a", encoding="utf-8") as file: for habit in habits:
-file.write(str(habit) + "\n")# write each habit on a new line in the file
-print("Habits list saved.") except Exception as err: print(f"Failed to save
-habits: {err}") #shows user error msg on failure #Main menu loop def main():
-while True: #infinite loop to keep the menu running print("\n -Habit Tracker- ")
-print("1. Add a new habit.") print("2. Mark a habit as completed.") print("3.
-View habits list.") print("4. Close Tracker.") print("5. Save current habits to
-a text file.") choice = input("Please Choose an option number #.") if
-choice=="1": add_habit() elif choice=="2": mark_complete() elif choice=="3":
-view_habits() elif choice=="4": print("Exiting, have a nice day!") elif
-choice=="5": save_habits() break else: print("Invalid input selection. Please
-enter 1, 2, 3 or 4.") # This line checks if this file is being run directly (not
-imported) and won't let it run unless it is done so directly. E.g. won't run
-automatically if imported from elsewhere. Best practice. if
-__name__=="__main__": main()
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My Python Code</title>
+    <style>
+      body {
+        background: #1e1e1e;
+        color: #d4d4d4;
+        font-family: Consolas, monospace;
+        padding: 2rem;
+      }
+      pre {
+        background: #1e1e1e;
+        padding: 1rem;
+        border-radius: 6px;
+        overflow-x: auto;
+      }
+      code {
+        font-size: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Habit Tracker (Python)</h1>
+    <pre><code>
+from datetime import datetime
+
+class Habit:
+    def __init__(self, name, date, done=False): 
+        self.name = name
+        self.date = date
+        self.done = done
+
+    def mark_complete(self):
+        self.done = True
+
+    def __str__(self):
+        status = "✓" if self.done else "✗"
+        return f"{self.date}:{self.name} [{status}]"
+    </code></pre>
+  </body>
+</html>
