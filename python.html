@@ -1,30 +1,36 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>My Python Code</title>
+    <meta charset="UTF-8" />
+    <title>Habit Tracker (Python)</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/prismjs@1/themes/prism-tomorrow.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-core.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-python.min.js"></script>
     <style>
       body {
-        background: #1e1e1e;
+        background-color: #1e1e1e;
         color: #d4d4d4;
         font-family: Consolas, monospace;
         padding: 2rem;
       }
       pre {
-        background: #1e1e1e;
-        padding: 1rem;
-        border-radius: 6px;
+        border-radius: 8px;
         overflow-x: auto;
       }
-      code {
-        font-size: 1rem;
+      h1 {
+        color: #ffffff;
       }
     </style>
   </head>
   <body>
-    <h1>Habit Tracker (Python)</h1>
-    <pre><code>
+    <h1>Habit Tracker Python Code</h1>
+    <pre><code class="language-python">
 from datetime import datetime
 
+# Habit defining class
 class Habit:
     def __init__(self, name, date, done=False): 
         self.name = name
@@ -37,6 +43,84 @@ class Habit:
     def __str__(self):
         status = "✓" if self.done else "✗"
         return f"{self.date}:{self.name} [{status}]"
+
+# List to store the habits
+habits = []
+
+# Function to add a habit
+def add_habit():
+    name = input("Enter habit name: ")
+    date = datetime.now()
+    habit = Habit(name, date)
+    habits.append(habit)
+    print("Habit added to tracker.")
+
+# Function to mark habit complete
+def mark_complete():
+    if not habits:
+        print("No habits to mark complete.")
+        return
+    for i, habit in enumerate(habits):
+        print(f"{i+1}. {habit}")
+    try:
+        choice = int(input("Please enter the number of the habit you have completed: ")) - 1
+        if 0 <= choice < len(habits):
+            habits[choice].mark_complete()
+            print("Habit marked as complete. Congratulations!")
+        else:
+            print("Invalid selection.")
+    except ValueError:
+        print("Please enter a valid habit number.")
+
+# Function to view habits
+def view_habits():
+    if not habits:
+        print("No habits yet.")
+    else:
+        for habit in habits:
+            print(habit)
+
+# Function to save habits to a file
+def save_habits():
+    if not habits:
+        print("No habits to save yet...")
+        return
+    try:
+        with open("habits.txt", "a", encoding="utf-8") as file:
+            for habit in habits:
+                file.write(str(habit) + "\n")
+        print("Habits list saved.")
+    except Exception as err:
+        print(f"Failed to save habits: {err}")
+
+# Main menu loop
+def main():
+    while True:
+        print("\n -Habit Tracker- ")
+        print("1. Add a new habit.")
+        print("2. Mark a habit as completed.")
+        print("3. View habits list.")
+        print("4. Close Tracker.")
+        print("5. Save current habits to a text file.")
+
+        choice = input("Please Choose an option number #.")
+
+        if choice == "1":
+            add_habit()
+        elif choice == "2":
+            mark_complete()
+        elif choice == "3":
+            view_habits()
+        elif choice == "4":
+            print("Exiting, have a nice day!")
+            break
+        elif choice == "5":
+            save_habits()
+        else:
+            print("Invalid input selection. Please enter 1, 2, 3 or 4.")
+
+if __name__ == "__main__":
+    main()
     </code></pre>
   </body>
 </html>
