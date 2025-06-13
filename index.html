@@ -5,67 +5,101 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Joe Szolcek. Entry-level IT professional with CompTIA A+, Network+ & ITIL4 certifications. Browse my IT CV and skills. Contact me today!"
+      content="Joe Szolcek. Entry-level IT professionalwith CompTIA A+, Network+ & ITIL4 certifications. Browse my IT CV and skills. Contact me today!"
     />
     <meta name="author" content="Joe Szolcek" />
     <meta
       name="keywords"
-      content="Joe Szolcek, IT, Portfolio, Azure, IT Support, Certifications, Experience, Qualifications"
+      content="Joe Szolcek, IT, Portfolio, Azure, IT Support, Certifications, Experience, Qualifcations"
     />
     <title>Joe Szolcek's IT Portfolio</title>
     <link rel="icon" type="image/png" sizes="96x96" href="images/favicon.png" />
     <link rel="stylesheet" href="styles.css" />
     <style>
-      /* Shared button styles */
-      .btn {
-        background-color: #444;
-        color: #fff;
-        padding: 10px 20px;
-        font-size: 1rem;
-        border: none;
-        border-radius: 8px;
-        cursor: pointer;
-      }
-
-      /* Dropdown containers */
-      .cv-dropdown,
+      /* Projects submenu styles */
       .menu {
         position: relative;
         display: inline-block;
         margin-left: 10px;
       }
 
-      /* Pop-out menus */
-      .cv-options,
+      .menu-button {
+        background-color: #444;
+        color: white;
+        padding: 10px 20px;
+        cursor: pointer;
+        border: none;
+        border-radius: 8px;
+        font-size: 1rem;
+      }
+
       .submenu {
         display: none;
         position: absolute;
         background-color: #333;
         min-width: 200px;
+        z-index: 1;
         border-radius: 8px;
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
         margin-top: 5px;
-        z-index: 1;
       }
 
-      /* Show on hover */
-      .cv-dropdown:hover .cv-options,
+      .submenu a {
+        color: white;
+        padding: 10px 15px;
+        text-decoration: none;
+        display: block;
+      }
+
+      .submenu a:hover {
+        background-color: #555;
+      }
+
       .menu:hover .submenu {
         display: block;
       }
 
-      /* Menu links */
-      .cv-options a,
-      .submenu a {
-        display: block;
-        color: #fff;
-        padding: 10px 15px;
-        text-decoration: none;
+      /* CV dropdown same style as Projects */
+      .menu.cv-dropdown {
+        position: relative;
+        display: inline-block;
+        margin-left: 10px;
       }
 
-      .cv-options a:hover,
-      .submenu a:hover {
+      .menu.cv-dropdown .menu-button {
+        background-color: #444;
+        color: white;
+        padding: 10px 20px;
+        cursor: pointer;
+        border: none;
+        border-radius: 8px;
+        font-size: 1rem;
+      }
+
+      .cv-options {
+        display: none;
+        position: absolute;
+        background-color: #333;
+        min-width: 160px;
+        z-index: 1;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+        margin-top: 5px;
+      }
+
+      .cv-options a {
+        color: white;
+        padding: 10px 15px;
+        text-decoration: none;
+        display: block;
+      }
+
+      .cv-options a:hover {
         background-color: #555;
+      }
+
+      .menu.cv-dropdown:hover .cv-options {
+        display: block;
       }
     </style>
   </head>
@@ -113,47 +147,40 @@
           </a>
         </h2>
         <div class="button-group">
-          <a href="contact.html" target="_blank">
-            <button class="btn">Contact Me</button>
-          </a>
+          <a href="contact.html" target="_blank"><button>Contact Me</button></a>
 
-          <div class="cv-dropdown">
-            <a href="files/Joe Szolcek-CV.pdf" download>
-              <button class="btn">Download My CV</button>
-            </a>
-            <div class="cv-options">
-              <h4 class="cv-title">CV Format Options</h4>
-              <a href="files/Joe Szolcek-CV.pdf" download>
-                <button class="btn">.PDF</button>
-              </a>
-              <a href="files/JoeSzolcek-CV.doc" download>
-                <button class="btn">.Word</button>
-              </a>
-              <a href="files/JoeSzolcek-CV.odt" download>
-                <button class="btn">LibreOffice</button>
-              </a>
+          <!-- Updated CV dropdown -->
+          <div class="menu cv-dropdown">
+            <button class="menu-button">Download My CV</button>
+            <div class="submenu cv-options">
+              <a href="files/Joe Szolcek-CV.pdf" download>.PDF</a>
+              <a href="files/JoeSzolcek-CV.doc" download>.Word</a>
+              <a href="files/JoeSzolcek-CV.odt" download>LibreOffice</a>
             </div>
           </div>
 
+          <!-- Projects submenu -->
           <div class="menu">
-            <button class="btn">Projects</button>
+            <button class="menu-button">Projects</button>
             <div class="submenu">
-              <a href="https://jszolcek.github.io/python.html" target="_blank">
-                Habit Tracker Code.py
-              </a>
-              <a href="https://jszolcek.github.io/racing.html" target="_blank">
-                Self-Driving Car Simulation.js
-              </a>
+              <a href="https://jszolcek.github.io/python.html"
+                >Habit Tracker Code.py</a
+              >
+              <a href="https://jszolcek.github.io/racing.html"
+                >Self-Driving Car Simulation.js</a
+              >
             </div>
           </div>
         </div>
       </section>
 
+      <!-- The rest of your page continues unchanged... -->
+
       <div class="flex-cert-sections">
         <!-- Certifications Section -->
         <section class="certifications-section">
           <h3>Certifications</h3>
-          <div class="certIFICATIONS-row">
+          <div class="certifications-row">
             <!-- Network+ -->
             <div class="cert-card">
               <div class="card-inner">
@@ -219,7 +246,7 @@
                   <div class="cert-text">
                     <h4>AZ-900</h4>
                     <p>
-                      Cloud concepts, core Azure services, management &
+                      Cloud concepts, core Azure services, management &amp;
                       governance.
                     </p>
                   </div>
@@ -318,7 +345,7 @@
                   <div class="cert-text">
                     <h4>Infrastructure & Configuration</h4>
                     <p>
-                      Active Directory, virtualization, hardware upgrades &
+                      Active Directory, virtualization, hardware upgrades &amp;
                       maintenance.
                     </p>
                   </div>
@@ -383,20 +410,7 @@
       </footer>
     </div>
 
-    <!-- CV dropdown hover-delay script -->
-    <script>
-      const dropdown = document.querySelector(".cv-dropdown");
-      const opts = dropdown.querySelector(".cv-options");
-      let timer;
-      dropdown.addEventListener("mouseenter", () => {
-        clearTimeout(timer);
-        opts.classList.add("visible");
-      });
-      dropdown.addEventListener("mouseleave", () => {
-        clearTimeout(timer);
-        timer = setTimeout(() => opts.classList.remove("visible"), 3000);
-      });
-    </script>
+    <!-- Removed old CV dropdown JS since using CSS hover -->
 
     <!-- Theme toggle & icon script -->
     <script src="script.js"></script>
