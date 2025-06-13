@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <!-- Document metadata and responsive settings -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Self-Driving Car Simulation</title>
@@ -43,8 +42,15 @@
       const people = [];
 
       let keys = {};
-      window.addEventListener("keydown", (e) => (keys[e.key] = true));
-      window.addEventListener("keyup", (e) => (keys[e.key] = false));
+      window.addEventListener("keydown", (e) => {
+        keys[e.key.toLowerCase()] = true;
+        if (["w", "a", "s", "d"].includes(e.key.toLowerCase()))
+          e.preventDefault();
+      });
+      window.addEventListener(
+        "keyup",
+        (e) => (keys[e.key.toLowerCase()] = false)
+      );
 
       function buildBorders() {
         const m = 50;
@@ -155,14 +161,20 @@
           this.rayCount = 5;
           this.rayLength = 100;
           this.rays = [];
+          this.manualControl = false;
         }
         update() {
-          if (keys["ArrowUp"]) this.speed = this.maxSpeed;
-          if (keys["ArrowDown"]) this.speed = -1;
-          if (keys["ArrowLeft"]) this.angle -= 0.05;
-          if (keys["ArrowRight"]) this.angle += 0.05;
+          this.manualControl = keys["w"] || keys["a"] || keys["s"] || keys["d"];
 
-          // Auto slow down for nearby people
+          if (this.manualControl) {
+            if (keys["w"]) this.speed = this.maxSpeed;
+            if (keys["s"]) this.speed = -1;
+            if (keys["a"]) this.angle -= 0.05;
+            if (keys["d"]) this.angle += 0.05;
+          } else {
+            this.speed = 1.5;
+          }
+
           const humanDists = people.map(
             (p) => distance({ x: this.x, y: this.y }, { x: p.x, y: p.y }) - p.r
           );
