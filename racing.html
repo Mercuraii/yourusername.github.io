@@ -1,30 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <!-- Document metadata and responsive settings -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Self-Driving Car Simulation</title>
     <style>
-      /* Page background and text styling */
       body {
         margin: 0;
         background: #222;
         color: #eee;
         font-family: sans-serif;
       }
-      /* Center canvas and set its background */
       #gameCanvas {
         display: block;
         margin: 0 auto;
         background: #444;
       }
-      /* Controls container styling */
       #controls {
         text-align: center;
         margin: 10px;
       }
-      /* Button styling */
       button {
         padding: 8px 12px;
         margin: 0 5px;
@@ -32,11 +27,8 @@
     </style>
   </head>
   <body>
-    <!-- Page heading -->
     <h2 style="text-align: center">Self-Driving Car Simulation</h2>
-    <!-- Canvas element where simulation is drawn -->
     <canvas id="gameCanvas" width="1200" height="800"></canvas>
-    <!-- Start and Reset buttons -->
     <div id="controls">
       <button id="startBtn">Start</button>
       <button id="resetBtn">Reset</button>
@@ -175,19 +167,26 @@
           });
           this._sense(edges);
           this._steer();
-          // Human priority: slow if close
-          const dists = people.map(
-            (p) => distance({ x: this.x, y: this.y }, { x: p.x, y: p.y }) - p.r
-          );
-          const nearest = Math.min(...dists);
-          this.speed = nearest < this.rayLength ? 0.5 : 2;
-          let nx = this.x + Math.cos(this.angle) * this.speed;
-          let ny = this.y + Math.sin(this.angle) * this.speed;
-          const m = 50;
-          if (nx < m) this.angle = Math.PI / 8;
-          else if (nx > canvas.width - m) this.angle = (7 * Math.PI) / 8;
-          if (ny < m || ny > canvas.height - m) this.angle = -this.angle;
-          this.angle = (this.angle + Math.PI * 2) % (Math.PI * 2);
+
+          // steer away from closest human
+          let closestHuman = null;
+          let minDist = this.rayLength;
+          people.forEach((p) => {
+            const d =
+              distance({ x: this.x, y: this.y }, { x: p.x, y: p.y }) - p.r;
+            if (d < minDist) {
+              minDist = d;
+              closestHuman = p;
+            }
+          });
+          if (closestHuman) {
+            const dx = closestHuman.x - this.x;
+            const dy = closestHuman.y - this.y;
+            const angleToHuman = Math.atan2(dy, dx);
+            const angleDiff = angleToHuman - this.angle;
+            this.angle -= 0.03 * Math.sign(angleDiff);
+          }
+
           this.x += Math.cos(this.angle) * this.speed;
           this.y += Math.sin(this.angle) * this.speed;
         }
