@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Self-Driving Car Simulation</title>
+    <style>
+      body {
+        margin: 0;
+        background: #222;
+        color: #eee;
+        font-family: sans-serif;
+      }
+      #gameCanvas {
+        display: block;
+        margin: 0 auto;
+        background: #444;
+      }
+      #controls {
+        text-align: center;
+        margin: 10px;
+      }
+      button {
+        padding: 12px 24px;
+        margin: 0 10px;
+        font-size: 16px;
+        font-weight: 600;
+        color: #f0f0f0;
+        background: linear-gradient(145deg, #3a3a3a, #2a2a2a);
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        user-select: none;
+      }
+      button:hover {
+        background: linear-gradient(145deg, #4a4a4a, #3a3a3a);
+      }
+      button:active {
+        background: linear-gradient(145deg, #2a2a2a, #3a3a3a);
+        box-shadow: inset 4px 4px 6px #1c1c1c, inset -4px -4px 6px #4a4a4a;
+      }
+      #returnBtn {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        padding: 8px 12px;
+        background-color: #444;
+        color: #eee;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        z-index: 1000;
+      }
+      #returnBtn:hover {
+        background-color: #666;
+      }
+      #returnBtn:active {
+        background-color: #888;
+      }
+    </style>
+  </head>
+  <body>
+    <button id="returnBtn" onclick="history.back()">Return</button>
+    <h2 style="text-align: center">Self-Driving Car Simulation</h2>
+    <canvas id="gameCanvas" width="1200" height="800"></canvas>
+    <div id="controls">
+      <button id="startBtn">Start</button>
+      <button id="resetBtn">Reset</button>
+    </div>
+    <script>
+      const canvas = document.getElementById("gameCanvas");
+      const ctx = canvas.getContext("2d");
+
+      const trackBorders = [];
+      const obstacles = [];
+      const people = [];
+
+      let keys = {};
+      window.addEventListener("keydown", (e) => {
+        keys[e.key.toLowerCase()] = true;
+        if (["w", "a", "s", "d"].includes(e.key.toLowerCase()))
+          e.preventDefault();
+      });
+      window.addEventListener(
+        "keyup",
+        (e) => (keys[e.key.toLowerCase()] = false)
+      );
+
+      function buildBorders() {
+        const m = 50;
+        const pts = [
+          { x: m, y: m },
+          { x: canvas.width - m, y: m },
+          { x: canvas.width - m, y: canvas.height - m },
+          { x: m, y: canvas.height - m },
+        ];
+        trackBorders.length = 0;
+        pts.forEach((pt, i) => {
+          trackBorders.push([pt, pts[(i + 1) % pts.length]]);
+        });
+      }
+
+      function buildObstacles() {
+        obstacles.length = 0;
+        obstacles.push([
+          { x: 400, y: 200 },
+          { x: 550, y: 200 },
+          { x: 550, y: 350 },
+          { x: 400, y: 350 },
+        ]);
+        obstacles.push([
+          { x: 700, y: 500 },
+          { x: 850, y: 500 },
+          { x: 850, y: 650 },
+          { x: 700, y: 650 },
+        ]);
+      }
+
+      function buildPeople() {
+        people.length = 0;
+        people.push({ x: 300, y: 600, r: 20, angle: 0 });
+        people.push({ x: 900, y: 300, r: 20, angle: 0 });
+      }
+
+      function drawTrack() {
+        ctx.strokeStyle = "white";
+        ctx.lineWidth = 3;
+        trackBorders.forEach(([A, B]) => {
+          ctx.beginPath();
+          ctx.moveTo(A.x, A.y);
+          ctx.lineTo(B.x, B.y);
+          ctx.stroke();
+        });
+      }
+
+      function drawObstacles() {
+        obstacles.forEach((poly) => {
+          const x = poly[0].x;
+          const y = poly[0].y;
+          const w = poly[1].x - x;
+          const h = poly[2].y - y;
+          ctx.fillStyle = "#666";
+          ctx.fillRect(x, y, w, h);
+          ctx.strokeStyle = "#444";
+          ctx.lineWidth = 2;
+          ctx.strokeRect(x, y, w, h);
+          const cols = 4;
+          const rows = 5;
+          const winW = w / (cols * 1.2);
+          const winH = h / (rows * 1.2);
+          const xOff = (w - cols * winW) / (cols + 1);
+          const yOff = (h - rows * winH) / (rows + 1);
+          ctx.fillStyle = "#add8e6";
+          for (let i = 0; i < cols; i++) {
+            for (let j = 0; j < rows; j++) {
+              const wx = x + xOff * (i + 1) + winW * i;
+              const wy = y + yOff * (j + 1) + winH * j;
+              ctx.fillRect(wx, wy, winW, winH);
+              ctx.strokeRect(wx, wy, winW, winH);
+            }
+          }
+        });
+      }
+
+      function drawPeople() {
+        people.forEach((p) => {
+          ctx.fillStyle = "#1505f7"; //blue body colour
+          ctx.beginPath();
+          ctx.arc(p.x, p.y + 15, p.r, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.fillStyle = "#ffe4c4";
+          ctx.beginPath();
+          ctx.arc(p.x, p.y - 5, p.r / 2, 0, Math.PI * 2);
+          ctx.fill();
+          const ex = p.r / 5;
+          const ey = p.r / 5.5;
+          const er = p.r / 8;
+          ctx.fillStyle = "black";
+          ctx.beginPath();
+          ctx.arc(p.x - ex, p.y - 5 - ey, er, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.beginPath();
+          ctx.arc(p.x + ex, p.y - 5 - ey, er, 0, Math.PI * 2);
+          ctx.fill();
+          // make em smile
+          ctx.strokeStyle = "black";
+          ctx.lineWidth = 2;
+          ctx.beginPath();
+          const smileX = p.x;
+          const smileY = p.y - 5 + 3; // just below the head center
+          const smileRadius = p.r / 4;
+          const startAngle = 0;
+          const endAngle = Math.PI;
+          ctx.arc(smileX, smileY, smileRadius, startAngle, endAngle, false);
+          ctx.stroke();
+        });
+      }
+
+      // Utility: Point in Polygon test
+      function pointInPolygon(point, vs) {
+        let x = point.x,
+          y = point.y;
+        let inside = false;
+        for (let i = 0, j = vs.length - 1; i < vs.length; j = i++) {
+          let xi = vs[i].x,
+            yi = vs[i].y;
+          let xj = vs[j].x,
+            yj = vs[j].y;
+          let intersect =
+            yi > y != yj > y && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi;
+          if (intersect) inside = !inside;
+        }
+        return inside;
+      }
+
+      function distance(a, b) {
+        return Math.hypot(a.x - b.x, a.y - b.y);
+      }
+
+      class Car {
+        constructor(x, y) {
+          this.x = x;
+          this.y = y;
+          this.angle = 0;
+          this.speed = 0;
+          this.maxSpeed = 2;
+          this.rayCount = 7;
+          this.rayLength = 120;
+          this.raySpread = Math.PI / 2;
+          this.rays = [];
+          this.manualControl = false;
+        }
+        update() {
+          this.manualControl = keys["w"] || keys["a"] || keys["s"] || keys["d"];
+
+          if (this.manualControl) {
+            if (keys["w"]) this.speed = this.maxSpeed;
+            else if (keys["s"]) this.speed = -1;
+            else this.speed = 0;
+
+            if (keys["a"]) this.angle -= 0.05;
+            if (keys["d"]) this.angle += 0.05;
+          } else {
+            this.speed = 1.5;
+            this.angle += Math.sin(Date.now() / 1000) * 0.01;
+          }
+
+          // Slow down near people
+          const humanDists = people.map(
+            (p) => distance({ x: this.x, y: this.y }, { x: p.x, y: p.y }) - p.r
+          );
+          const nearest = Math.min(...humanDists);
+          if (nearest < this.rayLength && this.speed > 1) this.speed = 0.5;
+
+          this.castRays();
+
+          const nextX = this.x + Math.cos(this.angle) * this.speed;
+          const nextY = this.y + Math.sin(this.angle) * this.speed;
+
+          // Border check: keep inside track rectangle
+          if (
+            nextX < trackBorders[0][0].x ||
+            nextX > trackBorders[1][0].x ||
+            nextY < trackBorders[0][0].y ||
+            nextY > trackBorders[2][0].y
+          ) {
+            this.speed = 0;
+            this.angle += 0.1;
+            return;
+          }
+
+          // Obstacle collision
+          for (let poly of obstacles) {
+            if (pointInPolygon({ x: nextX, y: nextY }, poly)) {
+              this.speed = 0;
+              this.angle += 0.1;
+              return;
+            }
+          }
+
+          // People collision
+          for (let p of people) {
+            const dist = distance({ x: nextX, y: nextY }, p);
+            if (dist < p.r + 15) {
+              this.speed = 0;
+              this.angle += 0.1;
+              return;
+            }
+          }
+
+          this.x = nextX;
+          this.y = nextY;
+        }
+        castRays() {
+          this.rays = [];
+          for (let i = 0; i < this.rayCount; i++) {
+            const rayAngle =
+              this.angle + this.raySpread * (i / (this.rayCount - 1) - 0.5);
+            const start = { x: this.x, y: this.y };
+            const end = {
+              x: this.x + Math.cos(rayAngle) * this.rayLength,
+              y: this.y + Math.sin(rayAngle) * this.rayLength,
+            };
+            this.rays.push([start, end]);
+          }
+        }
+        draw() {
+          ctx.save();
+          ctx.translate(this.x, this.y);
+          ctx.rotate(this.angle);
+          ctx.fillStyle = "red";
+          ctx.fillRect(-15, -7, 30, 14);
+          ctx.fillStyle = "black";
+          [
+            [8, -9],
+            [8, 6],
+            [-14, -9],
+            [-14, 6],
+          ].forEach(([dx, dy]) => ctx.fillRect(dx, dy, 6, 3));
+          ctx.restore();
+
+          ctx.lineWidth = 2;
+          ctx.strokeStyle = "yellow";
+          this.rays.forEach(([start, end]) => {
+            ctx.beginPath();
+            ctx.moveTo(start.x, start.y);
+            ctx.lineTo(end.x, end.y);
+            ctx.stroke();
+          });
+        }
+      }
+
+      // Move people in small circles
+      function updatePeople() {
+        people.forEach((p) => {
+          p.angle += 0.03;
+          p.x += Math.cos(p.angle) * 0.5;
+          p.y += Math.sin(p.angle) * 0.5;
+        });
+      }
+
+      let car, anim;
+      function init() {
+        buildBorders();
+        buildObstacles();
+        buildPeople();
+        car = new Car(canvas.width * 0.25, canvas.height / 2);
+      }
+
+      function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        drawTrack();
+        drawObstacles();
+        drawPeople();
+        updatePeople();
+        car.update();
+        car.draw();
+        anim = requestAnimationFrame(animate);
+      }
+
+      document.getElementById("startBtn").onclick = () => {
+        cancelAnimationFrame(anim);
+        animate();
+      };
+
+      document.getElementById("resetBtn").onclick = () => {
+        cancelAnimationFrame(anim);
+        init();
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        drawTrack();
+        drawObstacles();
+        drawPeople();
+        car.draw();
+      };
+
+      init();
+      drawTrack();
+      drawObstacles();
+      drawPeople();
+      car.draw();
+    </script>
+  </body>
+</html>

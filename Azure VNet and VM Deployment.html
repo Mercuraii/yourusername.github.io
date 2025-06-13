@@ -1,0 +1,358 @@
+<!-- Project GitHub pdf link -->
+<p
+  style="text-align: center; font-size: 1.8rem; margin-top: 1rem; color: yellow"
+>
+  📄 View my full project code and PDF here on
+  <a
+    href="https://github.com/jszolcek/terraform-azure-vm/blob/main/Azure%20Terraform%20Deployment%20Project.pdf"
+    target="_blank"
+    style="
+      color: blue;
+      text-decoration: underline;
+      font-weight: bold;
+      transition: text-shadow 0.3s ease;
+    "
+    onmouseover="this.parentElement.style.textShadow='0 0 12px gold';"
+    onmouseout="this.parentElement.style.textShadow='none';"
+  >
+    GitHub
+  </a>
+</p>
+
+<!-- Screenshot Carousel with Keyboard Navigation & Larger Images -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Rotating banner showcasing screenshot gallery"
+    />
+    <title>Screenshot Carousel</title>
+    <link rel="icon" type="image/png" sizes="96x96" href="images/favicon.png" />
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      /* Carousel Styles */
+      .carousel-container {
+        position: relative;
+        max-width: 1000px;
+        margin: 2rem auto;
+        overflow-x: hidden; /* only hide horizontal overflow */
+        overflow-y: visible; /* allow caption visible */
+        border-radius: 1rem;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        padding-bottom: 2rem; /* space for captions */
+      }
+      .carousel-slide {
+        display: none;
+        width: 100%;
+        text-align: center;
+      }
+      .carousel-slide img {
+        max-width: 100%;
+        max-height: 80vh;
+        object-fit: contain;
+        display: inline-block;
+        margin-bottom: 1rem;
+      }
+      .slide-caption {
+        color: #fff;
+        font-size: 1.5rem;
+        text-align: center;
+        margin-top: 0.5rem;
+        transition: color 0.3s ease;
+      }
+      .light-mode .slide-caption {
+        color: #000;
+      }
+      /* Navigation buttons */
+      .carousel-nav {
+        position: absolute;
+        top: 50%;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        transform: translateY(-50%);
+      }
+      .carousel-nav button {
+        background: rgba(0, 0, 0, 0.5);
+        border: none;
+        color: #fff;
+        padding: 0.5rem 1rem;
+        cursor: pointer;
+        border-radius: 0.5rem;
+      }
+      /* Return button style */
+      .return-button {
+        position: absolute;
+        top: 1rem;
+        left: 1rem;
+        padding: 8px 12px;
+        background-color: #444;
+        color: #eee;
+        border: none;
+        border-radius: 4px;
+        font-size: 16px;
+        font-weight: 600;
+        font-family: Consolas, monospace;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        z-index: 10;
+      }
+      .return-button:hover {
+        background-color: #666;
+      }
+      .return-button:active {
+        background-color: #888;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Return Button Top-Left -->
+    <button
+      class="return-button"
+      onclick="location.href='https://jszolcek.github.io/index.html'"
+    >
+      Return
+    </button>
+
+    <!-- Dark/Light Theme Toggle -->
+    <div class="theme-toggle-container">
+      <label class="switch">
+        <input type="checkbox" id="theme-toggle" />
+        <span class="slider"></span>
+      </label>
+      <span id="theme-icon" class="theme-icon">🌙</span>
+    </div>
+
+    <div class="container">
+      <h1>Deploying and Destroying Azure Resources via Terraform</h1>
+      <div class="carousel-container" tabindex="0">
+        <div class="carousel-slide">
+          <img src="images/Resource Creation.png" alt="Resource Creation" />
+        </div>
+        <div class="carousel-slide">
+          <img src="images/Resources Created.png" alt="Resources Created" />
+        </div>
+        <div class="carousel-slide">
+          <img src="images/Resource Deleting.png" alt="Resource Deleting" />
+        </div>
+        <div class="carousel-slide">
+          <img src="images/Resources Destroyed.png" alt="Resources Destroyed" />
+        </div>
+
+        <div class="carousel-nav">
+          <button id="prevBtn">❮</button>
+          <button id="nextBtn">❯</button>
+        </div>
+      </div>
+      <!-- Carousel caption below -->
+      <div id="carousel-caption" class="slide-caption"></div>
+    </div>
+
+    <!-- Two images side by side with captions -->
+    <div
+      id="imageGallery"
+      style="
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        max-width: none;
+        margin: 2rem auto;
+        width: 95vw;
+      "
+    >
+      <figure style="flex: 1; color: #eee; text-align: center">
+        <img
+          class="gallery-img"
+          src="images/Azure Portal Showing Deployed Resources.png"
+          alt="Azure Portal Screenshot Showing Deployed Resources"
+        />
+        <figcaption style="margin-top: 0.5rem; font-size: 1.2rem">
+          Azure Portal Screenshot Showing Deployed Resources
+        </figcaption>
+      </figure>
+      <figure style="flex: 1; color: #eee; text-align: center">
+        <img
+          class="gallery-img"
+          src="images/Remotely Connected To Win VM and SSH into Linux VM from there.png"
+          alt="Remotely Connected To Win VM and SSH into Linux VM from there"
+        />
+        <figcaption style="margin-top: 0.5rem; font-size: 1.2rem">
+          Remotely Connected To Win VM and then SSH'd into the Linux VM from
+          there (as the Linux VM has no Public IP assigned)
+        </figcaption>
+      </figure>
+    </div>
+
+    <!-- Project GitHub pdf link 2 -->
+    <p
+      style="
+        text-align: center;
+        font-size: 1.8rem;
+        margin-top: 1rem;
+        color: yellow;
+      "
+    >
+      📄 View my full project code and PDF here on
+      <a
+        href="https://github.com/jszolcek/terraform-azure-vm/blob/main/Azure%20Terraform%20Deployment%20Project.pdf"
+        target="_blank"
+        style="
+          color: blue;
+          text-decoration: underline;
+          font-weight: bold;
+          transition: text-shadow 0.3s ease;
+        "
+        onmouseover="this.parentElement.style.textShadow='0 0 12px gold';"
+        onmouseout="this.parentElement.style.textShadow='none';"
+      >
+        GitHub
+      </a>
+    </p>
+
+    <!-- Image Modal -->
+    <div
+      id="imgModal"
+      style="
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 90vw;
+        height: 90vh;
+        background: rgba(0, 0, 0, 0.9);
+        z-index: 1000;
+        border-radius: 12px;
+        box-shadow: 0 0 20px white;
+        cursor: pointer;
+      "
+    >
+      <img
+        id="modalImg"
+        src=""
+        alt="Full Image"
+        style="
+          max-width: 100%;
+          max-height: 100%;
+          margin: auto;
+          display: block;
+          border-radius: 8px;
+        "
+      />
+    </div>
+
+    <!-- Carousel Script with Keyboard Support -->
+    <script>
+      let slideIndex = 0;
+      const slides = document.querySelectorAll(".carousel-slide");
+      const totalSlides = slides.length;
+      const nextBtn = document.getElementById("nextBtn");
+      const prevBtn = document.getElementById("prevBtn");
+      const carousel = document.querySelector(".carousel-container");
+      const carouselCaption = document.getElementById("carousel-caption");
+
+      // Array of captions (in order of slides)
+      const captions = [
+        "Initializing and creating resources",
+        "Resources successfully created",
+        "Deleting resources in progress",
+        'Resources have been successfully destroyed <span class="icon">💥</span>',
+      ];
+
+      function showSlide(index) {
+        slides.forEach((slide, i) => {
+          slide.style.display = i === index ? "block" : "none";
+        });
+        // Update caption below carousel
+        if (carouselCaption) {
+          carouselCaption.innerHTML = captions[index];
+        }
+      }
+
+      function nextSlide() {
+        slideIndex = (slideIndex + 1) % totalSlides;
+        showSlide(slideIndex);
+      }
+
+      function prevSlide() {
+        slideIndex = (slideIndex - 1 + totalSlides) % totalSlides;
+        showSlide(slideIndex);
+      }
+
+      nextBtn.addEventListener("click", nextSlide);
+      prevBtn.addEventListener("click", prevSlide);
+
+      // Keyboard navigation
+      carousel.addEventListener("keydown", (e) => {
+        if (e.key === "ArrowRight") nextSlide();
+        if (e.key === "ArrowLeft") prevSlide();
+      });
+      carousel.focus();
+
+      // Auto-rotate every 5 seconds
+      showSlide(slideIndex);
+      setInterval(nextSlide, 5000);
+    </script>
+
+    <script>
+      // Toggle dark/light theme and remember user choice
+      const themeToggle = document.getElementById("theme-toggle");
+      const themeIcon = document.getElementById("theme-icon");
+
+      function setTheme(isLight) {
+        if (isLight) {
+          document.body.classList.add("light-theme");
+          if (themeIcon) themeIcon.textContent = "☀️";
+        } else {
+          document.body.classList.remove("light-theme");
+          if (themeIcon) themeIcon.textContent = "🌙";
+        }
+      }
+
+      // Load theme from localStorage if available
+      if (themeToggle) {
+        const savedTheme = localStorage.getItem("theme");
+        if (savedTheme === "light") {
+          themeToggle.checked = true;
+          setTheme(true);
+        }
+
+        themeToggle.addEventListener("change", () => {
+          setTheme(themeToggle.checked);
+          localStorage.setItem("theme", themeToggle.checked ? "light" : "dark");
+        });
+      }
+    </script>
+
+    <script>
+      // Modal functionality for bottom gallery images
+      const galleryImages = document.querySelectorAll(".gallery-img");
+      const imgModal = document.getElementById("imgModal");
+      const modalImg = document.getElementById("modalImg");
+
+      galleryImages.forEach((img) => {
+        img.style.cursor = "pointer";
+        img.addEventListener("click", () => {
+          modalImg.style.display = "none"; // Hide image until loaded
+          imgModal.style.display = "block";
+          modalImg.src = img.src;
+        });
+      });
+
+      // Show image only after it loads
+      modalImg.addEventListener("load", () => {
+        modalImg.style.display = "block";
+      });
+
+      // Hide modal on click anywhere inside modal
+      imgModal.addEventListener("click", () => {
+        imgModal.style.display = "none";
+        modalImg.src = "";
+        modalImg.style.display = "none";
+      });
+    </script>
+  </body>
+</html>
