@@ -28,16 +28,16 @@
       }
 
       /* Dropdown containers */
-      .menu,
-      .cv-dropdown {
+      .cv-dropdown,
+      .menu {
         position: relative;
         display: inline-block;
         margin-left: 10px;
       }
 
       /* Pop-out menus */
-      .submenu,
-      .cv-options {
+      .cv-options,
+      .submenu {
         display: none;
         position: absolute;
         background-color: #333;
@@ -48,21 +48,23 @@
         z-index: 1;
       }
 
-      .menu:hover .submenu,
-      .cv-dropdown:hover .cv-options {
+      /* Show on hover */
+      .cv-dropdown:hover .cv-options,
+      .menu:hover .submenu {
         display: block;
       }
 
-      .submenu a,
-      .cv-options a {
+      /* Menu links */
+      .cv-options a,
+      .submenu a {
         display: block;
         color: #fff;
         padding: 10px 15px;
         text-decoration: none;
       }
 
-      .submenu a:hover,
-      .cv-options a:hover {
+      .cv-options a:hover,
+      .submenu a:hover {
         background-color: #555;
       }
     </style>
@@ -147,7 +149,229 @@
         </div>
       </section>
 
-      <!-- rest of content unchanged -->
+      <div class="flex-cert-sections">
+        <!-- Certifications Section -->
+        <section class="certifications-section">
+          <h3>Certifications</h3>
+          <div class="certIFICATIONS-row">
+            <!-- Network+ -->
+            <div class="cert-card">
+              <div class="card-inner">
+                <div class="card-front">
+                  <div class="cert-text">
+                    <h4>CompTIA Network+</h4>
+                    <p>
+                      Networking fundamentals, wired/wireless, security basics.
+                    </p>
+                  </div>
+                  <img
+                    src="images/networkplus.png"
+                    alt="Network+ Badge"
+                    class="cert-img"
+                  />
+                </div>
+                <div class="card-back">
+                  <a
+                    href="https://www.comptia.org/certifications/network"
+                    target="_blank"
+                  >
+                    <img
+                      src="images/networkplus.png"
+                      alt="Network+ Badge"
+                      class="cert-back-img"
+                    />
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- A+ -->
+            <div class="cert-card">
+              <div class="card-inner">
+                <div class="card-front">
+                  <div class="cert-text">
+                    <h4>CompTIA A+</h4>
+                    <p>
+                      Hardware, software, troubleshooting, network fundamentals.
+                    </p>
+                  </div>
+                  <img src="images/aplus.png" alt="A+ Badge" class="cert-img" />
+                </div>
+                <div class="card-back">
+                  <a
+                    href="https://www.comptia.org/certifications/a"
+                    target="_blank"
+                  >
+                    <img
+                      src="images/aplus.png"
+                      alt="A+ Badge"
+                      class="cert-back-img"
+                    />
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- AZ-900 -->
+            <div class="cert-card">
+              <div class="card-inner">
+                <div class="card-front">
+                  <div class="cert-text">
+                    <h4>AZ-900</h4>
+                    <p>
+                      Cloud concepts, core Azure services, management &
+                      governance.
+                    </p>
+                  </div>
+                  <img
+                    src="images/az900.png"
+                    alt="AZ-900 Badge"
+                    class="cert-img"
+                  />
+                </div>
+                <div class="card-back">
+                  <a
+                    href="https://learn.microsoft.com/en-us/certifications/azure-fundamentals/"
+                    target="_blank"
+                  >
+                    <img
+                      src="images/az900.png"
+                      alt="AZ-900 Badge"
+                      class="cert-back-img"
+                    />
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- ITIL 4 -->
+            <div class="cert-card">
+              <div class="card-inner">
+                <div class="card-front">
+                  <div class="cert-text">
+                    <h4>ITIL 4 Foundation</h4>
+                    <p>
+                      Service management, four dimensions, guiding principles.
+                    </p>
+                  </div>
+                  <img
+                    src="images/itil4-badge.png"
+                    alt="ITIL 4 Badge"
+                    class="cert-img"
+                  />
+                </div>
+                <div class="card-back">
+                  <a
+                    href="https://www.axelos.com/certifications/itil-certifications/itil-foundation"
+                    target="_blank"
+                  >
+                    <img
+                      src="images/itil4-badge.png"
+                      alt="ITIL 4 Badge"
+                      class="cert-back-img"
+                    />
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Training & Skills Section -->
+        <section class="training-skills-section">
+          <h3>Training & Skills</h3>
+          <div class="certifications-row">
+            <!-- Customer Support -->
+            <div class="cert-card self-study">
+              <div class="card-inner">
+                <div class="card-front">
+                  <div class="cert-text">
+                    <h4>Customer Support & Service</h4>
+                    <p>
+                      Three years of client support experience via email, phone,
+                      in-person.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Network Troubleshooting -->
+            <div class="cert-card">
+              <div class="card-inner">
+                <div class="card-front">
+                  <div class="cert-text">
+                    <h4>Network Troubleshooting</h4>
+                    <p>
+                      Diagnosing TCP/IP, DHCP, VLAN, routing connectivity
+                      issues.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Infrastructure -->
+            <div class="cert-card">
+              <div class="card-inner">
+                <div class="card-front">
+                  <div class="cert-text">
+                    <h4>Infrastructure & Configuration</h4>
+                    <p>
+                      Active Directory, virtualization, hardware upgrades &
+                      maintenance.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- IT Security -->
+            <div class="cert-card">
+              <div class="card-inner">
+                <div class="card-front">
+                  <div class="cert-text">
+                    <h4>IT Security & Firewalls</h4>
+                    <p>
+                      VPNs, firewall setup, network security best practices.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Monitoring -->
+            <div class="cert-card">
+              <div class="card-inner">
+                <div class="card-front">
+                  <div class="cert-text">
+                    <h4>Monitoring & Documentation</h4>
+                    <p>
+                      Network monitoring tools, ticketing, IT documentation
+                      skills.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Scripting -->
+            <div class="cert-card">
+              <div class="card-inner">
+                <div class="card-front">
+                  <div class="cert-text">
+                    <h4>Scripting & Automation</h4>
+                    <p>
+                      Pursuing scripting for automation and efficiency
+                      improvements.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
 
       <footer class="footer">
         <p>
