@@ -158,8 +158,9 @@
           this.angle = 0;
           this.speed = 0;
           this.maxSpeed = 2;
-          this.rayCount = 5;
-          this.rayLength = 100;
+          this.rayCount = 7;
+          this.rayLength = 120;
+          this.raySpread = Math.PI / 2;
           this.rays = [];
           this.manualControl = false;
         }
@@ -173,6 +174,7 @@
             if (keys["d"]) this.angle += 0.05;
           } else {
             this.speed = 1.5;
+            this.angle += Math.sin(Date.now() / 1000) * 0.01; // simple auto turning
           }
 
           const humanDists = people.map(
@@ -181,8 +183,23 @@
           const nearest = Math.min(...humanDists);
           if (nearest < this.rayLength && this.speed > 1) this.speed = 0.5;
 
+          this.castRays();
+
           this.x += Math.cos(this.angle) * this.speed;
           this.y += Math.sin(this.angle) * this.speed;
+        }
+        castRays() {
+          this.rays = [];
+          for (let i = 0; i < this.rayCount; i++) {
+            const rayAngle =
+              this.angle + this.raySpread * (i / (this.rayCount - 1) - 0.5);
+            const start = { x: this.x, y: this.y };
+            const end = {
+              x: this.x + Math.cos(rayAngle) * this.rayLength,
+              y: this.y + Math.sin(rayAngle) * this.rayLength,
+            };
+            this.rays.push([start, end]);
+          }
         }
         draw() {
           ctx.save();
@@ -198,6 +215,15 @@
             [-14, 6],
           ].forEach(([dx, dy]) => ctx.fillRect(dx, dy, 6, 3));
           ctx.restore();
+
+          ctx.lineWidth = 2;
+          ctx.strokeStyle = "yellow";
+          this.rays.forEach(([start, end]) => {
+            ctx.beginPath();
+            ctx.moveTo(start.x, start.y);
+            ctx.lineTo(end.x, end.y);
+            ctx.stroke();
+          });
         }
       }
 
