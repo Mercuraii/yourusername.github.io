@@ -28,7 +28,8 @@
   </head>
   <body>
     <h2 style="text-align: center">Self-Driving Car Simulation</h2>
-    <canvas id="gameCanvas" width="600" height="400"></canvas>
+    <!-- Canvas doubled: 1200x800 -->
+    <canvas id="gameCanvas" width="1200" height="800"></canvas>
     <div id="controls">
       <button id="startBtn">Start</button>
       <button id="resetBtn">Reset</button>
@@ -65,20 +66,20 @@
           this.y += Math.sin(this.angle) * this.speed;
         }
         draw() {
-          // Draw car body
           ctx.save();
           ctx.translate(this.x, this.y);
           ctx.rotate(this.angle);
+          // red body
           ctx.fillStyle = "red";
           ctx.fillRect(-15, -7, 30, 14);
-          // Draw wheels
+          // black wheels
           ctx.fillStyle = "black";
           const wheelW = 6,
             wheelH = 3;
-          // Front wheels
+          // front wheels
           ctx.fillRect(8, -9, wheelW, wheelH);
           ctx.fillRect(8, 6, wheelW, wheelH);
-          // Rear wheels
+          // rear wheels
           ctx.fillRect(-14, -9, wheelW, wheelH);
           ctx.fillRect(-14, 6, wheelW, wheelH);
           ctx.restore();
@@ -164,7 +165,8 @@
       let car, anim;
       function init() {
         buildBorders();
-        car = new Car(100, canvas.height / 2);
+        // start car at quarter width, half height
+        car = new Car(canvas.width * 0.25, canvas.height / 2);
       }
       function drawTrack() {
         ctx.strokeStyle = "white";
