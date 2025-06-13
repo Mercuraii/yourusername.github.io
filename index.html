@@ -15,6 +15,50 @@
     <title>Joe Szolcek's IT Portfolio</title>
     <link rel="icon" type="image/png" sizes="96x96" href="images/favicon.png" />
     <link rel="stylesheet" href="styles.css" />
+    <style>
+      /* Projects submenu styles */
+      .menu {
+        position: relative;
+        display: inline-block;
+        margin-left: 10px;
+      }
+
+      .menu-button {
+        background-color: #444;
+        color: white;
+        padding: 10px 20px;
+        cursor: pointer;
+        border: none;
+        border-radius: 8px;
+        font-size: 1rem;
+      }
+
+      .submenu {
+        display: none;
+        position: absolute;
+        background-color: #333;
+        min-width: 200px;
+        z-index: 1;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+        margin-top: 5px;
+      }
+
+      .submenu a {
+        color: white;
+        padding: 10px 15px;
+        text-decoration: none;
+        display: block;
+      }
+
+      .submenu a:hover {
+        background-color: #555;
+      }
+
+      .menu:hover .submenu {
+        display: block;
+      }
+    </style>
   </head>
   <body>
     <!-- 3D Video Background Layer -->
@@ -77,6 +121,15 @@
               <a href="files/JoeSzolcek-CV.odt" download
                 ><button>LibreOffice</button></a
               >
+            </div>
+          </div>
+
+          <!-- Added Projects Button with submenu -->
+          <div class="menu">
+            <button class="menu-button">Projects</button>
+            <div class="submenu">
+              <a href="#">Habit Tracker.py</a>
+              <a href="#">Self-Driving Car Simulation.js</a>
             </div>
           </div>
         </div>
