@@ -21,12 +21,37 @@
         margin: 10px;
       }
       button {
-        padding: 8px 12px;
-        margin: 0 5px;
+        padding: 12px 24px;
+        margin: 0 10px;
+        font-size: 16px;
+        font-weight: 600;
+        color: #f0f0f0;
+        background: linear-gradient(145deg, #3a3a3a, #2a2a2a);
+        border: none;
+        border-radius: 8px;
+        box-shadow: 3px 3px 6px #1c1c1c, -3px -3px 6px #4a4a4a;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        user-select: none;
+      }
+      button:hover {
+        background: linear-gradient(145deg, #4a4a4a, #3a3a3a);
+        box-shadow: inset 2px 2px 4px #1c1c1c, inset -2px -2px 4px #4a4a4a;
+      }
+      button:active {
+        background: linear-gradient(145deg, #2a2a2a, #3a3a3a);
+        box-shadow: inset 4px 4px 6px #1c1c1c, inset -4px -4px 6px #4a4a4a;
+      }
+      #returnBtn {
+        display: block;
+        margin: 20px auto;
+        padding: 12px 36px;
+        font-size: 18px;
       }
     </style>
   </head>
   <body>
+    <button id="returnBtn" onclick="history.back()">Return</button>
     <h2 style="text-align: center">Self-Driving Car Simulation</h2>
     <canvas id="gameCanvas" width="1200" height="800"></canvas>
     <div id="controls">
