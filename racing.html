@@ -35,11 +35,9 @@
     </div>
 
     <script>
-      // 1. Setup canvas and context
       const canvas = document.getElementById("gameCanvas");
       const ctx = canvas.getContext("2d");
 
-      // 2. Car object with boundary handling
       class Car {
         constructor(x, y) {
           this.x = x;
@@ -50,35 +48,39 @@
           this.rayCount = 5;
           this.rayLength = 100;
         }
-        update(trackBorders) {
-          this._sense(trackBorders);
+        update(borders) {
+          this._sense(borders);
           this._steer();
-          // compute next position
-          const nextX = this.x + Math.cos(this.angle) * this.speed;
-          const nextY = this.y + Math.sin(this.angle) * this.speed;
-          // boundary limits (margin + car half size)
+          let nextX = this.x + Math.cos(this.angle) * this.speed;
+          let nextY = this.y + Math.sin(this.angle) * this.speed;
           const margin = 50;
-          const halfW = 10,
-            halfH = 5;
-          if (
-            nextX < margin + halfW ||
-            nextX > canvas.width - margin - halfW ||
-            nextY < margin + halfH ||
-            nextY > canvas.height - margin - halfH
-          ) {
-            // turn around if hitting boundary
-            this.angle += Math.PI;
-          } else {
-            this.x = nextX;
-            this.y = nextY;
+          if (nextX < margin || nextX > canvas.width - margin) {
+            this.angle = Math.PI - this.angle;
           }
+          if (nextY < margin || nextY > canvas.height - margin) {
+            this.angle = -this.angle;
+          }
+          this.angle = (this.angle + 2 * Math.PI) % (2 * Math.PI);
+          this.x += Math.cos(this.angle) * this.speed;
+          this.y += Math.sin(this.angle) * this.speed;
         }
         draw() {
+          // Draw car body
           ctx.save();
           ctx.translate(this.x, this.y);
           ctx.rotate(this.angle);
-          ctx.fillStyle = "cyan";
-          ctx.fillRect(-10, -5, 20, 10);
+          ctx.fillStyle = "red";
+          ctx.fillRect(-15, -7, 30, 14);
+          // Draw wheels
+          ctx.fillStyle = "black";
+          const wheelW = 6,
+            wheelH = 3;
+          // Front wheels
+          ctx.fillRect(8, -9, wheelW, wheelH);
+          ctx.fillRect(8, 6, wheelW, wheelH);
+          // Rear wheels
+          ctx.fillRect(-14, -9, wheelW, wheelH);
+          ctx.fillRect(-14, 6, wheelW, wheelH);
           ctx.restore();
           this._drawRays();
         }
@@ -94,8 +96,8 @@
               y: this.y + Math.sin(rayAng) * this.rayLength,
             };
             let closest = null;
-            for (let border of borders) {
-              const pt = getIntersection(start, end, border[0], border[1]);
+            for (let [A, B] of borders) {
+              const pt = getIntersection(start, end, A, B);
               if (!pt) continue;
               const d = distance(start, pt);
               if (closest === null || d < closest.d) closest = { pt, d };
@@ -130,52 +132,47 @@
         }
       }
 
-      // 3. Track borders: simple rectangle
       const trackBorders = [];
       function buildBorders() {
-        const margin = 50;
+        const m = 50;
         const pts = [
-          { x: margin, y: margin },
-          { x: canvas.width - margin, y: margin },
-          { x: canvas.width - margin, y: canvas.height - margin },
-          { x: margin, y: canvas.height - margin },
+          { x: m, y: m },
+          { x: canvas.width - m, y: m },
+          { x: canvas.width - m, y: canvas.height - m },
+          { x: m, y: canvas.height - m },
         ];
-        for (let i = 0; i < pts.length; i++) {
+        trackBorders.length = 0;
+        for (let i = 0; i < pts.length; i++)
           trackBorders.push([pts[i], pts[(i + 1) % pts.length]]);
-        }
       }
 
-      // 4. Geometry helpers
       function getIntersection(A, B, C, D) {
         const tTop = (D.x - C.x) * (A.y - C.y) - (D.y - C.y) * (A.x - C.x);
         const uTop = (C.y - A.y) * (A.x - B.x) - (C.x - A.x) * (A.y - B.y);
         const bottom = (D.y - C.y) * (B.x - A.x) - (D.x - C.x) * (B.y - A.y);
-        if (bottom === 0) return null;
-        const t = tTop / bottom;
-        const u = uTop / bottom;
-        if (t >= 0 && t <= 1 && u >= 0 && u <= 1) {
+        if (!bottom) return null;
+        const t = tTop / bottom,
+          u = uTop / bottom;
+        if (t >= 0 && t <= 1 && u >= 0 && u <= 1)
           return { x: A.x + t * (B.x - A.x), y: A.y + t * (B.y - A.y) };
-        }
         return null;
       }
       function distance(a, b) {
         return Math.hypot(a.x - b.x, a.y - b.y);
       }
 
-      // 5. Animation loop
-      let car, animationId;
+      let car, anim;
       function init() {
-        trackBorders.length = 0;
         buildBorders();
         car = new Car(100, canvas.height / 2);
       }
       function drawTrack() {
         ctx.strokeStyle = "white";
         ctx.lineWidth = 3;
-        trackBorders.forEach((border) => {
+        trackBorders.forEach(([A, B]) => {
           ctx.beginPath();
-          ctx.moveTo(border[0].x, border[0].y);
-          ctx.lineTo(border[1].x, border[1].y);
+          ctx.moveTo(A.x, A.y);
+          ctx.lineTo(B.x, B.y);
           ctx.stroke();
         });
       }
@@ -184,23 +181,21 @@
         drawTrack();
         car.update(trackBorders);
         car.draw();
-        animationId = requestAnimationFrame(animate);
+        anim = requestAnimationFrame(animate);
       }
 
-      // 6. Controls
       document.getElementById("startBtn").onclick = () => {
-        cancelAnimationFrame(animationId);
+        cancelAnimationFrame(anim);
         animate();
       };
       document.getElementById("resetBtn").onclick = () => {
-        cancelAnimationFrame(animationId);
+        cancelAnimationFrame(anim);
         init();
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         drawTrack();
         car.draw();
       };
 
-      // Initialize on load
       init();
       drawTrack();
       car.draw();
