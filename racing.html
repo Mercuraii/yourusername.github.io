@@ -28,112 +28,19 @@
   </head>
   <body>
     <h2 style="text-align: center">Self-Driving Car Simulation</h2>
-    <!-- Canvas doubled: 1200x800 -->
     <canvas id="gameCanvas" width="1200" height="800"></canvas>
     <div id="controls">
       <button id="startBtn">Start</button>
       <button id="resetBtn">Reset</button>
     </div>
-
     <script>
       const canvas = document.getElementById("gameCanvas");
       const ctx = canvas.getContext("2d");
 
-      class Car {
-        constructor(x, y) {
-          this.x = x;
-          this.y = y;
-          this.angle = 0;
-          this.speed = 2;
-          this.rays = [];
-          this.rayCount = 5;
-          this.rayLength = 100;
-        }
-        update(borders) {
-          this._sense(borders);
-          this._steer();
-          let nextX = this.x + Math.cos(this.angle) * this.speed;
-          let nextY = this.y + Math.sin(this.angle) * this.speed;
-          const margin = 50;
-          if (nextX < margin || nextX > canvas.width - margin) {
-            this.angle = Math.PI - this.angle;
-          }
-          if (nextY < margin || nextY > canvas.height - margin) {
-            this.angle = -this.angle;
-          }
-          this.angle = (this.angle + 2 * Math.PI) % (2 * Math.PI);
-          this.x += Math.cos(this.angle) * this.speed;
-          this.y += Math.sin(this.angle) * this.speed;
-        }
-        draw() {
-          ctx.save();
-          ctx.translate(this.x, this.y);
-          ctx.rotate(this.angle);
-          // red body
-          ctx.fillStyle = "red";
-          ctx.fillRect(-15, -7, 30, 14);
-          // black wheels
-          ctx.fillStyle = "black";
-          const wheelW = 6,
-            wheelH = 3;
-          // front wheels
-          ctx.fillRect(8, -9, wheelW, wheelH);
-          ctx.fillRect(8, 6, wheelW, wheelH);
-          // rear wheels
-          ctx.fillRect(-14, -9, wheelW, wheelH);
-          ctx.fillRect(-14, 6, wheelW, wheelH);
-          ctx.restore();
-          this._drawRays();
-        }
-        _sense(borders) {
-          this.rays = [];
-          const spread = Math.PI / 2;
-          for (let i = 0; i < this.rayCount; i++) {
-            const rayAng =
-              this.angle + spread / 2 - (spread / (this.rayCount - 1)) * i;
-            const start = { x: this.x, y: this.y };
-            const end = {
-              x: this.x + Math.cos(rayAng) * this.rayLength,
-              y: this.y + Math.sin(rayAng) * this.rayLength,
-            };
-            let closest = null;
-            for (let [A, B] of borders) {
-              const pt = getIntersection(start, end, A, B);
-              if (!pt) continue;
-              const d = distance(start, pt);
-              if (closest === null || d < closest.d) closest = { pt, d };
-            }
-            this.rays.push(closest ? closest.pt : end);
-          }
-        }
-        _steer() {
-          let minD = Infinity,
-            minIdx = 0;
-          this.rays.forEach((pt, i) => {
-            const d = pt
-              ? distance({ x: this.x, y: this.y }, pt)
-              : this.rayLength;
-            if (d < minD) {
-              minD = d;
-              minIdx = i;
-            }
-          });
-          const mid = (this.rayCount - 1) / 2;
-          this.angle += (minIdx - mid) * 0.005;
-        }
-        _drawRays() {
-          ctx.strokeStyle = "yellow";
-          ctx.lineWidth = 1;
-          this.rays.forEach((pt) => {
-            ctx.beginPath();
-            ctx.moveTo(this.x, this.y);
-            ctx.lineTo(pt.x, pt.y);
-            ctx.stroke();
-          });
-        }
-      }
-
       const trackBorders = [];
+      const obstacles = [];
+      const people = [];
+
       function buildBorders() {
         const m = 50;
         const pts = [
@@ -145,6 +52,178 @@
         trackBorders.length = 0;
         for (let i = 0; i < pts.length; i++)
           trackBorders.push([pts[i], pts[(i + 1) % pts.length]]);
+      }
+
+      function buildObstacles() {
+        obstacles.length = 0;
+        obstacles.push([
+          { x: 400, y: 200 },
+          { x: 550, y: 200 },
+          { x: 550, y: 350 },
+          { x: 400, y: 350 },
+        ]);
+        obstacles.push([
+          { x: 700, y: 500 },
+          { x: 850, y: 500 },
+          { x: 850, y: 650 },
+          { x: 700, y: 650 },
+        ]);
+      }
+
+      function buildPeople() {
+        people.length = 0;
+        // Each person: {x, y, radius}
+        people.push({ x: 300, y: 600, r: 20 });
+        people.push({ x: 900, y: 300, r: 20 });
+      }
+
+      function drawTrack() {
+        ctx.strokeStyle = "white";
+        ctx.lineWidth = 3;
+        trackBorders.forEach(([A, B]) => {
+          ctx.beginPath();
+          ctx.moveTo(A.x, A.y);
+          ctx.lineTo(B.x, B.y);
+          ctx.stroke();
+        });
+      }
+
+      function drawObstacles() {
+        ctx.fillStyle = "#888";
+        ctx.strokeStyle = "#aaa";
+        ctx.lineWidth = 2;
+        obstacles.forEach((poly) => {
+          ctx.beginPath();
+          ctx.moveTo(poly[0].x, poly[0].y);
+          poly.slice(1).forEach((pt) => ctx.lineTo(pt.x, pt.y));
+          ctx.closePath();
+          ctx.fill();
+          ctx.stroke();
+        });
+      }
+
+      function drawPeople() {
+        people.forEach((p) => {
+          // body
+          ctx.fillStyle = "#3cb371";
+          ctx.beginPath();
+          ctx.arc(p.x, p.y + 15, p.r, 0, 2 * Math.PI);
+          ctx.fill();
+          // head
+          ctx.fillStyle = "#ffe4c4";
+          ctx.beginPath();
+          ctx.arc(p.x, p.y - 5, p.r / 2, 0, 2 * Math.PI);
+          ctx.fill();
+        });
+      }
+
+      class Car {
+        constructor(x, y) {
+          this.x = x;
+          this.y = y;
+          this.angle = 0;
+          this.speed = 2;
+          this.rayCount = 5;
+          this.rayLength = 100;
+          this.rays = [];
+        }
+        update() {
+          // combine borders and obstacles edges and people approximated as circles
+          const edges = trackBorders.concat(
+            obstacles.flatMap((poly) =>
+              poly.map((pt, i) => [pt, poly[(i + 1) % poly.length]])
+            )
+          );
+          // convert people circles to polygon edges
+          people.forEach((p) => {
+            // approximate as square for sensing
+            const s = p.r * 2;
+            const pts = [
+              { x: p.x - p.r, y: p.y - p.r },
+              { x: p.x + p.r, y: p.y - p.r },
+              { x: p.x + p.r, y: p.y + p.r },
+              { x: p.x - p.r, y: p.y + p.r },
+            ];
+            for (let i = 0; i < pts.length; i++)
+              edges.push([pts[i], pts[(i + 1) % pts.length]]);
+          });
+          this._sense(edges);
+          this._steer();
+          let nx = this.x + Math.cos(this.angle) * this.speed;
+          let ny = this.y + Math.sin(this.angle) * this.speed;
+          const m = 50;
+          if (nx < m || nx > canvas.width - m)
+            this.angle = Math.PI - this.angle;
+          if (ny < m || ny > canvas.height - m) this.angle = -this.angle;
+          this.angle = (this.angle + 2 * Math.PI) % (2 * Math.PI);
+          this.x += Math.cos(this.angle) * this.speed;
+          this.y += Math.sin(this.angle) * this.speed;
+        }
+        draw() {
+          ctx.save();
+          ctx.translate(this.x, this.y);
+          ctx.rotate(this.angle);
+          ctx.fillStyle = "red";
+          ctx.fillRect(-15, -7, 30, 14);
+          ctx.fillStyle = "black";
+          const w = 6,
+            h = 3;
+          [
+            [8, -9],
+            [8, 6],
+            [-14, -9],
+            [-14, 6],
+          ].forEach(([dx, dy]) => ctx.fillRect(dx, dy, w, h));
+          ctx.restore();
+          this._drawRays();
+        }
+        _sense(borders) {
+          this.rays = [];
+          const spread = Math.PI / 2;
+          for (let i = 0; i < this.rayCount; i++) {
+            const ang =
+              this.angle + spread / 2 - (spread / (this.rayCount - 1)) * i;
+            const start = { x: this.x, y: this.y };
+            const end = {
+              x: this.x + Math.cos(ang) * this.rayLength,
+              y: this.y + Math.sin(ang) * this.rayLength,
+            };
+            let closest = null;
+            borders.forEach(([A, B]) => {
+              const pt = getIntersection(start, end, A, B);
+              if (pt) {
+                const d = distance(start, pt);
+                if (!closest || d < closest.d) closest = { pt, d };
+              }
+            });
+            this.rays.push(closest ? closest.pt : end);
+          }
+        }
+        _steer() {
+          let minD = Infinity,
+            idx = 0;
+          this.rays.forEach((pt, i) => {
+            const d = distance(
+              { x: this.x, y: this.y },
+              pt || { x: this.x, y: this.y }
+            );
+            if (d < minD) {
+              minD = d;
+              idx = i;
+            }
+          });
+          this.angle += (idx - (this.rayCount - 1) / 2) * 0.005;
+        }
+        _drawRays() {
+          ctx.strokeStyle = "yellow";
+          ctx.lineWidth = 1;
+          this.rays.forEach((pt) => {
+            ctx.beginPath();
+            ctx.moveTo(this.x, this.y);
+            ctx.lineTo(pt.x, pt.y);
+            ctx.stroke();
+          });
+        }
       }
 
       function getIntersection(A, B, C, D) {
@@ -165,23 +244,16 @@
       let car, anim;
       function init() {
         buildBorders();
-        // start car at quarter width, half height
+        buildObstacles();
+        buildPeople();
         car = new Car(canvas.width * 0.25, canvas.height / 2);
-      }
-      function drawTrack() {
-        ctx.strokeStyle = "white";
-        ctx.lineWidth = 3;
-        trackBorders.forEach(([A, B]) => {
-          ctx.beginPath();
-          ctx.moveTo(A.x, A.y);
-          ctx.lineTo(B.x, B.y);
-          ctx.stroke();
-        });
       }
       function animate() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         drawTrack();
-        car.update(trackBorders);
+        drawObstacles();
+        drawPeople();
+        car.update();
         car.draw();
         anim = requestAnimationFrame(animate);
       }
@@ -195,11 +267,15 @@
         init();
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         drawTrack();
+        drawObstacles();
+        drawPeople();
         car.draw();
       };
 
       init();
       drawTrack();
+      drawObstacles();
+      drawPeople();
       car.draw();
     </script>
   </body>
