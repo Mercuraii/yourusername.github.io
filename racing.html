@@ -84,8 +84,16 @@
 
       function buildPeople() {
         people.length = 0;
-        people.push({ x: 300, y: 600, r: 20 });
-        people.push({ x: 900, y: 300, r: 20 });
+        people.push({ x: 300, y: 600, r: 20, angle: 0 });
+        people.push({ x: 900, y: 300, r: 20, angle: Math.PI });
+      }
+
+      function updatePeople() {
+        people.forEach((p) => {
+          p.angle += 0.02;
+          p.x += Math.cos(p.angle) * 1.5;
+          p.y += Math.sin(p.angle) * 1.5;
+        });
       }
 
       function drawTrack() {
@@ -179,6 +187,15 @@
             this.angle += Math.sin(Date.now() / 1000) * 0.01;
           }
 
+          if (
+            this.x < 60 ||
+            this.x > canvas.width - 60 ||
+            this.y < 60 ||
+            this.y > canvas.height - 60
+          ) {
+            this.angle += 0.05;
+          }
+
           const humanDists = people.map(
             (p) => distance({ x: this.x, y: this.y }, { x: p.x, y: p.y }) - p.r
           );
@@ -245,6 +262,7 @@
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         drawTrack();
         drawObstacles();
+        updatePeople();
         drawPeople();
         car.update();
         car.draw();
