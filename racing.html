@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <!-- Document metadata and responsive settings -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Self-Driving Car Simulation</title>
@@ -40,6 +41,10 @@
       const trackBorders = [];
       const obstacles = [];
       const people = [];
+
+      let keys = {};
+      window.addEventListener("keydown", (e) => (keys[e.key] = true));
+      window.addEventListener("keyup", (e) => (keys[e.key] = false));
 
       function buildBorders() {
         const m = 50;
@@ -145,47 +150,24 @@
           this.x = x;
           this.y = y;
           this.angle = 0;
-          this.speed = 2;
+          this.speed = 0;
+          this.maxSpeed = 2;
           this.rayCount = 5;
           this.rayLength = 100;
           this.rays = [];
         }
         update() {
-          const edges = trackBorders.concat(
-            obstacles.flatMap((poly) =>
-              poly.map((pt, i) => [pt, poly[(i + 1) % poly.length]])
-            )
-          );
-          people.forEach((p) => {
-            const pts = [
-              { x: p.x - p.r, y: p.y - p.r },
-              { x: p.x + p.r, y: p.y - p.r },
-              { x: p.x + p.r, y: p.y + p.r },
-              { x: p.x - p.r, y: p.y + p.r },
-            ];
-            pts.forEach((pt, i) => edges.push([pt, pts[(i + 1) % pts.length]]));
-          });
-          this._sense(edges);
-          this._steer();
+          if (keys["ArrowUp"]) this.speed = this.maxSpeed;
+          if (keys["ArrowDown"]) this.speed = -1;
+          if (keys["ArrowLeft"]) this.angle -= 0.05;
+          if (keys["ArrowRight"]) this.angle += 0.05;
 
-          // steer away from closest human
-          let closestHuman = null;
-          let minDist = this.rayLength;
-          people.forEach((p) => {
-            const d =
-              distance({ x: this.x, y: this.y }, { x: p.x, y: p.y }) - p.r;
-            if (d < minDist) {
-              minDist = d;
-              closestHuman = p;
-            }
-          });
-          if (closestHuman) {
-            const dx = closestHuman.x - this.x;
-            const dy = closestHuman.y - this.y;
-            const angleToHuman = Math.atan2(dy, dx);
-            const angleDiff = angleToHuman - this.angle;
-            this.angle -= 0.03 * Math.sign(angleDiff);
-          }
+          // Auto slow down for nearby people
+          const humanDists = people.map(
+            (p) => distance({ x: this.x, y: this.y }, { x: p.x, y: p.y }) - p.r
+          );
+          const nearest = Math.min(...humanDists);
+          if (nearest < this.rayLength && this.speed > 1) this.speed = 0.5;
 
           this.x += Math.cos(this.angle) * this.speed;
           this.y += Math.sin(this.angle) * this.speed;
@@ -204,64 +186,7 @@
             [-14, 6],
           ].forEach(([dx, dy]) => ctx.fillRect(dx, dy, 6, 3));
           ctx.restore();
-          this._drawRays();
         }
-        _sense(borders) {
-          this.rays = [];
-          const spread = Math.PI / 2;
-          for (let i = 0; i < this.rayCount; i++) {
-            const ang =
-              this.angle + spread / 2 - (spread / (this.rayCount - 1)) * i;
-            const start = { x: this.x, y: this.y };
-            const end = {
-              x: this.x + Math.cos(ang) * this.rayLength,
-              y: this.y + Math.sin(ang) * this.rayLength,
-            };
-            let closest = null;
-            borders.forEach(([A, B]) => {
-              const pt = getIntersection(start, end, A, B);
-              if (pt) {
-                const d = distance(start, pt);
-                if (!closest || d < closest.d) closest = { pt, d };
-              }
-            });
-            this.rays.push(closest ? closest.pt : end);
-          }
-        }
-        _steer() {
-          let minD = Infinity;
-          let idx = 0;
-          this.rays.forEach((pt, i) => {
-            const d = distance({ x: this.x, y: this.y }, pt);
-            if (d < minD) {
-              minD = d;
-              idx = i;
-            }
-          });
-          this.angle += (idx - (this.rayCount - 1) / 2) * 0.005;
-        }
-        _drawRays() {
-          ctx.strokeStyle = "yellow";
-          ctx.lineWidth = 1;
-          this.rays.forEach((pt) => {
-            ctx.beginPath();
-            ctx.moveTo(this.x, this.y);
-            ctx.lineTo(pt.x, pt.y);
-            ctx.stroke();
-          });
-        }
-      }
-
-      function getIntersection(A, B, C, D) {
-        const tTop = (D.x - C.x) * (A.y - C.y) - (D.y - C.y) * (A.x - C.x);
-        const uTop = (C.y - A.y) * (A.x - B.x) - (C.x - A.x) * (A.y - B.y);
-        const bot = (D.y - C.y) * (B.x - A.x) - (D.x - C.x) * (B.y - A.y);
-        if (!bot) return null;
-        const t = tTop / bot;
-        const u = uTop / bot;
-        return t >= 0 && t <= 1 && u >= 0 && u <= 1
-          ? { x: A.x + t * (B.x - A.x), y: A.y + t * (B.y - A.y) }
-          : null;
       }
 
       function distance(a, b) {
