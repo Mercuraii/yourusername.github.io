@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Self-Driving Car Simulation</title>
+    <style>
+      body {
+        margin: 0;
+        background: #222;
+        color: #eee;
+        font-family: sans-serif;
+      }
+      #gameCanvas {
+        display: block;
+        margin: 0 auto;
+        background: #444;
+      }
+      #controls {
+        text-align: center;
+        margin: 10px;
+      }
+      button {
+        padding: 8px 12px;
+        margin: 0 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <h2 style="text-align: center">Self-Driving Car Simulation</h2>
+    <canvas id="gameCanvas" width="600" height="400"></canvas>
+    <div id="controls">
+      <button id="startBtn">Start</button>
+      <button id="resetBtn">Reset</button>
+    </div>
+
+    <script>
+      // 1. Setup canvas and context
+      const canvas = document.getElementById("gameCanvas");
+      const ctx = canvas.getContext("2d");
+
+      // 2. Car object
+      class Car {
+        constructor(x, y) {
+          this.x = x;
+          this.y = y;
+          this.angle = 0;
+          this.speed = 2;
+          // sensor rays
+          this.rays = [];
+          this.rayCount = 5;
+          this.rayLength = 100;
+        }
+        update(trackBorders) {
+          this._sense(trackBorders);
+          this._steer();
+          this.x += Math.cos(this.angle) * this.speed;
+          this.y += Math.sin(this.angle) * this.speed;
+        }
+        draw() {
+          ctx.save();
+          ctx.translate(this.x, this.y);
+          ctx.rotate(this.angle);
+          ctx.fillStyle = "cyan";
+          ctx.fillRect(-10, -5, 20, 10);
+          ctx.restore();
+          this._drawRays();
+        }
+        _sense(borders) {
+          this.rays = [];
+          const spread = Math.PI / 2;
+          for (let i = 0; i < this.rayCount; i++) {
+            const rayAng =
+              this.angle + spread / 2 - (spread / (this.rayCount - 1)) * i;
+            const start = { x: this.x, y: this.y };
+            const end = {
+              x: this.x + Math.cos(rayAng) * this.rayLength,
+              y: this.y + Math.sin(rayAng) * this.rayLength,
+            };
+            // find closest intersection
+            let closest = null;
+            for (let border of borders) {
+              const pt = getIntersection(start, end, border[0], border[1]);
+              if (!pt) continue;
+              const d = distance(start, pt);
+              if (closest === null || d < closest.d) closest = { pt, d };
+            }
+            this.rays.push(closest ? closest.pt : end);
+          }
+        }
+        _steer() {
+          // simple logic: steer away from the closest sensor reading
+          let minD = Infinity,
+            minIdx = 0;
+          this.rays.forEach((pt, i) => {
+            const d = pt
+              ? distance({ x: this.x, y: this.y }, pt)
+              : this.rayLength;
+            if (d < minD) {
+              minD = d;
+              minIdx = i;
+            }
+          });
+          const mid = (this.rayCount - 1) / 2;
+          this.angle += (minIdx - mid) * 0.005;
+        }
+        _drawRays() {
+          ctx.strokeStyle = "yellow";
+          ctx.lineWidth = 1;
+          this.rays.forEach((pt) => {
+            ctx.beginPath();
+            ctx.moveTo(this.x, this.y);
+            ctx.lineTo(pt.x, pt.y);
+            ctx.stroke();
+          });
+        }
+      }
+
+      // 3. Track borders: simple rectangle
+      const trackBorders = [];
+      function buildBorders() {
+        const margin = 50;
+        const pts = [
+          { x: margin, y: margin },
+          { x: canvas.width - margin, y: margin },
+          { x: canvas.width - margin, y: canvas.height - margin },
+          { x: margin, y: canvas.height - margin },
+        ];
+        for (let i = 0; i < pts.length; i++) {
+          trackBorders.push([pts[i], pts[(i + 1) % pts.length]]);
+        }
+      }
+
+      // 4. Geometry helpers
+      function getIntersection(A, B, C, D) {
+        const tTop = (D.x - C.x) * (A.y - C.y) - (D.y - C.y) * (A.x - C.x);
+        const uTop = (C.y - A.y) * (A.x - B.x) - (C.x - A.x) * (A.y - B.y);
+        const bottom = (D.y - C.y) * (B.x - A.x) - (D.x - C.x) * (B.y - A.y);
+        if (bottom === 0) return null;
+        const t = tTop / bottom;
+        const u = uTop / bottom;
+        if (t >= 0 && t <= 1 && u >= 0 && u <= 1) {
+          return { x: A.x + t * (B.x - A.x), y: A.y + t * (B.y - A.y) };
+        }
+        return null;
+      }
+      function distance(a, b) {
+        return Math.hypot(a.x - b.x, a.y - b.y);
+      }
+
+      // 5. Animation loop
+      let car, animationId;
+      function init() {
+        buildBorders();
+        car = new Car(100, canvas.height / 2);
+      }
+      function drawTrack() {
+        ctx.strokeStyle = "white";
+        ctx.lineWidth = 3;
+        trackBorders.forEach((border) => {
+          ctx.beginPath();
+          ctx.moveTo(border[0].x, border[0].y);
+          ctx.lineTo(border[1].x, border[1].y);
+          ctx.stroke();
+        });
+      }
+      function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        drawTrack();
+        car.update(trackBorders);
+        car.draw();
+        animationId = requestAnimationFrame(animate);
+      }
+
+      // 6. Controls
+      document.getElementById("startBtn").onclick = () => {
+        cancelAnimationFrame(animationId);
+        animate();
+      };
+      document.getElementById("resetBtn").onclick = () => {
+        cancelAnimationFrame(animationId);
+        init();
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        drawTrack();
+        car.draw();
+      };
+
+      // Initialize on load
+      init();
+      drawTrack();
+      car = new Car(100, canvas.height / 2);
+      car.draw();
+    </script>
+  </body>
+</html>
