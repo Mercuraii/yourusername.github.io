@@ -23,10 +23,18 @@
       button {
         padding: 8px 12px;
         margin: 0 5px;
+        cursor: pointer;
+      }
+      #returnBtn {
+        display: block;
+        margin: 10px auto;
+        padding: 8px 16px;
+        cursor: pointer;
       }
     </style>
   </head>
   <body>
+    <button id="returnBtn" onclick="history.back()">Return</button>
     <h2 style="text-align: center">Self-Driving Car Simulation</h2>
     <canvas id="gameCanvas" width="1200" height="800"></canvas>
     <div id="controls">
