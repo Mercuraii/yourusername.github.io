@@ -51,7 +51,7 @@
       const obstacles = [];
       const people = [];
 
-      // Build track
+      // Build track borders
       function buildBorders() {
         const m = 50;
         const pts = [
@@ -61,11 +61,12 @@
           { x: m, y: canvas.height - m },
         ];
         trackBorders.length = 0;
-        for (let i = 0; i < pts.length; i++)
+        for (let i = 0; i < pts.length; i++) {
           trackBorders.push([pts[i], pts[(i + 1) % pts.length]]);
+        }
       }
 
-      // Define buildings (obstacles)
+      // Define building obstacles
       function buildObstacles() {
         obstacles.length = 0;
         obstacles.push([
@@ -89,7 +90,7 @@
         people.push({ x: 900, y: 300, r: 20 });
       }
 
-      // Draw track
+      // Draw track borders
       function drawTrack() {
         ctx.strokeStyle = "white";
         ctx.lineWidth = 3;
@@ -101,31 +102,31 @@
         });
       }
 
-      // Draw buildings with windows
+      // Draw buildings with light blue windows
       function drawObstacles() {
         obstacles.forEach((poly) => {
-          // Draw building block
           const x = poly[0].x;
           const y = poly[0].y;
           const w = poly[1].x - x;
           const h = poly[2].y - y;
+          // Building block
           ctx.fillStyle = "#666";
           ctx.fillRect(x, y, w, h);
           ctx.strokeStyle = "#444";
           ctx.lineWidth = 2;
           ctx.strokeRect(x, y, w, h);
-          // Draw windows
+          // Windows grid
           const cols = 4;
           const rows = 5;
           const winW = w / (cols * 1.2);
           const winH = h / (rows * 1.2);
-          const xOffset = (w - cols * winW) / (cols + 1);
-          const yOffset = (h - rows * winH) / (rows + 1);
-          ctx.fillStyle = "#ffd";
+          const xOff = (w - cols * winW) / (cols + 1);
+          const yOff = (h - rows * winH) / (rows + 1);
+          ctx.fillStyle = "#add8e6"; // light blue
           for (let i = 0; i < cols; i++) {
             for (let j = 0; j < rows; j++) {
-              const wx = x + xOffset * (i + 1) + winW * i;
-              const wy = y + yOffset * (j + 1) + winH * j;
+              const wx = x + xOff * (i + 1) + winW * i;
+              const wy = y + yOff * (j + 1) + winH * j;
               ctx.fillRect(wx, wy, winW, winH);
               ctx.strokeRect(wx, wy, winW, winH);
             }
@@ -136,28 +137,31 @@
       // Draw people with eyes
       function drawPeople() {
         people.forEach((p) => {
+          // Body
           ctx.fillStyle = "#3cb371";
           ctx.beginPath();
           ctx.arc(p.x, p.y + 15, p.r, 0, 2 * Math.PI);
           ctx.fill();
+          // Head
           ctx.fillStyle = "#ffe4c4";
           ctx.beginPath();
           ctx.arc(p.x, p.y - 5, p.r / 2, 0, 2 * Math.PI);
           ctx.fill();
-          const offX = p.r / 4,
-            offY = p.r / 2,
-            er = p.r / 8;
+          // Eyes
+          const ex = p.r / 4;
+          const ey = p.r / 2;
+          const er = p.r / 8;
           ctx.fillStyle = "black";
           ctx.beginPath();
-          ctx.arc(p.x - offX, p.y - 5 - offY, er, 0, 2 * Math.PI);
+          ctx.arc(p.x - ex, p.y - 5 - ey, er, 0, 2 * Math.PI);
           ctx.fill();
           ctx.beginPath();
-          ctx.arc(p.x + offX, p.y - 5 - offY, er, 0, 2 * Math.PI);
+          ctx.arc(p.x + ex, p.y - 5 - ey, er, 0, 2 * Math.PI);
           ctx.fill();
         });
       }
 
-      // Car class
+      // Car class with corrected wall steering
       class Car {
         constructor(x, y) {
           this.x = x;
@@ -169,6 +173,7 @@
           this.rays = [];
         }
         update() {
+          // Combine sensing edges
           const edges = trackBorders.concat(
             obstacles.flatMap((poly) =>
               poly.map((pt, i) => [pt, poly[(i + 1) % poly.length]])
@@ -183,14 +188,19 @@
             ];
             pts.forEach((pt, i) => edges.push([pt, pts[(i + 1) % pts.length]]));
           });
+          // Sense and steer
           this._sense(edges);
           this._steer();
-          let nx = this.x + Math.cos(this.angle) * this.speed,
-            ny = this.y + Math.sin(this.angle) * this.speed;
+          // Predict next position
+          const nx = this.x + Math.cos(this.angle) * this.speed;
+          const ny = this.y + Math.sin(this.angle) * this.speed;
           const m = 50;
-          if (nx < m || nx > canvas.width - m)
-            this.angle = Math.PI - this.angle;
+          // Steer away from left/right walls
+          if (nx < m) this.angle = Math.PI / 8; // right-ish
+          else if (nx > canvas.width - m) this.angle = (7 * Math.PI) / 8; // left-ish
+          // Reflect top/bottom
           if (ny < m || ny > canvas.height - m) this.angle = -this.angle;
+          // Normalize and move
           this.angle = (this.angle + 2 * Math.PI) % (2 * Math.PI);
           this.x += Math.cos(this.angle) * this.speed;
           this.y += Math.sin(this.angle) * this.speed;
@@ -199,8 +209,10 @@
           ctx.save();
           ctx.translate(this.x, this.y);
           ctx.rotate(this.angle);
+          // Car body
           ctx.fillStyle = "red";
           ctx.fillRect(-15, -7, 30, 14);
+          // Wheels
           ctx.fillStyle = "black";
           [
             [8, -9],
@@ -211,33 +223,35 @@
           ctx.restore();
           this._drawRays();
         }
-        _sense(b) {
+        _sense(borders) {
           this.rays = [];
-          const s = Math.PI / 2;
+          const spread = Math.PI / 2;
           for (let i = 0; i < this.rayCount; i++) {
-            const ang = this.angle + s / 2 - (s / (this.rayCount - 1)) * i;
-            const st = { x: this.x, y: this.y };
-            const en = {
+            const ang =
+              this.angle + spread / 2 - (spread / (this.rayCount - 1)) * i;
+            const start = { x: this.x, y: this.y };
+            const end = {
               x: this.x + Math.cos(ang) * this.rayLength,
               y: this.y + Math.sin(ang) * this.rayLength,
             };
-            let c = null;
-            b.forEach(([A, B]) => {
-              const t =
-                ((D.x = C.x), 0) + (A.y - C.y) - (D.y - C.y) * (A.x - C.x)
-                  ? null
-                  : this;
+            let closest = null;
+            borders.forEach(([A, B]) => {
+              const pt = getIntersection(start, end, A, B);
+              if (pt) {
+                const d = distance(start, pt);
+                if (!closest || d < closest.d) closest = { pt, d };
+              }
             });
-            this.rays.push(c ? c.pt : en);
+            this.rays.push(closest ? closest.pt : end);
           }
         }
         _steer() {
-          let m = Infinity,
-            idx = 0;
+          let minD = Infinity;
+          let idx = 0;
           this.rays.forEach((pt, i) => {
             const d = distance({ x: this.x, y: this.y }, pt);
-            if (d < m) {
-              m = d;
+            if (d < minD) {
+              minD = d;
               idx = i;
             }
           });
@@ -254,20 +268,24 @@
           });
         }
       }
+
+      // Intersection helper
       function getIntersection(A, B, C, D) {
         const tTop = (D.x - C.x) * (A.y - C.y) - (D.y - C.y) * (A.x - C.x);
         const uTop = (C.y - A.y) * (A.x - B.x) - (C.x - A.x) * (A.y - B.y);
         const bot = (D.y - C.y) * (B.x - A.x) - (D.x - C.x) * (B.y - A.y);
         if (!bot) return null;
-        const t = tTop / bot,
-          u = uTop / bot;
+        const t = tTop / bot;
+        const u = uTop / bot;
         return t >= 0 && t <= 1 && u >= 0 && u <= 1
           ? { x: A.x + t * (B.x - A.x), y: A.y + t * (B.y - A.y) }
           : null;
       }
+      // Distance helper
       function distance(a, b) {
         return Math.hypot(a.x - b.x, a.y - b.y);
       }
+
       let car, anim;
       function init() {
         buildBorders();
