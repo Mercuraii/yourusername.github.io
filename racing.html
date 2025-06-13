@@ -39,14 +39,13 @@
       const canvas = document.getElementById("gameCanvas");
       const ctx = canvas.getContext("2d");
 
-      // 2. Car object
+      // 2. Car object with boundary handling
       class Car {
         constructor(x, y) {
           this.x = x;
           this.y = y;
           this.angle = 0;
           this.speed = 2;
-          // sensor rays
           this.rays = [];
           this.rayCount = 5;
           this.rayLength = 100;
@@ -54,8 +53,25 @@
         update(trackBorders) {
           this._sense(trackBorders);
           this._steer();
-          this.x += Math.cos(this.angle) * this.speed;
-          this.y += Math.sin(this.angle) * this.speed;
+          // compute next position
+          const nextX = this.x + Math.cos(this.angle) * this.speed;
+          const nextY = this.y + Math.sin(this.angle) * this.speed;
+          // boundary limits (margin + car half size)
+          const margin = 50;
+          const halfW = 10,
+            halfH = 5;
+          if (
+            nextX < margin + halfW ||
+            nextX > canvas.width - margin - halfW ||
+            nextY < margin + halfH ||
+            nextY > canvas.height - margin - halfH
+          ) {
+            // turn around if hitting boundary
+            this.angle += Math.PI;
+          } else {
+            this.x = nextX;
+            this.y = nextY;
+          }
         }
         draw() {
           ctx.save();
@@ -77,7 +93,6 @@
               x: this.x + Math.cos(rayAng) * this.rayLength,
               y: this.y + Math.sin(rayAng) * this.rayLength,
             };
-            // find closest intersection
             let closest = null;
             for (let border of borders) {
               const pt = getIntersection(start, end, border[0], border[1]);
@@ -89,7 +104,6 @@
           }
         }
         _steer() {
-          // simple logic: steer away from the closest sensor reading
           let minD = Infinity,
             minIdx = 0;
           this.rays.forEach((pt, i) => {
@@ -151,6 +165,7 @@
       // 5. Animation loop
       let car, animationId;
       function init() {
+        trackBorders.length = 0;
         buildBorders();
         car = new Car(100, canvas.height / 2);
       }
@@ -188,7 +203,6 @@
       // Initialize on load
       init();
       drawTrack();
-      car = new Car(100, canvas.height / 2);
       car.draw();
     </script>
   </body>
