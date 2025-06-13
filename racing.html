@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Self-Driving Car Simulation</title>
     <style>
       body {
@@ -85,15 +85,7 @@
       function buildPeople() {
         people.length = 0;
         people.push({ x: 300, y: 600, r: 20, angle: 0 });
-        people.push({ x: 900, y: 300, r: 20, angle: Math.PI });
-      }
-
-      function updatePeople() {
-        people.forEach((p) => {
-          p.angle += 0.02;
-          p.x += Math.cos(p.angle) * 1.5;
-          p.y += Math.sin(p.angle) * 1.5;
-        });
+        people.push({ x: 900, y: 300, r: 20, angle: Math.PI / 2 });
       }
 
       function drawTrack() {
@@ -159,6 +151,37 @@
         });
       }
 
+      // Moves people in small circles
+      function updatePeople() {
+        people.forEach((p) => {
+          p.angle += 0.03;
+          const radius = 15;
+          p.x += Math.cos(p.angle) * 0.5;
+          p.y += Math.sin(p.angle) * 0.5;
+        });
+      }
+
+      // Checks if a point is inside a polygon
+      function pointInPolygon(point, vs) {
+        let x = point.x,
+          y = point.y;
+        let inside = false;
+        for (let i = 0, j = vs.length - 1; i < vs.length; j = i++) {
+          let xi = vs[i].x,
+            yi = vs[i].y;
+          let xj = vs[j].x,
+            yj = vs[j].y;
+          let intersect =
+            yi > y !== yj > y && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi;
+          if (intersect) inside = !inside;
+        }
+        return inside;
+      }
+
+      function distance(a, b) {
+        return Math.hypot(a.x - b.x, a.y - b.y);
+      }
+
       class Car {
         constructor(x, y) {
           this.x = x;
@@ -187,15 +210,7 @@
             this.angle += Math.sin(Date.now() / 1000) * 0.01;
           }
 
-          if (
-            this.x < 60 ||
-            this.x > canvas.width - 60 ||
-            this.y < 60 ||
-            this.y > canvas.height - 60
-          ) {
-            this.angle += 0.05;
-          }
-
+          // Slow down near people
           const humanDists = people.map(
             (p) => distance({ x: this.x, y: this.y }, { x: p.x, y: p.y }) - p.r
           );
@@ -203,6 +218,30 @@
           if (nearest < this.rayLength && this.speed > 1) this.speed = 0.5;
 
           this.castRays();
+
+          // Predict next position
+          const nextX = this.x + Math.cos(this.angle) * this.speed;
+          const nextY = this.y + Math.sin(this.angle) * this.speed;
+
+          // Collision check with obstacles
+          for (let poly of obstacles) {
+            if (pointInPolygon({ x: nextX, y: nextY }, poly)) {
+              this.speed = 0;
+              this.angle += 0.1; // turn to avoid
+              break;
+            }
+          }
+
+          // Collision check with people
+          for (let p of people) {
+            const dist = distance({ x: nextX, y: nextY }, p);
+            if (dist < p.r + 15) {
+              // 15 is approx half car width
+              this.speed = 0;
+              this.angle += 0.1;
+              break;
+            }
+          }
 
           this.x += Math.cos(this.angle) * this.speed;
           this.y += Math.sin(this.angle) * this.speed;
@@ -246,10 +285,6 @@
         }
       }
 
-      function distance(a, b) {
-        return Math.hypot(a.x - b.x, a.y - b.y);
-      }
-
       let car, anim;
       function init() {
         buildBorders();
@@ -262,8 +297,8 @@
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         drawTrack();
         drawObstacles();
-        updatePeople();
         drawPeople();
+        updatePeople();
         car.update();
         car.draw();
         anim = requestAnimationFrame(animate);
