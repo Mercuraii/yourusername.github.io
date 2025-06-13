@@ -85,7 +85,7 @@
       function buildPeople() {
         people.length = 0;
         people.push({ x: 300, y: 600, r: 20, angle: 0 });
-        people.push({ x: 900, y: 300, r: 20, angle: Math.PI / 2 });
+        people.push({ x: 900, y: 300, r: 20, angle: 0 });
       }
 
       function drawTrack() {
@@ -151,17 +151,7 @@
         });
       }
 
-      // Moves people in small circles
-      function updatePeople() {
-        people.forEach((p) => {
-          p.angle += 0.03;
-          const radius = 15;
-          p.x += Math.cos(p.angle) * 0.5;
-          p.y += Math.sin(p.angle) * 0.5;
-        });
-      }
-
-      // Checks if a point is inside a polygon
+      // Utility: Point in Polygon test
       function pointInPolygon(point, vs) {
         let x = point.x,
           y = point.y;
@@ -172,7 +162,7 @@
           let xj = vs[j].x,
             yj = vs[j].y;
           let intersect =
-            yi > y !== yj > y && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi;
+            yi > y != yj > y && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi;
           if (intersect) inside = !inside;
         }
         return inside;
@@ -188,7 +178,7 @@
           this.y = y;
           this.angle = 0;
           this.speed = 0;
-          this.maxSpeed = 3;
+          this.maxSpeed = 2;
           this.rayCount = 7;
           this.rayLength = 120;
           this.raySpread = Math.PI / 2;
@@ -219,32 +209,42 @@
 
           this.castRays();
 
-          // Predict next position
           const nextX = this.x + Math.cos(this.angle) * this.speed;
           const nextY = this.y + Math.sin(this.angle) * this.speed;
 
-          // Collision check with obstacles
+          // Border check: keep inside track rectangle
+          if (
+            nextX < trackBorders[0][0].x ||
+            nextX > trackBorders[1][0].x ||
+            nextY < trackBorders[0][0].y ||
+            nextY > trackBorders[2][0].y
+          ) {
+            this.speed = 0;
+            this.angle += 0.1;
+            return;
+          }
+
+          // Obstacle collision
           for (let poly of obstacles) {
             if (pointInPolygon({ x: nextX, y: nextY }, poly)) {
               this.speed = 0;
-              this.angle += 0.1; // turn to avoid
-              break;
+              this.angle += 0.1;
+              return;
             }
           }
 
-          // Collision check with people
+          // People collision
           for (let p of people) {
             const dist = distance({ x: nextX, y: nextY }, p);
             if (dist < p.r + 15) {
-              // 15 is approx half car width
               this.speed = 0;
               this.angle += 0.1;
-              break;
+              return;
             }
           }
 
-          this.x += Math.cos(this.angle) * this.speed;
-          this.y += Math.sin(this.angle) * this.speed;
+          this.x = nextX;
+          this.y = nextY;
         }
         castRays() {
           this.rays = [];
@@ -283,6 +283,15 @@
             ctx.stroke();
           });
         }
+      }
+
+      // Move people in small circles
+      function updatePeople() {
+        people.forEach((p) => {
+          p.angle += 0.03;
+          p.x += Math.cos(p.angle) * 0.5;
+          p.y += Math.sin(p.angle) * 0.5;
+        });
       }
 
       let car, anim;
