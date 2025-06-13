@@ -42,6 +42,8 @@
         border-radius: 8px;
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
         margin-top: 5px;
+        top: 100%;
+        left: 0;
       }
 
       .submenu a {
@@ -59,14 +61,14 @@
         display: block;
       }
 
-      /* CV dropdown same style as Projects */
-      .menu.cv-dropdown {
+      /* CV dropdown styles */
+      .cv-dropdown {
         position: relative;
         display: inline-block;
         margin-left: 10px;
       }
 
-      .menu.cv-dropdown .menu-button {
+      .cv-dropdown button {
         background-color: #444;
         color: white;
         padding: 10px 20px;
@@ -85,21 +87,29 @@
         border-radius: 8px;
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
         margin-top: 5px;
+
+        /* key fix: open below button aligned left */
+        top: 100%;
+        left: 0;
       }
 
-      .cv-options a {
+      .cv-options.visible {
+        display: block;
+      }
+
+      .cv-options a button {
+        width: 100%;
+        background-color: transparent;
         color: white;
         padding: 10px 15px;
-        text-decoration: none;
-        display: block;
+        border: none;
+        text-align: left;
+        cursor: pointer;
+        border-radius: 0;
       }
 
-      .cv-options a:hover {
+      .cv-options a button:hover {
         background-color: #555;
-      }
-
-      .menu.cv-dropdown:hover .cv-options {
-        display: block;
       }
     </style>
   </head>
@@ -149,13 +159,20 @@
         <div class="button-group">
           <a href="contact.html" target="_blank"><button>Contact Me</button></a>
 
-          <!-- Updated CV dropdown -->
-          <div class="menu cv-dropdown">
-            <button class="menu-button">Download My CV</button>
-            <div class="submenu cv-options">
-              <a href="files/Joe Szolcek-CV.pdf" download>.PDF</a>
-              <a href="files/JoeSzolcek-CV.doc" download>.Word</a>
-              <a href="files/JoeSzolcek-CV.odt" download>LibreOffice</a>
+          <!-- CV dropdown -->
+          <div class="cv-dropdown">
+            <button>Download My CV</button>
+            <div class="cv-options">
+              <h4 class="cv-title">CV Format Options</h4>
+              <a href="files/Joe Szolcek-CV.pdf" download
+                ><button>.PDF</button></a
+              >
+              <a href="files/JoeSzolcek-CV.doc" download
+                ><button>.Word</button></a
+              >
+              <a href="files/JoeSzolcek-CV.odt" download
+                ><button>LibreOffice</button></a
+              >
             </div>
           </div>
 
@@ -173,8 +190,6 @@
           </div>
         </div>
       </section>
-
-      <!-- The rest of your page continues unchanged... -->
 
       <div class="flex-cert-sections">
         <!-- Certifications Section -->
@@ -313,7 +328,7 @@
               <div class="card-inner">
                 <div class="card-front">
                   <div class="cert-text">
-                    <h4>Customer Support & Service</h4>
+                    <h4>Customer Support &amp; Service</h4>
                     <p>
                       Three years of client support experience via email, phone,
                       in-person.
@@ -343,7 +358,7 @@
               <div class="card-inner">
                 <div class="card-front">
                   <div class="cert-text">
-                    <h4>Infrastructure & Configuration</h4>
+                    <h4>Infrastructure &amp; Configuration</h4>
                     <p>
                       Active Directory, virtualization, hardware upgrades &amp;
                       maintenance.
@@ -358,7 +373,7 @@
               <div class="card-inner">
                 <div class="card-front">
                   <div class="cert-text">
-                    <h4>IT Security & Firewalls</h4>
+                    <h4>IT Security &amp; Firewalls</h4>
                     <p>
                       VPNs, firewall setup, network security best practices.
                     </p>
@@ -372,7 +387,7 @@
               <div class="card-inner">
                 <div class="card-front">
                   <div class="cert-text">
-                    <h4>Monitoring & Documentation</h4>
+                    <h4>Monitoring &amp; Documentation</h4>
                     <p>
                       Network monitoring tools, ticketing, IT documentation
                       skills.
@@ -387,7 +402,7 @@
               <div class="card-inner">
                 <div class="card-front">
                   <div class="cert-text">
-                    <h4>Scripting & Automation</h4>
+                    <h4>Scripting &amp; Automation</h4>
                     <p>
                       Pursuing scripting for automation and efficiency
                       improvements.
@@ -410,7 +425,23 @@
       </footer>
     </div>
 
-    <!-- Removed old CV dropdown JS since using CSS hover -->
+    <!-- CV dropdown hover-delay script -->
+    <script>
+      const dropdown = document.querySelector(".cv-dropdown");
+      const opts = dropdown.querySelector(".cv-options");
+      let timer;
+      dropdown.addEventListener("mouseenter", () => {
+        clearTimeout(timer);
+        opts.classList.add("visible");
+      });
+      dropdown.addEventListener("mouseleave", () => {
+        clearTimeout(timer);
+        timer = setTimeout(() => opts.classList.remove("visible"), 3000);
+      });
+    </script>
+
+    <!-- 3D-background movement
+    <script src="3d-bg.js"></script> -->
 
     <!-- Theme toggle & icon script -->
     <script src="script.js"></script>
