@@ -46,6 +46,10 @@
         left: 0;
       }
 
+      .submenu.visible {
+        display: block;
+      }
+
       .submenu a {
         color: white;
         padding: 10px 15px;
@@ -57,9 +61,7 @@
         background-color: #555;
       }
 
-      .menu:hover .submenu {
-        display: block;
-      }
+      /* Removed .menu:hover .submenu to control visibility via JS */
 
       /* CV dropdown styles */
       .cv-dropdown {
@@ -87,8 +89,6 @@
         border-radius: 8px;
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
         margin-top: 5px;
-
-        /* key fix: open below button aligned left */
         top: 100%;
         left: 0;
       }
@@ -425,23 +425,28 @@
       </footer>
     </div>
 
-    <!-- CV dropdown hover-delay script -->
+    <!-- Delayed dropdown script -->
     <script>
-      const dropdown = document.querySelector(".cv-dropdown");
-      const opts = dropdown.querySelector(".cv-options");
-      let timer;
-      dropdown.addEventListener("mouseenter", () => {
-        clearTimeout(timer);
-        opts.classList.add("visible");
-      });
-      dropdown.addEventListener("mouseleave", () => {
-        clearTimeout(timer);
-        opts.classList.remove("visible");
-      });
-    </script>
+      function setupDelayedDropdown(dropdownSelector, submenuSelector) {
+        const dropdown = document.querySelector(dropdownSelector);
+        const submenu = dropdown.querySelector(submenuSelector);
+        let timer;
 
-    <!-- 3D-background movement
-    <script src="3d-bg.js"></script> -->
+        dropdown.addEventListener("mouseenter", () => {
+          clearTimeout(timer);
+          submenu.classList.add("visible");
+        });
+
+        dropdown.addEventListener("mouseleave", () => {
+          timer = setTimeout(() => {
+            submenu.classList.remove("visible");
+          }, 1000); // 1 second delay
+        });
+      }
+
+      setupDelayedDropdown(".cv-dropdown", ".cv-options");
+      setupDelayedDropdown(".menu", ".submenu");
+    </script>
 
     <!-- Theme toggle & icon script -->
     <script src="script.js"></script>
