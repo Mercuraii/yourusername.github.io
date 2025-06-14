@@ -184,6 +184,17 @@
           ctx.beginPath();
           ctx.arc(p.x + ex, p.y - 5 - ey, er, 0, Math.PI * 2);
           ctx.fill();
+          // make em smile
+          ctx.strokeStyle = "black";
+          ctx.lineWidth = 2;
+          ctx.beginPath();
+          const smileX = p.x;
+          const smileY = p.y - 5 + 8; // just below the head center
+          const smileRadius = p.r / 4;
+          const startAngle = 0;
+          const endAngle = Math.PI;
+          ctx.arc(smileX, smileY, smileRadius, startAngle, endAngle, false);
+          ctx.stroke();
         });
       }
 
