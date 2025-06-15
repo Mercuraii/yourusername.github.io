@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Rotating banner showcasing screenshot gallery"
+    />
+    <title>Screenshot Carousel</title>
+    <link rel="icon" type="image/png" sizes="96x96" href="images/favicon.png" />
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      /* Carousel Styles */
+      .carousel-container {
+        position: relative;
+        max-width: 800px;
+        margin: 2rem auto;
+        overflow: hidden;
+        border-radius: 1rem;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      }
+      .carousel-slide {
+        display: none;
+        width: 100%;
+      }
+      .carousel-slide img {
+        width: 100%;
+        display: block;
+      }
+      /* Navigation buttons */
+      .carousel-nav {
+        position: absolute;
+        top: 50%;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        transform: translateY(-50%);
+      }
+      .carousel-nav button {
+        background: rgba(0, 0, 0, 0.5);
+        border: none;
+        color: #fff;
+        padding: 0.5rem 1rem;
+        cursor: pointer;
+        border-radius: 0.5rem;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Dark/Light Theme Toggle (reused) -->
+    <div class="theme-toggle-container">
+      <label class="switch">
+        <input type="checkbox" id="theme-toggle" />
+        <span class="slider"></span>
+      </label>
+      <span id="theme-icon" class="theme-icon">🌙</span>
+    </div>
+
+    <div class="container">
+      <h1>Screenshot Gallery</h1>
+      <div class="carousel-container">
+        <div class="carousel-slide">
+          <img src="images/shot1.png" alt="Screenshot 1" />
+        </div>
+        <div class="carousel-slide">
+          <img src="images/shot2.png" alt="Screenshot 2" />
+        </div>
+        <div class="carousel-slide">
+          <img src="images/shot3.png" alt="Screenshot 3" />
+        </div>
+        <!-- add more slides as needed -->
+
+        <div class="carousel-nav">
+          <button id="prevBtn">❮</button>
+          <button id="nextBtn">❯</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Carousel Script -->
+    <script>
+      let slideIndex = 0;
+      const slides = document.querySelectorAll(".carousel-slide");
+      const totalSlides = slides.length;
+      const nextBtn = document.getElementById("nextBtn");
+      const prevBtn = document.getElementById("prevBtn");
+
+      function showSlide(index) {
+        slides.forEach((slide, i) => {
+          slide.style.display = i === index ? "block" : "none";
+        });
+      }
+
+      function nextSlide() {
+        slideIndex = (slideIndex + 1) % totalSlides;
+        showSlide(slideIndex);
+      }
+
+      function prevSlide() {
+        slideIndex = (slideIndex - 1 + totalSlides) % totalSlides;
+        showSlide(slideIndex);
+      }
+
+      nextBtn.addEventListener("click", nextSlide);
+      prevBtn.addEventListener("click", prevSlide);
+
+      // Auto-rotate every 5 seconds
+      showSlide(slideIndex);
+      setInterval(nextSlide, 5000);
+    </script>
+    <!-- Theme toggle script reuse -->
+    <script src="script.js"></script>
+  </body>
+</html>
