@@ -46,13 +46,12 @@
         cursor: pointer;
         border-radius: 0.5rem;
       }
-      /* Return button style (matching Habit Tracker) */
+      /* Return button style */
       .return-button {
         position: absolute;
         top: 1rem;
         left: 1rem;
         padding: 8px 12px;
-        margin: 0 5px 1rem 0;
         background-color: #444;
         color: #eee;
         border: none;
@@ -63,6 +62,8 @@
         cursor: pointer;
         transition: background-color 0.3s ease;
         z-index: 10;
+        text-decoration: none;
+        display: inline-block;
       }
       .return-button:hover {
         background-color: #666;
@@ -74,7 +75,9 @@
   </head>
   <body>
     <!-- Return Button Top-Left -->
-    <button class="return-button" onclick="history.back()">Return</button>
+    <a href="https://jszolcek.github.io/index.html" class="return-button"
+      >Return</a
+    >
 
     <!-- Dark/Light Theme Toggle (reused) -->
     <div class="theme-toggle-container">
