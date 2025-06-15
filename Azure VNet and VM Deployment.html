@@ -1,4 +1,4 @@
-<!-- Screenshot Carousel with Top-Left Return Button -->
+<!-- Screenshot Carousel with Keyboard Navigation & Larger Images -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -15,7 +15,7 @@
       /* Carousel Styles */
       .carousel-container {
         position: relative;
-        max-width: 800px;
+        max-width: 1000px;
         margin: 2rem auto;
         overflow: hidden;
         border-radius: 1rem;
@@ -24,10 +24,23 @@
       .carousel-slide {
         display: none;
         width: 100%;
+        text-align: center;
       }
       .carousel-slide img {
-        width: 100%;
-        display: block;
+        max-width: 120%; /* scale image up */
+        max-height: 80vh;
+        object-fit: contain;
+        display: inline-block;
+        transform: scale(1.1);
+      }
+      .slide-caption {
+        color: #fff;
+        font-size: 1.1rem;
+        text-align: center;
+        margin-top: 0.5rem;
+      }
+      .slide-caption .icon {
+        margin-left: 0.5rem;
       }
       /* Navigation buttons */
       .carousel-nav {
@@ -46,18 +59,17 @@
         cursor: pointer;
         border-radius: 0.5rem;
       }
-      /* Return button style matching Habit Tracker */
+      /* Return button style */
       .return-button {
         position: absolute;
         top: 1rem;
         left: 1rem;
         padding: 8px 12px;
-        margin: 0 5px 1rem 0;
         background-color: #444;
         color: #eee;
         border: none;
         border-radius: 4px;
-        font-size: 19px;
+        font-size: 16px;
         font-weight: 600;
         font-family: Consolas, monospace;
         cursor: pointer;
@@ -81,7 +93,7 @@
       Return
     </button>
 
-    <!-- Dark/Light Theme Toggle (reused) -->
+    <!-- Dark/Light Theme Toggle -->
     <div class="theme-toggle-container">
       <label class="switch">
         <input type="checkbox" id="theme-toggle" />
@@ -92,20 +104,27 @@
 
     <div class="container">
       <h1>Deploying and Destroying Azure Resources via Terraform</h1>
-      <div class="carousel-container">
+      <div class="carousel-container" tabindex="0">
         <div class="carousel-slide">
           <img src="images/Resource Creation.png" alt="Resource Creation" />
+          <div class="slide-caption">Initializing and creating resources</div>
         </div>
         <div class="carousel-slide">
           <img src="images/Resources Created.png" alt="Resources Created" />
+          <div class="slide-caption">Resources successfully created</div>
         </div>
         <div class="carousel-slide">
           <img src="images/Resource Deleting.png" alt="Resource Deleting" />
+          <div class="slide-caption">Deleting resources in progress</div>
         </div>
         <div class="carousel-slide">
           <img src="images/Resources Destroyed.png" alt="Resources Destroyed" />
+          <div class="slide-caption">
+            Resources have been successfully destroyed<span class="icon"
+              >💥</span
+            >
+          </div>
         </div>
-        <!-- add more slides as needed -->
 
         <div class="carousel-nav">
           <button id="prevBtn">❮</button>
@@ -114,13 +133,14 @@
       </div>
     </div>
 
-    <!-- Carousel Script -->
+    <!-- Carousel Script with Keyboard Support -->
     <script>
       let slideIndex = 0;
       const slides = document.querySelectorAll(".carousel-slide");
       const totalSlides = slides.length;
       const nextBtn = document.getElementById("nextBtn");
       const prevBtn = document.getElementById("prevBtn");
+      const carousel = document.querySelector(".carousel-container");
 
       function showSlide(index) {
         slides.forEach((slide, i) => {
@@ -141,11 +161,17 @@
       nextBtn.addEventListener("click", nextSlide);
       prevBtn.addEventListener("click", prevSlide);
 
+      // Keyboard navigation
+      carousel.addEventListener("keydown", (e) => {
+        if (e.key === "ArrowRight") nextSlide();
+        if (e.key === "ArrowLeft") prevSlide();
+      });
+      carousel.focus();
+
       // Auto-rotate every 5 seconds
       showSlide(slideIndex);
       setInterval(nextSlide, 5000);
     </script>
-    <!-- Theme toggle script reuse -->
     <script src="script.js"></script>
   </body>
 </html>
