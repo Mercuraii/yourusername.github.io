@@ -125,8 +125,37 @@ button:hover {
   display: flex;
   gap: 15px;
   justify-content: center;
+  align-items: center;
   position: relative;
   margin-top: 15px;
+}
+
+.button-link {
+  display: inline-block;
+}
+
+.button-link .dropdown-button {
+  width: 200px; /* Match dropdown button width */
+  text-align: center;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 1rem;
+  background-color: #444;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.button-link .dropdown-button:hover {
+  background-color: #06007e;
+  color: #fff;
+}
+
+/* Ensure dropdown buttons have the same width */
+.dropdown-button {
+  width: 200px;
+  text-align: center;
 }
 
 /* CV Dropdown */
