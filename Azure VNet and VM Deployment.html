@@ -131,22 +131,15 @@
       <div class="carousel-container" tabindex="0">
         <div class="carousel-slide">
           <img src="images/Resource Creation.png" alt="Resource Creation" />
-          <div class="slide-caption">Initializing and creating resources</div>
         </div>
         <div class="carousel-slide">
           <img src="images/Resources Created.png" alt="Resources Created" />
-          <div class="slide-caption">Resources successfully created</div>
         </div>
         <div class="carousel-slide">
           <img src="images/Resource Deleting.png" alt="Resource Deleting" />
-          <div class="slide-caption">Deleting resources in progress</div>
         </div>
         <div class="carousel-slide">
           <img src="images/Resources Destroyed.png" alt="Resources Destroyed" />
-          <div class="slide-caption">
-            Resources have been successfully destroyed
-            <span class="icon">💥</span>
-          </div>
         </div>
 
         <div class="carousel-nav">
@@ -154,6 +147,8 @@
           <button id="nextBtn">❯</button>
         </div>
       </div>
+      <!-- Carousel caption below -->
+      <div id="carousel-caption" class="slide-caption"></div>
     </div>
 
     <!-- Two images side by side with captions -->
@@ -265,11 +260,24 @@
       const nextBtn = document.getElementById("nextBtn");
       const prevBtn = document.getElementById("prevBtn");
       const carousel = document.querySelector(".carousel-container");
+      const carouselCaption = document.getElementById("carousel-caption");
+
+      // Array of captions (in order of slides)
+      const captions = [
+        "Initializing and creating resources",
+        "Resources successfully created",
+        "Deleting resources in progress",
+        'Resources have been successfully destroyed <span class="icon">💥</span>',
+      ];
 
       function showSlide(index) {
         slides.forEach((slide, i) => {
           slide.style.display = i === index ? "block" : "none";
         });
+        // Update caption below carousel
+        if (carouselCaption) {
+          carouselCaption.innerHTML = captions[index];
+        }
       }
 
       function nextSlide() {
