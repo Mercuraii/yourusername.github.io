@@ -607,6 +607,7 @@ body.light-theme .dropdown-menu a button:hover {
   color: #1976d2 !important;
 }
 
-body.light-theme .dropdown-title {
-  color: #222 !important;
+body.light-theme .dropdown-button:hover {
+  background-color: #1976d2 !important;
+  color: #fff !important;
 }
