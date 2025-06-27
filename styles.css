@@ -523,3 +523,90 @@ body.light-theme .footer p a {
   box-sizing: border-box;
   transition: color 0.3s ease;
 }
+
+/* New Dropdown Styles */
+.dropdown {
+  position: relative;
+  display: inline-block;
+  margin-left: 10px;
+}
+
+.dropdown-button {
+  background-color: #444;
+  color: white;
+  padding: 10px 20px;
+  cursor: pointer;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  background-color: #333;
+  min-width: 200px;
+  z-index: 10;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  margin-top: 5px;
+  top: 100%;
+  left: 0;
+  flex-direction: column;
+  padding: 0;
+}
+
+.dropdown:hover .dropdown-menu,
+.dropdown-menu.visible {
+  display: flex;
+}
+
+.dropdown-menu a button {
+  display: block;
+  width: 100%;
+  background: transparent;
+  color: #fff;
+  padding: 10px 15px;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  border-radius: 0;
+  font-size: 1rem;
+  font-family: inherit;
+  transition: background 0.2s, color 0.2s;
+  outline: none;
+  text-decoration: none;
+}
+
+.dropdown-menu a button:hover {
+  background-color: #555;
+  color: #00eaff;
+}
+
+.dropdown-title {
+  text-decoration: underline;
+  font-size: 1rem;
+  color: #fff;
+  margin: 10px 0 5px 15px;
+}
+
+/* Light Theme Overrides */
+body.light-theme .dropdown-menu {
+  background-color: #fff !important;
+  color: #222 !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+body.light-theme .dropdown-menu a button {
+  color: #222 !important;
+  background: transparent !important;
+}
+
+body.light-theme .dropdown-menu a button:hover {
+  background-color: #e3f2fd !important;
+  color: #1976d2 !important;
+}
+
+body.light-theme .dropdown-title {
+  color: #222 !important;
+}
