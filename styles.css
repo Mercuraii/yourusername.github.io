@@ -441,7 +441,11 @@ body.light-theme .bg-3d {
 }
 
 .carousel-slide img {
-  max-width: 140% !important; /* bigger images */
-  max-height: 90vh !important;
-  transform: scale(1.2) !important;
+  width: 100%; /* fill container width */
+  height: auto; /* keep aspect ratio */
+  max-height: 80vh; /* limit height */
+  object-fit: contain; /* keep full image visible */
+  transform: none; /* remove scaling */
+  margin-bottom: 1rem;
+  display: inline-block;
 }
