@@ -359,3 +359,16 @@ body.light-theme .footer p a {
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
 }
+
+.bg-3d {
+  position: fixed;
+  top: 0;
+  left: 0;
+  min-width: 100vw;
+  min-height: 100vh;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: -1;
+  pointer-events: none; /* Allows clicks to pass through */
+}
