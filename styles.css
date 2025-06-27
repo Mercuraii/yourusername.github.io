@@ -357,7 +357,18 @@ body.light-theme .footer p a {
   height: 400px;
   object-fit: cover;
   border-radius: 8px;
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 20px 4px rgba(0, 255, 255, 0.5),
+    0 0 40px 8px rgba(0, 255, 255, 0.2);
+  display: block;
+  transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#imageGallery img:hover {
+  box-shadow: 0 0 40px 12px rgba(0, 255, 255, 0.8),
+    0 0 80px 16px rgba(0, 255, 255, 0.4);
+  transform: scale(1.05);
+  z-index: 2;
 }
 
 .bg-3d {
