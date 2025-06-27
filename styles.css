@@ -627,13 +627,13 @@ body.light-theme .dropdown-menu {
 }
 
 body.light-theme .dropdown-menu a button {
-  color: #190087 !important;
+  color: #ffffff !important;
   background: transparent !important;
 }
 
 body.light-theme .dropdown-menu a button:hover {
   background-color: #ffffff !important;
-  color: #ffffff !important;
+  color: #030303 !important;
 }
 
 body.light-theme .dropdown-button:hover {
