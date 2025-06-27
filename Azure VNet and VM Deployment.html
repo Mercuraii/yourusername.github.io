@@ -226,6 +226,38 @@
       </a>
     </p>
 
+    <!-- Image Modal -->
+    <div
+      id="imgModal"
+      style="
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 90vw;
+        height: 90vh;
+        background: rgba(0, 0, 0, 0.9);
+        z-index: 1000;
+        border-radius: 12px;
+        box-shadow: 0 0 20px white;
+        cursor: pointer;
+      "
+    >
+      <img
+        id="modalImg"
+        src=""
+        alt="Full Image"
+        style="
+          max-width: 100%;
+          max-height: 100%;
+          margin: auto;
+          display: block;
+          border-radius: 8px;
+        "
+      />
+    </div>
+
     <!-- Carousel Script with Keyboard Support -->
     <script>
       let slideIndex = 0;
@@ -265,12 +297,34 @@
       showSlide(slideIndex);
       setInterval(nextSlide, 5000);
     </script>
+
     <script>
       const toggle = document.getElementById("theme-toggle");
       toggle.addEventListener("change", () => {
         document.body.classList.toggle("light-mode");
       });
     </script>
+
     <script src="script.js"></script>
+
+    <script>
+      const galleryImages = document.querySelectorAll("#imageGallery img");
+      const imgModal = document.getElementById("imgModal");
+      const modalImg = document.getElementById("modalImg");
+
+      // Show modal on image click
+      galleryImages.forEach((img) => {
+        img.style.cursor = "pointer";
+        img.addEventListener("click", () => {
+          modalImg.src = img.src;
+          imgModal.style.display = "block";
+        });
+      });
+
+      // Hide modal on click anywhere inside modal
+      imgModal.addEventListener("click", () => {
+        imgModal.style.display = "none";
+      });
+    </script>
   </body>
 </html>
