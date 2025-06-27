@@ -592,5 +592,29 @@
         });
       }
     </script>
+
+    <!-- Dropdown hover delay logic for all .dropdown menus -->
+    <script>
+      document.querySelectorAll('.dropdown').forEach(dropdown => {
+  let timer;
+  const menu = dropdown.querySelector('.dropdown-menu');
+
+  function showMenu() {
+    clearTimeout(timer);
+    menu.classList.add('visible');
+  }
+
+  function hideMenu() {
+    timer = setTimeout(() => {
+      menu.classList.remove('visible');
+    }, 2000); // 2 seconds
+  }
+
+  dropdown.addEventListener('mouseenter', showMenu);
+  dropdown.addEventListener('mouseleave', hideMenu);
+  menu.addEventListener('mouseenter', showMenu);
+  menu.addEventListener('mouseleave', hideMenu);
+});
+    </script>
   </body>
 </html>
