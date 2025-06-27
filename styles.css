@@ -432,3 +432,16 @@ body.light-theme .bg-3d {
 .return-button:active {
   background-color: #888;
 }
+
+/* Carousel Styles for Azure Project Page */
+.carousel-container {
+  max-width: 1400px !important; /* bigger container */
+  margin: 3rem auto !important;
+  padding-bottom: 3rem !important;
+}
+
+.carousel-slide img {
+  max-width: 140% !important; /* bigger images */
+  max-height: 90vh !important;
+  transform: scale(1.2) !important;
+}
