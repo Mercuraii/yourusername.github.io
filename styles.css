@@ -215,7 +215,7 @@ body.light-theme .submenu a {
 body.light-theme .cv-options a button:hover,
 body.light-theme .submenu a:hover {
   background-color: #ffffff !important;
-  color: #00fbff !important;
+  color: #ffffff !important;
 }
 
 /* Section Headers */
