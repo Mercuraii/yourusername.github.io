@@ -420,18 +420,17 @@ body.light-theme .footer p a {
   align-items: center;
   width: 100%;
   height: 60vh; /* or your preferred height */
-  background: #000; /* black background for padding */
+  background: #000;
   border-radius: 1rem;
   overflow: hidden;
   position: relative;
 }
 
 .carousel-slide img {
-  max-width: 100%;
-  max-height: 100%;
+  width: 100%;
+  flex: 1 1 0;
   object-fit: contain;
-  flex: 1 1 auto;
-  background: #000; /* ensures black bars if image doesn't fill */
+  background: #000;
   display: block;
   margin: 0 auto;
 }
@@ -459,7 +458,7 @@ body.light-theme .footer p a {
   color: #fff;
   font-size: 1.5rem;
   text-align: center;
-  background: rgba(0, 0, 0, 0.6); /* optional: adds contrast */
+  background: rgba(0, 0, 0, 0.6);
   padding: 1rem 0 0.5rem 0;
   min-height: 2.5em;
   box-sizing: border-box;
