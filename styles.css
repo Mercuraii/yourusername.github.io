@@ -455,6 +455,8 @@ body.light-theme .bg-3d {
   cursor: pointer;
   transition: box-shadow 0.3s ease;
   border-radius: 8px;
+  height: 300px;
+  object-fit: cover;
 }
 #imageGallery img:hover {
   box-shadow: 0 0 10px 3px white;
