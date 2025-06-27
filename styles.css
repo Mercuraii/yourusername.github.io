@@ -253,7 +253,7 @@ body.light-theme .submenu a:hover {
   border: 1px solid #444;
 }
 .training-skills-section .cert-card {
-  background: rgba(0, 134, 0, 0.4);
+  background: rgba(0, 134, 0, 0.489);
   border: 1px solid #444;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
@@ -598,16 +598,16 @@ body.light-theme .dropdown-menu {
 }
 
 body.light-theme .dropdown-menu a button {
-  color: #222 !important;
+  color: #190087 !important;
   background: transparent !important;
 }
 
 body.light-theme .dropdown-menu a button:hover {
-  background-color: #e3f2fd !important;
+  background-color: #ffffff !important;
   color: #1976d2 !important;
 }
 
 body.light-theme .dropdown-button:hover {
-  background-color: #1976d2 !important;
+  background-color: #14028b !important;
   color: #fff !important;
 }
