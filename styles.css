@@ -441,11 +441,11 @@ body.light-theme .bg-3d {
 }
 
 .carousel-slide img {
-  width: 100%; /* fill container width */
-  height: auto; /* keep aspect ratio */
-  max-height: 80vh; /* limit height */
-  object-fit: contain; /* keep full image visible */
-  transform: none; /* remove scaling */
+  width: 100%;
+  height: auto;
+  max-height: 80vh;
+  object-fit: contain;
+  transform: none;
   margin-bottom: 1rem;
   display: inline-block;
 }
