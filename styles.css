@@ -110,7 +110,7 @@ body.light-theme {
 
 /* Buttons */
 button {
-  background: #0d00ff;
+  background: #454548;
   color: #fff;
   border: none;
   padding: 10px 20px;
@@ -215,7 +215,7 @@ body.light-theme .submenu a {
 body.light-theme .cv-options a button:hover,
 body.light-theme .submenu a:hover {
   background-color: #ffffff !important;
-  color: #1976d2 !important;
+  color: #00fbff !important;
 }
 
 /* Section Headers */
@@ -604,7 +604,7 @@ body.light-theme .dropdown-menu a button {
 
 body.light-theme .dropdown-menu a button:hover {
   background-color: #ffffff !important;
-  color: #1976d2 !important;
+  color: #ffffff !important;
 }
 
 body.light-theme .dropdown-button:hover {
