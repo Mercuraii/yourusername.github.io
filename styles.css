@@ -438,6 +438,9 @@ body.light-theme .bg-3d {
   max-width: 1400px !important; /* bigger container */
   margin: 3rem auto !important;
   padding-bottom: 3rem !important;
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
 .carousel-slide img {
