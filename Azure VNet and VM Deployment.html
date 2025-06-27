@@ -298,18 +298,33 @@
     </script>
 
     <script>
-      const toggle = document.getElementById("theme-toggle");
-      toggle.addEventListener("change", () => {
-        document.body.classList.toggle("light-mode");
-      });
-    </script>
+      // Toggle dark/light theme and remember user choice
+      const themeToggle = document.getElementById("theme-toggle");
+      const themeIcon = document.getElementById("theme-icon");
 
-    <script src="script.js"></script>
+      function setTheme(isLight) {
+        if (isLight) {
+          document.body.classList.add("light-theme");
+          if (themeIcon) themeIcon.textContent = "☀️";
+        } else {
+          document.body.classList.remove("light-theme");
+          if (themeIcon) themeIcon.textContent = "🌙";
+        }
+      }
 
-    <script>
-      const galleryImages = document.querySelectorAll("#imageGallery img");
-      const imgModal = document.getElementById("imgModal");
-      const modalImg = document.getElementById("modalImg");
+      // Load theme from localStorage if available
+      if (themeToggle) {
+        const savedTheme = localStorage.getItem("theme");
+        if (savedTheme === "light") {
+          themeToggle.checked = true;
+          setTheme(true);
+        }
+
+        themeToggle.addEventListener("change", () => {
+          setTheme(themeToggle.checked);
+          localStorage.setItem("theme", themeToggle.checked ? "light" : "dark");
+        });
+      }
 
       // Show modal on image click
       galleryImages.forEach((img) => {
