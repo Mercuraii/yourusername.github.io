@@ -476,7 +476,7 @@ body.light-theme .footer p a {
   height: 400px;
   object-fit: cover;
   border-radius: 8px;
-  box-shadow: 0 0 10px 8px rgba(255, 255, 255, 0.8),
+  box-shadow: 0 0 5px 5px rgba(255, 255, 255, 0.8),
     0 0 80px 16px rgba(255, 255, 255, 0.4);
   display: block;
   transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
