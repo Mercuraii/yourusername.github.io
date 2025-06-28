@@ -336,15 +336,22 @@
       galleryImages.forEach((img) => {
         img.style.cursor = "pointer";
         img.addEventListener("click", () => {
-          modalImg.src = img.src;
+          modalImg.style.display = "none"; // Hide image until loaded
           imgModal.style.display = "block";
+          modalImg.src = img.src;
         });
+      });
+
+      // Show image only after it loads
+      modalImg.addEventListener("load", () => {
+        modalImg.style.display = "block";
       });
 
       // Hide modal on click anywhere inside modal
       imgModal.addEventListener("click", () => {
         imgModal.style.display = "none";
         modalImg.src = "";
+        modalImg.style.display = "none";
       });
     </script>
   </body>
