@@ -333,8 +333,14 @@
           localStorage.setItem("theme", themeToggle.checked ? "light" : "dark");
         });
       }
+    </script>
 
-      // Show modal on image click
+    <script>
+      // Modal functionality for bottom gallery images
+      const galleryImages = document.querySelectorAll('.gallery-img');
+      const imgModal = document.getElementById('imgModal');
+      const modalImg = document.getElementById('modalImg');
+
       galleryImages.forEach((img) => {
         img.style.cursor = "pointer";
         img.addEventListener("click", () => {
@@ -346,6 +352,7 @@
       // Hide modal on click anywhere inside modal
       imgModal.addEventListener("click", () => {
         imgModal.style.display = "none";
+        modalImg.src = "";
       });
     </script>
   </body>
