@@ -664,3 +664,7 @@ body.light-theme .dropdown-button:hover {
   background-color: #14028b !important;
   color: #fff !important;
 }
+
+body.light-theme p[style*="color: yellow"] {
+  color: red !important;
+}
