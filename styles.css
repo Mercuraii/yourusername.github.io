@@ -523,6 +523,14 @@ body.light-theme .footer p a {
   padding-bottom: 2rem;
 }
 
+.carousel-container:hover {
+  box-shadow: 0 0 60px 10px rgba(255, 255, 255, 1),
+    0 0 60px 16px rgba(255, 255, 255, 0.6);
+  transform: translateX(-50%) scale(1.05);
+  transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.3s cubic-bezier(0.4, 0, 0.2, 0.8);
+}
+
 .carousel-slide {
   width: 100vw;
   max-width: 100vw;
