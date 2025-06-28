@@ -165,6 +165,7 @@
     >
       <figure style="flex: 1; color: #eee; text-align: center">
         <img
+          class="gallery-img"
           src="images/Azure Portal Showing Deployed Resources.png"
           alt="Azure Portal Screenshot Showing Deployed Resources"
           style="
@@ -179,6 +180,7 @@
       </figure>
       <figure style="flex: 1; color: #eee; text-align: center">
         <img
+          class="gallery-img"
           src="images/Remotely Connected To Win VM and SSH into Linux VM from there.png"
           alt="Remotely Connected To Win VM and SSH into Linux VM from there"
           style="
@@ -337,9 +339,9 @@
 
     <script>
       // Modal functionality for bottom gallery images
-      const galleryImages = document.querySelectorAll('.gallery-img');
-      const imgModal = document.getElementById('imgModal');
-      const modalImg = document.getElementById('modalImg');
+      const galleryImages = document.querySelectorAll(".gallery-img");
+      const imgModal = document.getElementById("imgModal");
+      const modalImg = document.getElementById("modalImg");
 
       galleryImages.forEach((img) => {
         img.style.cursor = "pointer";
