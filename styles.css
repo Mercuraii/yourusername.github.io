@@ -754,7 +754,8 @@ body.light-theme p[style*="color: yellow"] {
     width: 120px;
     height: 120px;
   }
-  h1, h2 {
+  h1,
+  h2 {
     font-size: 1.2rem;
   }
   .card {
@@ -773,24 +774,26 @@ body.light-theme p[style*="color: yellow"] {
 #imgModal {
   display: none;
   position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 90vw;
-  height: 90vh;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
   background: rgba(0, 0, 0, 0.95);
   z-index: 1000;
-  border-radius: 12px;
+  border-radius: 0;
   box-shadow: 0 0 20px white;
   cursor: pointer;
   text-align: center;
   overflow: auto;
+  padding: 0;
 }
 
 #modalImg {
-  max-width: 100%;
-  max-height: 100%;
-  margin: auto;
+  max-width: 90vw;
+  max-height: 90vh;
+  width: auto;
+  height: auto;
+  margin: 5vh auto 0 auto;
   display: block;
   border-radius: 8px;
   background: #222;
