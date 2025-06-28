@@ -495,7 +495,7 @@ body.light-theme .footer p a {
 }
 
 .gallery-img:hover {
-  box-shadow: 0 0 60px 20px rgb(254, 251, 251),
+  box-shadow: 0 0 60px 20px rgba(255, 255, 255, 1),
     0 0 120px 32px rgba(255, 255, 255, 0.6);
   transform: scale(1.05);
 }
