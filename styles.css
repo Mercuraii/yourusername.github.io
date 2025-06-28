@@ -666,5 +666,5 @@ body.light-theme .dropdown-button:hover {
 }
 
 body.light-theme p[style*="color: yellow"] {
-  color: red !important;
+  color: rgb(141, 5, 5) !important;
 }
