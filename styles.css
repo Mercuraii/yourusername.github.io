@@ -476,7 +476,7 @@ body.light-theme .footer p a {
   height: 400px;
   object-fit: cover;
   border-radius: 2px;
-  box-shadow: 0 0 5px 5px rgba(255, 255, 255, 0.6),
+  box-shadow: 0 0 15px 8px rgba(255, 255, 255, 0.6),
     0 0 20px 4px rgba(255, 255, 255, 0.4);
   display: block;
   transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
@@ -484,7 +484,7 @@ body.light-theme .footer p a {
 }
 
 .gallery-img:hover {
-  box-shadow: 0 0 60px 20px rgba(255, 255, 255, 1),
+  box-shadow: 0 0 60px 10px rgba(255, 255, 255, 1),
     0 0 60px 16px rgba(255, 255, 255, 0.6);
   transform: scale(1.05);
 }
