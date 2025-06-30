@@ -25,7 +25,7 @@ Visit the portfolio: [jszolcek.github.io](https://jszolcek.github.io)
 
 ## 📄 About This Repo
 
-This repo is the source code for my GitHub Pages site. It uses basic HTML/CSS and Markdown, with a Jekyll theme for layout and style.
+This repo is the source code for my GitHub Pages site. It uses basic HTML/CSS/JS and Markdown, with a Jekyll theme for layout and style.
 
 Feel free to fork or use as a reference for building your own IT portfolio site.
 
