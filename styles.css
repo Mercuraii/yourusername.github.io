@@ -805,3 +805,24 @@ body.light-theme p[style*="color: yellow"] {
   border-radius: 8px;
   background: #222;
 }
+
+/* GitHub PDF Link Styling */
+.github-link-container {
+  text-align: center;
+  font-size: 1.8rem;
+  margin-top: 1rem;
+  color: yellow;
+  transition: text-shadow 0.3s ease;
+}
+
+.github-link-container a {
+  color: blue;
+  text-decoration: underline;
+  font-weight: bold;
+  transition: text-shadow 0.3s ease;
+}
+
+/* Optional: Only apply glowing effect on link hover */
+.github-link-container a:hover {
+  text-shadow: 0 0 12px gold;
+}
