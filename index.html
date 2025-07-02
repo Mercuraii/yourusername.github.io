@@ -227,23 +227,25 @@
       }
 
       /* Ensure background video covers the entire page, even if page is taller than viewport */
+      /* Force background video to always fill the entire screen, even when scrolling */
       .bg-3d {
-        position: fixed;
+        position: absolute;
         top: 0;
         left: 0;
         width: 100vw;
-        min-width: 100vw;
-        height: 100vh;
+        height: 100%;
         min-height: 100vh;
         object-fit: cover;
         object-position: center;
         z-index: -1000;
         pointer-events: none;
-        overflow: hidden;
       }
-      html, body {
+      html,
+      body {
         min-height: 100vh;
         height: 100%;
+        width: 100vw;
+        overflow-x: hidden;
       }
       body {
         position: relative;
