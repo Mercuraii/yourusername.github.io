@@ -28,9 +28,39 @@
         transform: scale(1.1);
         z-index: 10;
       }
-  
- 
-      
+      #imgModal {
+        position: absolute; /* changed from fixed */
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.95);
+        z-index: 3000;
+        border-radius: 10px;
+        box-shadow: 0 0 20px white;
+        cursor: pointer;
+
+        display: none; /* hide initially */
+        justify-content: center;
+        align-items: center;
+
+        padding: 0;
+        overflow: hidden;
+        text-align: center;
+
+        top: 0; /* will be dynamically set */
+      }
+
+      #modalImg {
+        max-width: 90vw;
+        max-height: 90vh;
+        width: auto;
+        height: auto;
+        border-radius: 8px;
+        background: #222;
+        display: none; /* hide until loaded */
+        margin: 0;
+      }
+
       #imgModal:active,
       #imgModal .close {
         cursor: pointer;
@@ -41,7 +71,7 @@
         right: 4vw;
         font-size: 3rem;
         color: #fff;
-        z-index: 2100;
+        z-index: 3100;
         background: none;
         border: none;
       }
@@ -86,21 +116,20 @@
         box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
       }
     </style>
-   
-      <!-- other head stuff -->
 
-      <script>
-        function resizeBgVideo() {
-          const video = document.querySelector(".bg-3d");
-          if (video) {
-            video.style.height =
-              Math.max(document.body.scrollHeight, window.innerHeight) + "px";
-          }
+    <!-- other head stuff -->
+
+    <script>
+      function resizeBgVideo() {
+        const video = document.querySelector(".bg-3d");
+        if (video) {
+          video.style.height =
+            Math.max(document.body.scrollHeight, window.innerHeight) + "px";
         }
-        window.addEventListener("resize", resizeBgVideo);
-        window.addEventListener("DOMContentLoaded", resizeBgVideo);
-      </script>
-
+      }
+      window.addEventListener("resize", resizeBgVideo);
+      window.addEventListener("DOMContentLoaded", resizeBgVideo);
+    </script>
   </head>
   <body>
     <a id="returnBtn" href="https://jszolcek.github.io/index.html">Return</a>
@@ -225,100 +254,20 @@
           <h3>🛠️ pfSense Setup</h3>
           <ol style="margin-left: 1.2em">
             <li>
-              🖥️ <b>Set up pfSense VM in VirtualBox</b><br />
-              <ul>
-                <li>Assigned WAN IP: <code>192.168.1.x/24</code></li>
-                <li>Assigned LAN IP: <code>192.168.56.1/24</code></li>
-                <li>
-                  Configured VirtualBox network adapters:
-                  <ul>
-                    <li>WAN as Bridged or NAT</li>
-                    <li>LAN as Host-only Adapter (<code>vboxnet0</code>)</li>
-                  </ul>
-                </li>
-              </ul>
+              🖥️ <b>Set up pfSense VM</b><br />Installed pfSense in VirtualBox
+              with multiple network adapters.
             </li>
             <li>
-              🔌 <b>Configured pfSense interfaces</b><br />
-              <ul>
-                <li>WAN on <code>192.168.1.x</code></li>
-                <li>LAN on <code>192.168.56.1</code></li>
-                <li>Enabled DHCP server on LAN for automatic IP assignment</li>
-              </ul>
+              🛡️ <b>Configured firewall rules</b><br />Set up NAT, DHCP, and
+              firewall policies.
             </li>
             <li>
-              🖧 <b>Checked network connectivity</b><br />
-              <ul>
-                <li>
-                  Ping from VM to host on LAN interface: <b>successful</b>
-                </li>
-                <li>
-                  Tried to access <code>http://192.168.56.1</code> from host:
-                  <b>connection refused</b>
-                </li>
-              </ul>
+              🌐 <b>Tested external access</b><br />Verified internet access
+              through pfSense router.
             </li>
             <li>
-              🔍 <b>Diagnosed network reachability</b><br />
-              <ul>
-                <li>
-                  Used <code>arp -a</code> on host to check MAC address
-                  resolution
-                </li>
-                <li>Confirmed host did <b>not</b> initially see pfSense MAC</li>
-              </ul>
-            </li>
-            <li>
-              🛠️
-              <b>Removed and reassigned VirtualBox Host-Only Network adapter</b>
-              (questioned myself again for the 4,213,125th time why I'm doing
-              this via VM's and not just on a spare old pc)<br />
-              <ul>
-                <li>Deleted existing Host-Only adapter causing issues</li>
-                <li>Created a new Host-Only adapter (<code>vboxnet0</code>)</li>
-                <li>Reassigned pfSense LAN interface to new adapter</li>
-                <li>Restored MAC address visibility on host</li>
-              </ul>
-            </li>
-            <li>
-              🛡️ <b>Adjusted Windows firewall settings</b><br />
-              <ul>
-                <li>
-                  Temporarily disabled firewall on Host-only network adapter
-                </li>
-                <li>Disabled any third-party antivirus/firewall shields</li>
-              </ul>
-            </li>
-            <li>
-              📶 <b>Verified connectivity again</b><br />
-              <ul>
-                <li>
-                  <code>arp -a</code> showed pfSense LAN MAC address
-                  (<code>192.168.56.1</code>) on host
-                </li>
-                <li>Ping from host to <code>192.168.56.1</code> succeeded</li>
-              </ul>
-            </li>
-            <li>
-              🌐 <b>Accessed pfSense Web GUI</b><br />
-              <ul>
-                <li>Opened <code>http://192.168.56.1</code> in browser</li>
-                <li>Successfully loaded pfSense admin interface</li>
-
-                <img
-                  src="https://github.com/jszolcek/Linux-Server-VM-Lab/blob/main/images/pfSense.png?raw=true"
-                  alt="pfSense screenshot"
-                  class="sandbox-img"
-                  style="
-                    max-width: 400px;
-                    width: 100%;
-                    margin: 1em 0;
-                    border-radius: 8px;
-                    box-shadow: 0 2px 8px #000;
-                    cursor: pointer;
-                  "
-                />
-              </ul>
+              🔒 <b>Secured pfSense</b><br />Updated admin password and
+              configured VPN settings.
             </li>
           </ol>
         </section>
@@ -331,65 +280,82 @@
       <img id="modalImg" src="" alt="Large view" />
     </div>
 
-    <!-- Theme toggle & icon script -->
     <script>
-      const themeToggle = document.getElementById("theme-toggle");
-      const themeIcon = document.getElementById("theme-icon");
-
-      function setTheme(isLight) {
-        if (isLight) {
-          document.body.classList.add("light-theme");
-          if (themeIcon) themeIcon.textContent = "☀️";
-        } else {
-          document.body.classList.remove("light-theme");
-          if (themeIcon) themeIcon.textContent = "🌙";
-        }
-      }
-
-      // Load theme from localStorage if available
-      if (themeToggle) {
-        const savedTheme = localStorage.getItem("theme");
-        if (savedTheme === "light") {
-          themeToggle.checked = true;
-          setTheme(true);
-        }
-
-        themeToggle.addEventListener("change", () => {
-          setTheme(themeToggle.checked);
-          localStorage.setItem("theme", themeToggle.checked ? "light" : "dark");
-        });
-      }
-
-      // Modal image logic
+      // Modal functions
       function closeModal() {
         const modal = document.getElementById("imgModal");
+        const modalImg = document.getElementById("modalImg");
         modal.style.display = "none";
         modal.style.top = null;
-        document.getElementById("modalImg").src = "";
+        modalImg.src = "";
+        modalImg.style.display = "none";
+        window.removeEventListener("scroll", moveModalWithScroll);
+      }
+
+      function moveModalWithScroll() {
+        const modal = document.getElementById("imgModal");
+        modal.style.top = window.scrollY + "px";
       }
 
       document.querySelectorAll(".sandbox-img").forEach((img) => {
-        img.addEventListener("click", function (e) {
+        img.style.cursor = "pointer";
+        img.addEventListener("click", function () {
           const modal = document.getElementById("imgModal");
-          document.getElementById("modalImg").src = this.src;
+          const modalImg = document.getElementById("modalImg");
+
+          modalImg.style.display = "none"; // Hide image until loaded
           modal.style.display = "flex";
+          modal.style.top = window.scrollY + "px";
+          modalImg.src = this.src;
+
+          window.addEventListener("scroll", moveModalWithScroll);
         });
       });
-      document
-        .getElementById("imgModal")
-        .addEventListener("click", function (e) {
-          if (e.target === this) closeModal();
-        });
 
-        // Close modal on ESC key press
-document.addEventListener("keydown", function (e) {
-  const modal = document.getElementById("imgModal");
-  if (e.key === "Escape" && modal.style.display === "flex") {
-    closeModal();
-  }
-});
+      document.getElementById("modalImg").addEventListener("load", () => {
+        const modalImg = document.getElementById("modalImg");
+        modalImg.style.display = "block";
+      });
 
+      document.getElementById("imgModal").addEventListener("click", (e) => {
+        if (e.target === e.currentTarget) {
+          closeModal();
+        }
+      });
+
+      // Close modal on ESC key press
+      document.addEventListener("keydown", (e) => {
+        const modal = document.getElementById("imgModal");
+        if (e.key === "Escape" && modal.style.display === "flex") {
+          closeModal();
+        }
+      });
+
+      // Theme toggle example (optional)
+      const themeToggle = document.getElementById("theme-toggle");
+      const themeIcon = document.getElementById("theme-icon");
+
+      themeToggle.addEventListener("change", () => {
+        if (themeToggle.checked) {
+          document.body.classList.add("light-theme");
+          themeIcon.textContent = "☀️";
+        } else {
+          document.body.classList.remove("light-theme");
+          themeIcon.textContent = "🌙";
+        }
+      });
+
+      // Load theme preference (optional)
+      window.addEventListener("DOMContentLoaded", () => {
+        if (localStorage.getItem("theme") === "light") {
+          themeToggle.checked = true;
+          document.body.classList.add("light-theme");
+          themeIcon.textContent = "☀️";
+        }
+      });
+      themeToggle.addEventListener("change", () => {
+        localStorage.setItem("theme", themeToggle.checked ? "light" : "dark");
+      });
     </script>
-  </div>
   </body>
 </html>
