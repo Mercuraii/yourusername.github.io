@@ -778,7 +778,7 @@ body.light-theme p[style*="color: yellow"] {
 }
 
 #imgModal {
-  margin-top: -5vh;
+  margin-top: -1vh;
   display: none;
   position: fixed;
   top: 0;
@@ -786,7 +786,7 @@ body.light-theme p[style*="color: yellow"] {
   width: 100vw;
   height: 100vh;
   background: rgba(0, 0, 0, 0.95);
-  z-index: 1000;
+  z-index: 3000;
   border-radius: 0;
   box-shadow: 0 0 20px white;
   cursor: pointer;
@@ -800,7 +800,7 @@ body.light-theme p[style*="color: yellow"] {
   max-height: 90vh;
   width: auto;
   height: auto;
-  margin: 5vh auto 0 auto;
+  margin: auto auto 0 auto;
   display: block;
   border-radius: 8px;
   background: #222;
