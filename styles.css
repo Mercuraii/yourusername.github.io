@@ -682,7 +682,7 @@ body.light-theme p[style*="color: yellow"] {
   color: rgb(0, 0, 0) !important;
 }
 
-/* Responsive Container */
+/* Responsive Container all done */
 @media (max-width: 900px) {
   .container {
     max-width: 98vw;
