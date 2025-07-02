@@ -58,47 +58,94 @@
             </a>
           </p>
         </section>
-        <section class="card full-width" style="background: #111; color: #fff;">
+        <section class="card full-width" style="background: #111; color: #fff">
           <h3>🏗️ Home Lab Setup History</h3>
-          <ol style="margin-left: 1.2em;">
-            <li>💻 Created a new VirtualBox VM<br>Installed the latest Ubuntu Server 22.04 distro.</li>
-            <li>🛠️ Installed essential programs on the VM<br>
+          <ol style="margin-left: 1.2em">
+            <li>
+              💻 Created a new VirtualBox VM<br />Installed the latest Ubuntu
+              Server 22.04 distro.
+            </li>
+            <li>
+              🛠️ Installed essential programs on the VM<br />
               <ul>
                 <li>OpenSSH Server (to enable SSH access)</li>
                 <li>Prometheus (planning to add Grafana later)</li>
               </ul>
             </li>
-            <li>🔍 Discovered VM IP address<br>Ran <code>ip a</code> on the VM, identified IP on interface <code>enp0s3</code>.</li>
-            <li>🔄 Changed VirtualBox network adapter<br>Switched from Bridged to NAT for isolation.</li>
-            <li>🔑 Set up SSH key authentication<br>
+            <li>
+              🔍 Discovered VM IP address<br />Ran <code>ip a</code> on the VM,
+              identified IP on interface <code>enp0s3</code>.
+            </li>
+            <li>
+              🔄 Changed VirtualBox network adapter<br />Switched from Bridged
+              to NAT for isolation.
+            </li>
+            <li>
+              🔑 Set up SSH key authentication<br />
               <ul>
                 <li>Generated SSH key on Windows host</li>
-                <li>Added public key to <code>~/.ssh/authorized_keys</code> on VM</li>
+                <li>
+                  Added public key to <code>~/.ssh/authorized_keys</code> on VM
+                </li>
                 <li>Disabled password login on SSH server</li>
               </ul>
             </li>
-            <li>🚪 Configured VirtualBox port forwarding<br>Forwarded host port 2222 to guest port 22 for SSH access.</li>
-            <li>📄 Fixed public key format issue<br>
+            <li>
+              🚪 Configured VirtualBox port forwarding<br />Forwarded host port
+              2222 to guest port 22 for SSH access.
+            </li>
+            <li>
+              📄 Fixed public key format issue<br />
               <ul>
-                <li>Extracted the public key from Windows private key using <code>ssh-keygen -y</code></li>
-                <li>Manually added the corrected public key string to <code>~/.ssh/authorized_keys</code> on VM</li>
-                <li>Set correct permissions on <code>.ssh</code> folder and <code>authorized_keys</code> file</li>
+                <li>
+                  Extracted the public key from Windows private key using
+                  <code>ssh-keygen -y</code>
+                </li>
+                <li>
+                  Manually added the corrected public key string to
+                  <code>~/.ssh/authorized_keys</code> on VM
+                </li>
+                <li>
+                  Set correct permissions on <code>.ssh</code> folder and
+                  <code>authorized_keys</code> file
+                </li>
               </ul>
             </li>
-            <li style="margin-left:2em;list-style-type:decimal-leading-zero;">🔗 Connected from Windows via SSH (passwordless)<br>Using forwarded port and SSH key for passwordless login.</li>
-            <li>🛡️ Installed and configured Pi-hole on Linux server<br>Set up Pi-hole DNS server to block ads and trackers.</li>
-            <li>📡 Tested Pi-hole blocking by pinging a known blocked domain<br>Used ping and dig commands on the server to confirm blocked queries appear in Pi-hole logs.<br>
-              <img src="images/Pi-hole.png" alt="Pi-hole screenshot" style="max-width: 400px; width: 100%; margin: 1em 0; border-radius: 8px; box-shadow: 0 2px 8px #000;">
+            <li style="margin-left: 2em; list-style-type: decimal-leading-zero">
+              🔗 Connected from Windows via SSH (passwordless)<br />Using
+              forwarded port and SSH key for passwordless login.
+            </li>
+            <li>
+              🛡️ Installed and configured Pi-hole on Linux server<br />Set up
+              Pi-hole DNS server to block ads and trackers.
+            </li>
+            <li>
+              📡 Tested Pi-hole blocking by pinging a known blocked domain<br />Used
+              ping and dig commands on the server to confirm blocked queries
+              appear in Pi-hole logs.<br />
+              <img
+                src="https://raw.githubusercontent.com/jszolcek/Linux-Server-VM-Lab/refs/heads/main/images/Pi-hole.png"
+                alt="Pi-hole screenshot"
+                style="
+                  max-width: 400px;
+                  width: 100%;
+                  margin: 1em 0;
+                  border-radius: 8px;
+                  box-shadow: 0 2px 8px #000;
+                "
+              />
             </li>
           </ol>
-          <hr style="margin:2em 0; border:1px solid #333;">
+          <hr style="margin: 2em 0; border: 1px solid #333" />
           <h3>🛠️ pfSense Setup</h3>
-          <ol style="margin-left: 1.2em;">
-            <li>🖥️ <b>Set up pfSense VM in VirtualBox</b><br>
+          <ol style="margin-left: 1.2em">
+            <li>
+              🖥️ <b>Set up pfSense VM in VirtualBox</b><br />
               <ul>
                 <li>Assigned WAN IP: <code>192.168.1.x/24</code></li>
                 <li>Assigned LAN IP: <code>192.168.56.1/24</code></li>
-                <li>Configured VirtualBox network adapters:
+                <li>
+                  Configured VirtualBox network adapters:
                   <ul>
                     <li>WAN as Bridged or NAT</li>
                     <li>LAN as Host-only Adapter (<code>vboxnet0</code>)</li>
@@ -106,26 +153,41 @@
                 </li>
               </ul>
             </li>
-            <li>🔌 <b>Configured pfSense interfaces</b><br>
+            <li>
+              🔌 <b>Configured pfSense interfaces</b><br />
               <ul>
                 <li>WAN on <code>192.168.1.x</code></li>
                 <li>LAN on <code>192.168.56.1</code></li>
                 <li>Enabled DHCP server on LAN for automatic IP assignment</li>
               </ul>
             </li>
-            <li>🖧 <b>Checked network connectivity</b><br>
+            <li>
+              🖧 <b>Checked network connectivity</b><br />
               <ul>
-                <li>Ping from VM to host on LAN interface: <b>successful</b></li>
-                <li>Tried to access <code>http://192.168.56.1</code> from host: <b>connection refused</b></li>
+                <li>
+                  Ping from VM to host on LAN interface: <b>successful</b>
+                </li>
+                <li>
+                  Tried to access <code>http://192.168.56.1</code> from host:
+                  <b>connection refused</b>
+                </li>
               </ul>
             </li>
-            <li>🔍 <b>Diagnosed network reachability</b><br>
+            <li>
+              🔍 <b>Diagnosed network reachability</b><br />
               <ul>
-                <li>Used <code>arp -a</code> on host to check MAC address resolution</li>
+                <li>
+                  Used <code>arp -a</code> on host to check MAC address
+                  resolution
+                </li>
                 <li>Confirmed host did <b>not</b> initially see pfSense MAC</li>
               </ul>
             </li>
-            <li>🛠️ <b>Removed and reassigned VirtualBox Host-Only Network adapter</b> (questioned myself again for the 4,213,125th time why I'm doing this via VM's and not just on a spare old pc)<br>
+            <li>
+              🛠️
+              <b>Removed and reassigned VirtualBox Host-Only Network adapter</b>
+              (questioned myself again for the 4,213,125th time why I'm doing
+              this via VM's and not just on a spare old pc)<br />
               <ul>
                 <li>Deleted existing Host-Only adapter causing issues</li>
                 <li>Created a new Host-Only adapter (<code>vboxnet0</code>)</li>
@@ -133,23 +195,43 @@
                 <li>Restored MAC address visibility on host</li>
               </ul>
             </li>
-            <li>🛡️ <b>Adjusted Windows firewall settings</b><br>
+            <li>
+              🛡️ <b>Adjusted Windows firewall settings</b><br />
               <ul>
-                <li>Temporarily disabled firewall on Host-only network adapter</li>
+                <li>
+                  Temporarily disabled firewall on Host-only network adapter
+                </li>
                 <li>Disabled any third-party antivirus/firewall shields</li>
               </ul>
             </li>
-            <li>📶 <b>Verified connectivity again</b><br>
+            <li>
+              📶 <b>Verified connectivity again</b><br />
               <ul>
-                <li><code>arp -a</code> showed pfSense LAN MAC address (<code>192.168.56.1</code>) on host</li>
+                <li>
+                  <code>arp -a</code> showed pfSense LAN MAC address
+                  (<code>192.168.56.1</code>) on host
+                </li>
                 <li>Ping from host to <code>192.168.56.1</code> succeeded</li>
               </ul>
             </li>
-            <li>🌐 <b>Accessed pfSense Web GUI</b><br>
+            <li>
+              🌐 <b>Accessed pfSense Web GUI</b><br />
               <ul>
                 <li>Opened <code>http://192.168.56.1</code> in browser</li>
                 <li>Successfully loaded pfSense admin interface</li>
-                <li><img src="images/pfSense.png" alt="pfSense screenshot" style="max-width: 400px; width: 100%; margin: 1em 0; border-radius: 8px; box-shadow: 0 2px 8px #000;"></li>
+                <li>
+                  <img
+                    src="https://github.com/jszolcek/Linux-Server-VM-Lab/blob/main/images/pfSense.png?raw=true"
+                    alt="pfSense screenshot"
+                    style="
+                      max-width: 400px;
+                      width: 100%;
+                      margin: 1em 0;
+                      border-radius: 8px;
+                      box-shadow: 0 2px 8px #000;
+                    "
+                  />
+                </li>
               </ul>
             </li>
           </ol>
