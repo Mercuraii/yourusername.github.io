@@ -491,15 +491,16 @@ body.light-theme .footer p a {
 
 .bg-3d {
   position: fixed;
-  top: 0;
-  left: 0;
+  inset: 0;
   width: 100vw;
   height: 100vh;
-  object-fit: cover;
-  z-index: -1000;
-  pointer-events: none;
   min-width: 100vw;
   min-height: 100vh;
+  object-fit: cover;
+  object-position: center;
+  z-index: -1000;
+  pointer-events: none;
+  overflow: hidden;
 }
 
 .background-wrapper {
