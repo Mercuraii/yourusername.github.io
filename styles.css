@@ -460,7 +460,7 @@ body.light-theme .footer p a {
 
 #imageGallery figure {
   flex: 1;
-  color: #eee;
+  color: #000000;
   text-align: center;
   margin: 0;
   aspect-ratio: 16/10;
