@@ -6,6 +6,19 @@
     <title>VM Network Sandbox</title>
     <link rel="icon" type="image/png" sizes="96x96" href="images/favicon.png" />
     <link rel="stylesheet" href="styles.css" />
+
+    <!-- bg stuff -->
+    <script>
+      function resizeBgVideo() {
+        const video = document.querySelector(".bg-3d");
+        if (video) {
+          video.style.height =
+            Math.max(document.body.scrollHeight, window.innerHeight) + "px";
+        }
+      }
+      window.addEventListener("resize", resizeBgVideo);
+      window.addEventListener("DOMContentLoaded", resizeBgVideo);
+    </script>
     <!-- Style overrides for light theme text and large images -->
     <style>
       /* Make markdown text black in light mode */
@@ -116,20 +129,6 @@
         box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
       }
     </style>
-
-    <!-- other head stuff -->
-
-    <script>
-      function resizeBgVideo() {
-        const video = document.querySelector(".bg-3d");
-        if (video) {
-          video.style.height =
-            Math.max(document.body.scrollHeight, window.innerHeight) + "px";
-        }
-      }
-      window.addEventListener("resize", resizeBgVideo);
-      window.addEventListener("DOMContentLoaded", resizeBgVideo);
-    </script>
   </head>
   <body>
     <a id="returnBtn" href="https://jszolcek.github.io/index.html">Return</a>
