@@ -376,10 +376,12 @@
           if (e.target === this) closeModal();
         });
       function smartReturn() {
-        if (window.history.length > 1) {
+        const ref = document.referrer;
+        const here = window.location.href;
+        if (ref && ref !== here) {
           window.history.back();
         } else {
-          window.location.href = "index.html";
+          window.location.href = "https://jszolcek.github.io/index.html";
         }
       }
     </script>
