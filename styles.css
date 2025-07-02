@@ -11,6 +11,29 @@ body {
   color: #f0f0f0;
   min-height: 100vh;
   position: relative;
+  overflow-x: hidden;
+}
+
+/* Background Video */
+.bg-3d {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: -1;
+}
+
+.background-wrapper {
+  position: relative;
+  z-index: 1;
+}
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+  padding: 40px 0;
 }
 
 /* Header & Navigation */
@@ -18,7 +41,11 @@ body {
   display: flex;
   align-items: center;
   padding: 20px;
-  background-color: #222;
+  background-color: rgba(34,34,34,0.85);
+  backdrop-filter: blur(5px);
+  position: sticky;
+  top: 0;
+  z-index: 2;
 }
 .nav-bar .logo {
   font-size: 1.5rem;
@@ -26,12 +53,11 @@ body {
   text-decoration: none;
 }
 
-.menu,
-.cv-dropdown {
+.menu, .cv-dropdown {
   position: relative;
   margin-left: 20px;
 }
-.menu-button {
+.menu-button, .dropdown-button {
   background-color: #444;
   color: white;
   padding: 10px 20px;
@@ -39,29 +65,30 @@ body {
   border: none;
   border-radius: 8px;
   font-size: 1rem;
+  transition: background 0.3s;
+}
+.menu-button:hover, .dropdown-button:hover {
+  background-color: #555;
 }
 
-.submenu,
-.cv-options {
+.submenu, .cv-options, .dropdown-menu {
   display: none;
   position: absolute;
   background-color: #333;
   min-width: 200px;
-  z-index: 1;
+  z-index: 3;
   border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.5);
   margin-top: 5px;
   top: 100%;
   left: 0;
 }
 
-.submenu.visible,
-.cv-options.visible {
+.submenu.visible, .cv-options.visible, .dropdown-menu.visible {
   display: block;
 }
 
-.submenu a,
-.cv-options a button {
+.submenu a, .cv-options a button, .dropdown-menu a button {
   color: white;
   padding: 10px 15px;
   text-decoration: none;
@@ -69,62 +96,115 @@ body {
   background: transparent;
   width: 100%;
   text-align: left;
+  font-size: 0.95rem;
 }
-.submenu a:hover,
-.cv-options a button:hover {
+.submenu a:hover, .cv-options a button:hover, .dropdown-menu a button:hover {
   background-color: #555;
 }
 
-/* Theme Toggle */
-.theme-toggle-container {
-  margin-left: auto;
+/* Profile Card */
+.card.full-width {
+  background-color: rgba(0,0,0,0.65);
+  padding: 40px;
+  border-radius: 12px;
+  text-align: center;
+  color: #fff;
+}
+.profile-pic {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 20px;
+  border: 4px solid #444;
+}
+
+.button-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+  margin: 25px 0;
+}
+.button-link button {
+  background-color: #2196f3;
+  color: #fff;
+  border-radius: 8px;
+}
+
+/* Certifications Grid */
+.flex-cert-sections {
+  margin-top: 40px;
+}
+.certifications-section h3 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 1.4rem;
+}
+.certifications-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+.cert-card {
+  width: 200px;
+  perspective: 1000px;
+}
+.card-inner {
+  position: relative;
+  width: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.6s;
+}
+.cert-card:hover .card-inner {
+  transform: rotateY(180deg);
+}
+.card-front, .card-back {
+  position: absolute;
+  width: 100%;
+  backface-visibility: hidden;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.card-front {
+  background-color: #444;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+.card-back {
+  background-color: #222;
+  transform: rotateY(180deg);
   display: flex;
   align-items: center;
-  cursor: pointer;
+  justify-content: center;
+  padding: 15px;
 }
-.switch {
-  position: relative;
-  display: inline-block;
+.cert-text h4 {
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+}
+.cert-img, .cert-back-img {
   width: 60px;
-  height: 34px;
-  margin-right: 10px;
+  height: 60px;
 }
-.switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 20px;
+  background-color: rgba(34,34,34,0.85);
+  color: #ccc;
 }
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #ccc;
-  transition: 0.4s;
-  border-radius: 34px;
+.footer a {
+  color: #2196f3;
+  text-decoration: none;
 }
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 26px;
-  width: 26px;
-  left: 4px;
-  bottom: 4px;
-  background-color: white;
-  border-radius: 50%;
-  transition: 0.4s;
-}
-input:checked + .slider {
-  background-color: #2196f3;
-}
-input:checked + .slider:before {
-  transform: translateX(26px);
-}
-.theme-icon {
-  font-size: 1.5rem;
-  transition: color 0.4s;
+.footer a:hover {
+  text-decoration: underline;
 }
 
 /* Light Theme Overrides */
@@ -132,18 +212,22 @@ body.light-theme {
   background-color: #f4f4f9;
   color: #333;
 }
-body.light-theme .menu-button {
+body.light-theme .menu-button,
+body.light-theme .dropdown-button {
   background-color: #ddd;
   color: #222;
 }
 body.light-theme .submenu,
-body.light-theme .cv-options {
+body.light-theme .cv-options,
+body.light-theme .dropdown-menu {
   background-color: #fff;
   color: #222;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+jo
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
 }
 body.light-theme .submenu a:hover,
-body.light-theme .cv-options a button:hover {
+body.light-theme .cv-options a button:hover,
+body.light-theme .dropdown-menu a button:hover {
   background-color: #e3f2fd;
   color: #1976d2;
 }
