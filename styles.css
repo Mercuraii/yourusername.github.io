@@ -793,15 +793,21 @@ body.light-theme p[style*="color: yellow"] {
   text-align: center;
   overflow: auto;
   padding: 0;
+  box-shadow: 0 0 20px white;
+
+  /* Make it a flex container to center content */
+  display: flex;
+  justify-content: center; /* horizontal center */
+  align-items: center;
 }
 
 #modalImg {
-  max-width: 90vw;
-  max-height: 90vh;
-  width: auto;
-  height: auto;
+  max-width: 100vw;
+  max-height: 100vh;
+  width: 95vh;
+  height: 95vh;
   margin: auto auto 0 auto;
-  display: fixed;
+  position: fixed;
   border-radius: 8px;
   background: #222;
 }
