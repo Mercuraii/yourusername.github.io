@@ -82,6 +82,9 @@
         cursor: pointer;
         transition: background-color 0.3s ease;
         z-index: 1000;
+        text-decoration: none;
+        font-size: 16px;
+        display: inline-block;
       }
       #returnBtn:hover {
         background-color: #666;
@@ -92,7 +95,7 @@
     </style>
   </head>
   <body>
-    <button id="returnBtn" onclick="smartReturn()">Return</button>
+    <a id="returnBtn" href="https://jszolcek.github.io/index.html">Return</a>
     <!-- 3D Video Background Layer -->
     <video class="bg-3d" autoplay muted loop playsinline>
       <source src="videos/background.mp4" type="video/mp4" />
@@ -375,15 +378,6 @@
         .addEventListener("click", function (e) {
           if (e.target === this) closeModal();
         });
-      function smartReturn() {
-        const ref = document.referrer;
-        const here = window.location.href;
-        if (ref && ref !== here) {
-          window.history.back();
-        } else {
-          window.location.href = "https://jszolcek.github.io/index.html";
-        }
-      }
     </script>
   </body>
 </html>
