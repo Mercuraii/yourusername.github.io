@@ -29,10 +29,10 @@
         z-index: 10;
       }
       #imgModal {
-        position: absolute;
+        position: absolute; /* changed from fixed */
         left: 0;
-        width: 90vw;
-        height: 90vh;
+        width: 100vw;
+        height: 100vh;
         background: rgba(0, 0, 0, 0.95);
         z-index: 3000;
         border-radius: 10px;
@@ -51,8 +51,10 @@
       }
 
       #modalImg {
-        width: 90vw;
-        height: 90vh;
+        max-width: 90vw;
+        max-height: 90vh;
+        width: auto;
+        height: auto;
         border-radius: 8px;
         background: #222;
         display: none; /* hide until loaded */
@@ -238,7 +240,7 @@
                 alt="Pi-hole screenshot"
                 class="sandbox-img"
                 style="
-                  max-width: 400px;
+                  max-width: 90vw;
                   width: 100%;
                   margin: 1em 0;
                   border-radius: 8px;
@@ -267,6 +269,19 @@
               🔒 <b>Secured pfSense</b><br />Updated admin password and
               configured VPN settings.
             </li>
+            <img
+              src="https://raw.githubusercontent.com/jszolcek/Linux-Server-VM-Lab/refs/heads/main/images/pfSense.png"
+              alt="Pi-hole screenshot"
+              class="sandbox-img"
+              style="
+                max-width: 90vw;
+                width: 100%;
+                margin: 1em 0;
+                border-radius: 8px;
+                box-shadow: 0 2px 8px #000;
+                cursor: pointer;
+              "
+            />
           </ol>
         </section>
       </div>
