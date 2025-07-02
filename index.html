@@ -225,6 +225,55 @@
         background-color: #e3f2fd;
         color: #1976d2;
       }
+
+      /* --- Force all backgrounds transparent for full-page video effect --- */
+      body,
+      .background-wrapper,
+      .container,
+      .card,
+      .cert-card,
+      .certifications-section,
+      .training-skills-section,
+      .dropdown-menu,
+      .dropdown,
+      .cv-options,
+      .submenu,
+      .footer {
+        background: transparent !important;
+        background-color: transparent !important;
+        box-shadow: none !important;
+      }
+
+      /* Optional: add a glass effect for cards if desired */
+      .card,
+      .cert-card,
+      .dropdown-menu,
+      .cv-options,
+      .submenu {
+        backdrop-filter: blur(6px) saturate(120%);
+        -webkit-backdrop-filter: blur(6px) saturate(120%);
+      }
+
+      /* Remove any border or box-shadow that could obscure the video */
+      .card,
+      .cert-card,
+      .dropdown-menu,
+      .cv-options,
+      .submenu {
+        border: none !important;
+        box-shadow: none !important;
+      }
+
+      /* Ensure the video background is always fixed and behind everything */
+      .bg-3d {
+        position: fixed !important;
+        inset: 0 !important;
+        width: 100vw !important;
+        height: 100vh !important;
+        object-fit: cover !important;
+        z-index: -1000 !important;
+        pointer-events: none;
+      }
     </style>
   </head>
   <body>
@@ -305,11 +354,6 @@
                 >
                 <a href="Azure VNet and VM Deployment.html"
                   ><button>Azure &amp; Terraform VM Deployment</button></a
-                >
-                <a
-                  href="https://jszolcek.github.io/vm_sandbox.html"
-                  target="_blank"
-                  ><button>VirtualBox Sandbox Lab</button></a
                 >
               </div>
             </div>
