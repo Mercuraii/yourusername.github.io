@@ -778,7 +778,6 @@ body.light-theme p[style*="color: yellow"] {
 }
 
 #imgModal {
-  margin-top: -1vh;
   display: none;
   position: fixed;
   top: 0;
@@ -790,9 +789,16 @@ body.light-theme p[style*="color: yellow"] {
   border-radius: 10px;
   box-shadow: 0 0 20px white;
   cursor: pointer;
-  text-align: center;
-  overflow: auto;
+  margin-top: 0;
+  text-align: unset;
   padding: 0;
+
+  /* Add flexbox for centering */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  overflow: auto;
 }
 
 #modalImg {
