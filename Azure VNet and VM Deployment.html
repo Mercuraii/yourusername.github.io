@@ -338,7 +338,7 @@
     </script>
 
     <script>
-      // Modal functionality for bottom gallery images
+      // Modal functionality for bottom gallery images (synced with vm_sandbox.html)
       const galleryImages = document.querySelectorAll(".gallery-img");
       const imgModal = document.getElementById("imgModal");
       const modalImg = document.getElementById("modalImg");
@@ -347,32 +347,21 @@
         imgModal.style.display = "none";
         imgModal.style.top = null;
         modalImg.src = "";
-        modalImg.style.display = "none";
         window.removeEventListener("scroll", moveModalWithScroll);
       }
       function moveModalWithScroll() {
         imgModal.style.top = window.scrollY + "px";
       }
       galleryImages.forEach((img) => {
-        img.style.cursor = "pointer";
-        img.addEventListener("click", () => {
-          modalImg.style.display = "none"; // Hide image until loaded
+        img.addEventListener("click", function () {
+          modalImg.src = this.src;
           imgModal.style.display = "flex";
           imgModal.style.top = window.scrollY + "px";
-          modalImg.src = img.src;
           window.addEventListener("scroll", moveModalWithScroll);
         });
       });
-      // Show image only after it loads
-      modalImg.addEventListener("load", () => {
-        modalImg.style.display = "block";
-      });
-
-      // Hide modal on click anywhere inside modal
-      imgModal.addEventListener("click", () => {
-        imgModal.style.display = "none";
-        modalImg.src = "";
-        modalImg.style.display = "none";
+      imgModal.addEventListener("click", function (e) {
+        if (e.target === this) closeModal();
       });
     </script>
   </body>
