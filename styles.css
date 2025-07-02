@@ -802,8 +802,8 @@ body.light-theme p[style*="color: yellow"] {
 }
 
 #modalImg {
-  max-width: 100vw;
-  max-height: 100vh;
+  max-width: 90vw;
+  max-height: 90vh;
   width: 95vh;
   height: 95vh;
   margin: auto auto 0 auto;
