@@ -388,5 +388,17 @@
           if (e.target === this) closeModal();
         });
     </script>
+    <!-- Resize background video script -->
+    <script>
+      function resizeBgVideo() {
+        const video = document.querySelector(".bg-3d");
+        if (video) {
+          video.style.height =
+            Math.max(document.body.scrollHeight, window.innerHeight) + "px";
+        }
+      }
+      window.addEventListener("resize", resizeBgVideo);
+      window.addEventListener("DOMContentLoaded", resizeBgVideo);
+    </script>
   </body>
 </html>

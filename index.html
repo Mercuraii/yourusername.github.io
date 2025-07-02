@@ -243,7 +243,7 @@
     <video class="bg-3d" autoplay muted loop playsinline>
       <source src="videos/background.mp4" type="video/mp4" />
       <source src="videos/background.webm" type="video/webm" />
-      Your browser does not support the video tag.
+      Your browser does not support the background video tag.
     </video>
 
     <div class="background-wrapper">
@@ -648,13 +648,14 @@
     <!-- Resize background video script -->
     <script>
       function resizeBgVideo() {
-        const video = document.querySelector('.bg-3d');
+        const video = document.querySelector(".bg-3d");
         if (video) {
-          video.style.height = Math.max(document.body.scrollHeight, window.innerHeight) + 'px';
+          video.style.height =
+            Math.max(document.body.scrollHeight, window.innerHeight) + "px";
         }
       }
-      window.addEventListener('resize', resizeBgVideo);
-      window.addEventListener('DOMContentLoaded', resizeBgVideo);
+      window.addEventListener("resize", resizeBgVideo);
+      window.addEventListener("DOMContentLoaded", resizeBgVideo);
     </script>
   </body>
 </html>
