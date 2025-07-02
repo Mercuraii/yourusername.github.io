@@ -328,31 +328,32 @@
     </script>
 
     <script>
-      // Modal functionality for bottom gallery images
-      const galleryImages = document.querySelectorAll(".gallery-img");
-      const imgModal = document.getElementById("imgModal");
-      const modalImg = document.getElementById("modalImg");
-
-      galleryImages.forEach((img) => {
-        img.style.cursor = "pointer";
-        img.addEventListener("click", () => {
-          modalImg.style.display = "none"; // Hide image until loaded
-          imgModal.style.display = "block";
-          modalImg.src = img.src;
+      // Modal image logic (ported from vm_sandbox.html)
+      function closeModal() {
+        const modal = document.getElementById("imgModal");
+        modal.style.display = "none";
+        modal.style.top = null;
+        document.getElementById("modalImg").src = "";
+        window.removeEventListener("scroll", moveModalWithScroll);
+      }
+      function moveModalWithScroll() {
+        const modal = document.getElementById("imgModal");
+        modal.style.top = window.scrollY + "px";
+      }
+      document.querySelectorAll(".gallery-img").forEach((img) => {
+        img.addEventListener("click", function (e) {
+          const modal = document.getElementById("imgModal");
+          document.getElementById("modalImg").src = this.src;
+          modal.style.display = "flex";
+          modal.style.top = window.scrollY + "px";
+          window.addEventListener("scroll", moveModalWithScroll);
         });
       });
-
-      // Show image only after it loads
-      modalImg.addEventListener("load", () => {
-        modalImg.style.display = "block";
-      });
-
-      // Hide modal on click anywhere inside modal
-      imgModal.addEventListener("click", () => {
-        imgModal.style.display = "none";
-        modalImg.src = "";
-        modalImg.style.display = "none";
-      });
+      document
+        .getElementById("imgModal")
+        .addEventListener("click", function (e) {
+          if (e.target === this) closeModal();
+        });
     </script>
   </body>
 </html>
