@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My VM Network Sandbox</title>
+    <link rel="icon" type="image/png" sizes="96x96" href="images/favicon.png" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- 3D Video Background Layer -->
+    <video class="bg-3d" autoplay muted loop playsinline>
+      <source src="videos/background.mp4" type="video/mp4" />
+      <source src="videos/background.webm" type="video/webm" />
+      Your browser does not support the video tag.
+    </video>
+
+    <div class="background-wrapper">
+      <!-- Dark/Light Theme Toggle -->
+      <div class="theme-toggle-container">
+        <label class="switch">
+          <input type="checkbox" id="theme-toggle" />
+          <span class="slider"></span>
+        </label>
+        <span id="theme-icon" class="theme-icon">🌙</span>
+      </div>
+
+      <div class="container">
+        <section class="card full-width">
+          <h1>My VM Network Sandbox</h1>
+          <p>
+            Welcome to my VM Network Sandbox!<br />
+            This page is a placeholder for details, documentation, and resources
+            related to the VirtualBox/Linux Server Lab project.
+          </p>
+          <p>
+            <a
+              href="https://github.com/jszolcek/Linux-Server-VM-Lab/tree/main"
+              target="_blank"
+              class="button-link"
+            >
+              <button class="dropdown-button">View on GitHub</button>
+            </a>
+          </p>
+        </section>
+      </div>
+    </div>
+
+    <!-- Theme toggle & icon script -->
+    <script>
+      const themeToggle = document.getElementById("theme-toggle");
+      const themeIcon = document.getElementById("theme-icon");
+
+      function setTheme(isLight) {
+        if (isLight) {
+          document.body.classList.add("light-theme");
+          if (themeIcon) themeIcon.textContent = "☀️";
+        } else {
+          document.body.classList.remove("light-theme");
+          if (themeIcon) themeIcon.textContent = "🌙";
+        }
+      }
+
+      // Load theme from localStorage if available
+      if (themeToggle) {
+        const savedTheme = localStorage.getItem("theme");
+        if (savedTheme === "light") {
+          themeToggle.checked = true;
+          setTheme(true);
+        }
+
+        themeToggle.addEventListener("change", () => {
+          setTheme(themeToggle.checked);
+          localStorage.setItem("theme", themeToggle.checked ? "light" : "dark");
+        });
+      }
+    </script>
+  </body>
+</html>
