@@ -109,36 +109,24 @@
       .return-button:active {
         background-color: #888;
       }
-      /* Modal Styles */
+      /* Modal styles (synced with vm_sandbox.html) */
       #imgModal {
         display: none;
-        position: fixed;
-        top: 0;
+        position: absolute;
         left: 0;
         width: 100vw;
         height: 100vh;
-        background: rgba(0, 0, 0, 0.9);
-        z-index: 1000;
-        border-radius: 0;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
+        background: rgba(0, 0, 0, 0.95);
+        z-index: 2000;
         justify-content: center;
+        align-items: center;
       }
       #imgModal img {
-        max-width: 100vw;
-        max-height: 100vh;
+        max-width: 90vw;
+        max-height: 90vh;
         border-radius: 12px;
         box-shadow: 0 0 40px #000;
         background: #222;
-      }
-      .modal-content-wrapper {
-        position: relative;
-        z-index: 2;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
       }
       #imgModal:active,
       #imgModal .close {
@@ -261,40 +249,9 @@
     </p>
 
     <!-- Image Modal -->
-    <div
-      id="imgModal"
-      style="
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        background: rgba(0, 0, 0, 0.9);
-        z-index: 1000;
-        border-radius: 0;
-        cursor: pointer;
-        align-items: center;
-        justify-content: center;
-      "
-    >
-      <div class="modal-content-wrapper">
-        <button class="close" onclick="closeModal()">&times;</button>
-        <img
-          id="modalImg"
-          src=""
-          alt="Full Image"
-          style="
-            max-width: 100vw;
-            max-height: 100vh;
-            margin: auto;
-            display: block;
-            border-radius: 12px;
-            box-shadow: 0 0 40px #000;
-            background: #222;
-          "
-        />
-      </div>
+    <div id="imgModal">
+      <button class="close" onclick="closeModal()">&times;</button>
+      <img id="modalImg" src="" alt="Full Image" />
     </div>
 
     <!-- Carousel Script with Keyboard Support -->
@@ -386,15 +343,26 @@
       const imgModal = document.getElementById("imgModal");
       const modalImg = document.getElementById("modalImg");
 
+      function closeModal() {
+        imgModal.style.display = "none";
+        imgModal.style.top = null;
+        modalImg.src = "";
+        modalImg.style.display = "none";
+        window.removeEventListener("scroll", moveModalWithScroll);
+      }
+      function moveModalWithScroll() {
+        imgModal.style.top = window.scrollY + "px";
+      }
       galleryImages.forEach((img) => {
         img.style.cursor = "pointer";
         img.addEventListener("click", () => {
           modalImg.style.display = "none"; // Hide image until loaded
-          imgModal.style.display = "block";
+          imgModal.style.display = "flex";
+          imgModal.style.top = window.scrollY + "px";
           modalImg.src = img.src;
+          window.addEventListener("scroll", moveModalWithScroll);
         });
       });
-
       // Show image only after it loads
       modalImg.addEventListener("load", () => {
         modalImg.style.display = "block";
