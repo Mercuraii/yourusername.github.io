@@ -391,7 +391,7 @@
         img.addEventListener("click", function (e) {
           const modal = document.getElementById("imgModal");
           document.getElementById("modalImg").src = this.src;
-          modal.style.display = "fixed";
+          modal.style.display = "flex";
         });
       });
       document
@@ -399,6 +399,15 @@
         .addEventListener("click", function (e) {
           if (e.target === this) closeModal();
         });
+
+        // Close modal on ESC key press
+document.addEventListener("keydown", function (e) {
+  const modal = document.getElementById("imgModal");
+  if (e.key === "Escape" && modal.style.display === "flex") {
+    closeModal();
+  }
+});
+
     </script>
   </div>
   </body>
