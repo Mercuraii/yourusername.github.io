@@ -499,6 +499,7 @@ body.light-theme .footer p a {
   z-index: -1000;
   pointer-events: none;
   overflow: hidden;
+  display: flex;
 }
 
 .background-wrapper {
