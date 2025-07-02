@@ -6,6 +6,21 @@
     <title>My VM Network Sandbox</title>
     <link rel="icon" type="image/png" sizes="96x96" href="images/favicon.png" />
     <link rel="stylesheet" href="styles.css" />
+    <style>
+      /* Only for this page: make .bg-3d fixed and full viewport */
+      .bg-3d {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100vw !important;
+        height: 100vh !important;
+        min-width: 100vw !important;
+        min-height: 100vh !important;
+        object-fit: cover !important;
+        z-index: -1000 !important;
+        pointer-events: none !important;
+      }
+    </style>
   </head>
   <body>
     <!-- 3D Video Background Layer -->
