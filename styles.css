@@ -495,7 +495,7 @@ body.light-theme .footer p a {
   transform: scale(1.05);
 }
 
-/* 3D Video Background Layer: always covers viewport, even on scroll */
+/* 3D Video Background Layer: always covers viewport, even on scroll WORKING */
 .bg-3d {
   position: absolute;
   top: 0;
