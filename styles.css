@@ -489,7 +489,6 @@ body.light-theme .footer p a {
   transform: scale(1.05);
 }
 
-/* Revert .bg-3d to fixed, full viewport only */
 .bg-3d {
   position: fixed;
   inset: 0;
