@@ -489,11 +489,10 @@ body.light-theme .footer p a {
   transform: scale(1.05);
 }
 
-/* Make the background video always fixed and cover the entire viewport */
+/* Revert .bg-3d to fixed, full viewport only */
 .bg-3d {
   position: fixed;
-  top: 0;
-  left: 0;
+  inset: 0;
   width: 100vw;
   height: 100vh;
   min-width: 100vw;
@@ -504,23 +503,10 @@ body.light-theme .footer p a {
   pointer-events: none;
   overflow: hidden;
 }
-html,
-body {
-  min-height: 100vh;
-  height: auto;
-  width: 100vw;
-  overflow-x: hidden;
-}
-body {
-  background: transparent !important;
-}
-.background-wrapper,
-.container,
-.card,
-.cert-card,
-.footer {
-  background: transparent !important;
-  box-shadow: none !important;
+
+.background-wrapper {
+  position: relative;
+  min-height: 100%;
 }
 
 /* Carousel Styles */
