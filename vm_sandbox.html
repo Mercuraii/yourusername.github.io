@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My VM Network Sandbox</title>
+    <title>VM Network Sandbox</title>
     <link rel="icon" type="image/png" sizes="96x96" href="images/favicon.png" />
     <link rel="stylesheet" href="styles.css" />
     <!-- Style overrides for light theme text and large images -->
@@ -13,9 +13,8 @@
       body.light-theme .card * {
         color: #111 !important;
       }
-      /* Make images 3x larger (max-width: 1200px) */
       .card img.sandbox-img {
-        max-width: 1200px !important;
+        max-width: 1000px !important;
         width: 100% !important;
         height: auto !important;
         margin: 1em 0;
@@ -26,7 +25,7 @@
       }
       .card img.sandbox-img:hover {
         box-shadow: 0 0 40px 8px #2196f3;
-        transform: scale(1.07);
+        transform: scale(1.1);
         z-index: 10;
       }
       /* Modal styles */
@@ -70,7 +69,7 @@
     <video class="bg-3d" autoplay muted loop playsinline>
       <source src="videos/background.mp4" type="video/mp4" />
       <source src="videos/background.webm" type="video/webm" />
-      Your browser does not support the video tag.
+      Your browser does not support the background video tag.
     </video>
 
     <div class="background-wrapper">
@@ -85,11 +84,12 @@
 
       <div class="container">
         <section class="card full-width">
-          <h1>My VM Network Sandbox</h1>
+          <h1>VM Network Sandbox</h1>
           <p>
-            Welcome to my VM Network Sandbox!<br />
             This page is a placeholder for details, documentation, and resources
-            related to the VirtualBox/Linux Server Lab project.
+            related to the VirtualBox/Linux Server Lab project/s I've been
+            working on.
+            <br />
           </p>
           <p>
             <a
