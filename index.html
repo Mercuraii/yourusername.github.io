@@ -644,5 +644,29 @@
         menu.addEventListener("mouseleave", hideMenu);
       });
     </script>
+
+    <!-- Dynamic video background stretch script -->
+    <script>
+      function stretchBgVideo() {
+        const video = document.querySelector('.bg-3d');
+        if (!video) return;
+        // Set height to the greater of body or documentElement scrollHeight
+        const pageHeight = Math.max(
+          document.body.scrollHeight,
+          document.documentElement.scrollHeight
+        );
+        video.style.height = pageHeight + 'px';
+      }
+      // Initial stretch
+      window.addEventListener('DOMContentLoaded', stretchBgVideo);
+      // On resize
+      window.addEventListener('resize', stretchBgVideo);
+      // On DOM/content changes
+      const ro = new ResizeObserver(stretchBgVideo);
+      ro.observe(document.body);
+      // Optional: also observe main content wrapper if needed
+      const wrapper = document.querySelector('.background-wrapper');
+      if (wrapper) ro.observe(wrapper);
+    </script>
   </body>
 </html>
