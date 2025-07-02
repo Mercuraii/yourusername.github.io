@@ -40,14 +40,167 @@
     </header>
 
     <!-- Main Content -->
-    <main>
-      <!-- Cards, sections, content go here -->
-    </main>
+    <!-- 3D Video Background Layer -->
+    <video class="bg-3d" autoplay muted loop playsinline>
+      <source src="videos/background.mp4" type="video/mp4" />
+      <source src="videos/background.webm" type="video/webm" />
+      Your browser does not support the background video tag.
+    </video>
 
-    <!-- Footer -->
-    <footer class="footer">
-      <p>&copy; 2025 My Name. All rights reserved.</p>
-    </footer>
+    <div class="background-wrapper">
+      <div class="container">
+        <section class="card full-width">
+          <img
+            src="images/Profile.png"
+            alt="Portrait photo of Joe Szolcek"
+            class="profile-pic"
+          />
+          <h2>Hello and welcome to my portfolio,</h2>
+          <p>
+            I’m eagerly pursuing a career in IT support, bringing a passion for
+            troubleshooting, customer service, and expanding my IT knowledge.
+          </p>
+          <h2>
+            <a
+              href="https://www.linkedin.com/in/joe-szolcek/"
+              target="_blank"
+              class="linkedIn-link"
+            >
+              Joe Szolcek
+              <img
+                src="images/linkedin-icon.png"
+                alt="LinkedIn icon"
+                class="linkedIn-icon"
+              />
+            </a>
+          </h2>
+          <div class="button-group">
+            <a href="contact.html" target="_blank" class="button-link">
+              <button class="dropdown-button">Contact Me</button>
+            </a>
+
+            <!-- CV dropdown -->
+            <div class="dropdown cv-dropdown">
+              <button class="dropdown-button">Download My CV</button>
+              <div class="dropdown-menu cv-options">
+                <h4 class="dropdown-title">CV Format Options</h4>
+                <a href="files/Joe Szolcek-CV.pdf" download
+                  ><button>.PDF</button></a
+                >
+                <a href="files/JoeSzolcek-CV.doc" download
+                  ><button>.doc Word</button></a
+                >
+                <a href="files/JoeSzolcek-CV.odt" download
+                  ><button>.odt LibreOffice</button></a
+                >
+              </div>
+            </div>
+
+            <!-- Projects Dropdown -->
+            <div class="dropdown menu">
+              <button class="dropdown-button">Projects</button>
+              <div class="dropdown-menu submenu">
+                <a href="https://jszolcek.github.io/python.html"
+                  ><button>Habit Tracker Code</button></a
+                >
+                <a href="https://jszolcek.github.io/racing.html"
+                  ><button>Self-Driving Car Simulation</button></a
+                >
+                <a href="Azure VNet and VM Deployment.html"
+                  ><button>Azure &amp; Terraform VM Deployment</button></a
+                >
+                <a
+                  href="https://jszolcek.github.io/vm_sandbox.html"
+                  target="_blank"
+                  ><button>VirtualBox Sandbox Lab</button></a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="flex-cert-sections">
+            <!-- Certifications Section -->
+            <section class="certifications-section">
+              <h3>Certifications</h3>
+              <div class="certifications-row">
+                <!-- Network+ -->
+                <div class="cert-card">
+                  <div class="card-inner">
+                    <div class="card-front">
+                      <div class="cert-text">
+                        <h4>CompTIA Network+</h4>
+                        <p>
+                          Networking fundamentals, wired/wireless, security
+                          basics.
+                        </p>
+                      </div>
+                      <img
+                        src="images/networkplus.png"
+                        alt="Network+ Badge"
+                        class="cert-img"
+                      />
+                    </div>
+                    <div class="card-back">
+                      <a
+                        href="https://www.comptia.org/certifications/network"
+                        target="_blank"
+                      >
+                        <img
+                          src="images/networkplus.png"
+                          alt="Network+ Badge"
+                          class="cert-back-img"
+                        />
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <!-- A+ -->
+                <div class="cert-card">
+                  <div class="card-inner">
+                    <div class="card-front">
+                      <div class="cert-text">
+                        <h4>CompTIA A+</h4>
+                        <p>
+                          Hardware, software, troubleshooting, network
+                          fundamentals.
+                        </p>
+                      </div>
+                      <img
+                        src="images/aplus.png"
+                        alt="A+ Badge"
+                        class="cert-img"
+                      />
+                    </div>
+                    <div class="card-back">
+                      <a
+                        href="https://www.comptia.org/certifications/a"
+                        target="_blank"
+                      >
+                        <img
+                          src="images/aplus.png"
+                          alt="A+ Badge"
+                          class="cert-back-img"
+                        />
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <!-- Additional cert cards here... -->
+              </div>
+            </section>
+          </div>
+
+          <footer class="footer">
+            <p>
+              &copy; 2025 Joe's IT Portfolio |
+              <a href="https://www.linkedin.com/in/joe-szolcek/" target="_blank"
+                >LinkedIn</a
+              >
+            </p>
+          </footer>
+        </section>
+      </div>
+    </div>
 
     <!-- Scripts -->
     <script>
