@@ -781,13 +781,13 @@ body.light-theme p[style*="color: yellow"] {
   margin-top: -1vh;
   display: none;
   position: fixed;
-  top: 0;
-  left: 0;
+  top: 50%;
+  left: 50%;
   width: 100vw;
   height: 100vh;
   background: rgba(0, 0, 0, 0.95);
   z-index: 3000;
-  border-radius: 0;
+  border-radius: 10px;
   box-shadow: 0 0 20px white;
   cursor: pointer;
   text-align: center;
@@ -801,7 +801,7 @@ body.light-theme p[style*="color: yellow"] {
   width: auto;
   height: auto;
   margin: auto auto 0 auto;
-  display: block;
+  display: fixed;
   border-radius: 8px;
   background: #222;
 }
