@@ -495,16 +495,20 @@ body.light-theme .footer p a {
   transform: scale(1.05);
 }
 
+/* 3D Video Background Layer: always covers viewport, even on scroll */
 .bg-3d {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
-  height: 100%;
-  min-height: 100%;
+  height: 100vh;
+  min-width: 100vw;
+  min-height: 100vh;
   object-fit: cover;
   z-index: -1000;
   pointer-events: none;
+  /* Ensure video always covers the viewport, even on scroll */
+  transform: none !important;
 }
 
 .background-wrapper {
