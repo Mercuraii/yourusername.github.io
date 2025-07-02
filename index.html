@@ -1,150 +1,661 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Joe Szolcek. Entry-level IT professional with CompTIA A+, Network+ & ITIL4 certifications. Browse my IT CV and skills. Contact me today!"
+    />
+    <meta name="author" content="Joe Szolcek" />
+    <meta
+      name="keywords"
+      content="Joe Szolcek, IT, Portfolio, Azure, IT Support, Certifications, Experience, Qualifcations"
+    />
     <title>Joe Szolcek's IT Portfolio</title>
-    <link rel="icon" href="images/favicon.png" sizes="96x96" />
+    <link rel="icon" type="image/png" sizes="96x96" href="images/favicon.png" />
     <link rel="stylesheet" href="styles.css" />
     <style>
-      .dropdown-button {
-        background: #444;
-        color: #fff;
-        padding: 0.5rem 1rem;
+      /* Projects submenu styles */
+      .menu {
+        position: relative;
+        display: inline-block;
+        margin-left: 10px;
+      }
+
+      .menu-button {
+        background-color: #444;
+        color: white;
+        padding: 10px 20px;
+        cursor: pointer;
         border: none;
         border-radius: 8px;
-        cursor: pointer;
+        font-size: 1rem;
       }
-      .dropdown-menu {
+
+      .submenu {
         display: none;
         position: absolute;
-        background: #333;
-        min-width: 160px;
+        background-color: #333;
+        min-width: 200px;
+        z-index: 1;
         border-radius: 8px;
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
         margin-top: 5px;
+        top: 100%;
+        left: 0;
       }
-      .dropdown-menu.visible {
+
+      .submenu.visible {
         display: block;
       }
-      .dropdown-menu a {
-        display: block;
-        padding: 0.5rem;
-        color: #fff;
+
+      .submenu a {
+        color: white;
+        padding: 10px 15px;
         text-decoration: none;
+        display: block;
       }
-      .dropdown-menu a:hover {
-        background: #555;
+
+      .submenu a:hover {
+        background-color: #555;
       }
+
+      /* Removed .menu:hover .submenu to control visibility via JS */
+
+      /* CV dropdown styles */
+      .cv-dropdown {
+        position: relative;
+        display: inline-block;
+        margin-left: 10px;
+      }
+
+      .cv-dropdown button {
+        background-color: #444;
+        color: white;
+        padding: 10px 20px;
+        cursor: pointer;
+        border: none;
+        border-radius: 8px;
+        font-size: 1rem;
+      }
+
+      .cv-options {
+        display: none;
+        position: absolute;
+        background-color: #333;
+        min-width: 160px;
+        z-index: 1;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+        margin-top: 5px;
+        top: 100%;
+        left: 0;
+      }
+
+      .cv-options.visible {
+        display: block;
+      }
+
+      .cv-options a button {
+        width: 100%;
+        background-color: transparent;
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        text-align: left;
+        cursor: pointer;
+        border-radius: 0;
+      }
+
+      .cv-options a button:hover {
+        background-color: #555;
+      }
+
+      /* Theme toggle styles */
       .theme-toggle-container {
         position: absolute;
-        top: 1rem;
-        right: 1rem;
+        top: 20px;
+        right: 20px;
         display: flex;
         align-items: center;
+        cursor: pointer;
       }
+
       .switch {
         position: relative;
-        width: 50px;
-        height: 24px;
-        margin-right: 0.5rem;
+        display: inline-block;
+        width: 60px;
+        height: 34px;
+        margin-right: 10px;
       }
+
       .switch input {
         opacity: 0;
         width: 0;
         height: 0;
       }
+
       .slider {
         position: absolute;
+        cursor: pointer;
         top: 0;
         left: 0;
         right: 0;
         bottom: 0;
-        background: #ccc;
+        background-color: #ccc;
         transition: 0.4s;
-        border-radius: 24px;
+        border-radius: 34px;
       }
+
       .slider:before {
-        content: "";
         position: absolute;
-        height: 18px;
-        width: 18px;
-        left: 3px;
-        bottom: 3px;
-        background: #fff;
+        content: "";
+        height: 26px;
+        width: 26px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
         border-radius: 50%;
         transition: 0.4s;
       }
+
       input:checked + .slider {
-        background: #2196f3;
+        background-color: #2196f3;
       }
+
       input:checked + .slider:before {
         transform: translateX(26px);
+      }
+
+      .theme-icon {
+        font-size: 1.5rem;
+        transition: color 0.4s;
+      }
+
+      body.light-theme {
+        background-color: #f4f4f9;
+        color: #333;
+      }
+
+      body.light-theme .card {
+        background-color: #fff;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      body.light-theme .cert-card {
+        background-color: #fff;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      body.light-theme .button-group a {
+        background-color: #2196f3;
+        color: white;
+      }
+
+      body.light-theme .button-group a:hover {
+        background-color: #1976d2;
+      }
+
+      body.light-theme footer {
+        background-color: #333;
+        color: white;
+      }
+
+      body.light-theme .theme-icon {
+        color: #2196f3;
+      }
+
+      /* Match dropdown backgrounds and text in light mode */
+      body.light-theme .cv-options,
+      body.light-theme .submenu {
+        background-color: #fff;
+        color: #222;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      }
+
+      body.light-theme .cv-options a button,
+      body.light-theme .submenu a {
+        color: #222;
+        background: transparent;
+      }
+
+      body.light-theme .cv-options a button:hover,
+      body.light-theme .submenu a:hover {
+        background-color: #e3f2fd;
+        color: #1976d2;
+      }
+
+      html,
+      body {
+        min-height: 100vh;
+        height: 100%;
+        width: 100vw;
+        overflow-x: hidden;
+      }
+      body {
+        position: relative;
       }
     </style>
   </head>
   <body>
+    <!-- 3D Video Background Layer -->
     <video class="bg-3d" autoplay muted loop playsinline>
       <source src="videos/background.mp4" type="video/mp4" />
       <source src="videos/background.webm" type="video/webm" />
+      Your browser does not support the background video tag.
     </video>
 
-    <div class="theme-toggle-container">
-      <label class="switch"
-        ><input type="checkbox" id="theme-toggle" /><span class="slider"></span
-      ></label>
-      <span id="theme-icon">🌙</span>
-    </div>
-
-    <div class="container">
-      <!-- header card... -->
-      <div class="button-group">
-        <a href="contact.html"
-          ><button class="dropdown-button">Contact Me</button></a
-        >
-        <div class="dropdown">
-          <button class="dropdown-button">Download My CV</button>
-          <div class="dropdown-menu">
-            <a href="files/Joe Szolcek-CV.pdf" download>.PDF</a>
-            <a href="files/JoeSzolcek-CV.doc" download>.DOC</a>
-            <a href="files/JoeSzolcek-CV.odt" download>.ODT</a>
-          </div>
-        </div>
-        <div class="dropdown">
-          <button class="dropdown-button">Projects</button>
-          <div class="dropdown-menu">
-            <!-- links -->
-          </div>
-        </div>
+    <div class="background-wrapper">
+      <!-- Dark/Light Theme Toggle -->
+      <div class="theme-toggle-container">
+        <label class="switch">
+          <input type="checkbox" id="theme-toggle" />
+          <span class="slider"></span>
+        </label>
+        <span id="theme-icon" class="theme-icon">🌙</span>
       </div>
-      <!-- rest of content -->
+
+      <div class="container">
+        <section class="card full-width">
+          <img
+            src="images/Profile.png"
+            alt="Portrait photo of Joe Szolcek"
+            class="profile-pic"
+          />
+          <h2>Hello and welcome to my portfolio,</h2>
+          <p>
+            I’m eagerly pursuing a career in IT support, bringing a passion for
+            troubleshooting, customer service, and expanding my IT knowledge.
+          </p>
+          <h2>
+            <a
+              href="https://www.linkedin.com/in/joe-szolcek/"
+              target="_blank"
+              class="linkedin-link"
+            >
+              Joe Szolcek
+              <img
+                src="images/linkedin-icon.png"
+                alt="LinkedIn icon"
+                class="linkedin-icon"
+              />
+            </a>
+          </h2>
+          <div class="button-group">
+            <a href="contact.html" target="_blank" class="button-link">
+              <button class="dropdown-button">Contact Me</button>
+            </a>
+
+            <!-- CV dropdown -->
+            <div class="dropdown">
+              <button class="dropdown-button">Download My CV</button>
+              <div class="dropdown-menu">
+                <h4 class="dropdown-title">CV Format Options</h4>
+                <a href="files/Joe Szolcek-CV.pdf" download
+                  ><button>.PDF</button></a
+                >
+                <a href="files/JoeSzolcek-CV.doc" download
+                  ><button>.doc Word</button></a
+                >
+                <a href="files/JoeSzolcek-CV.odt" download
+                  ><button>.odt LibreOffice</button></a
+                >
+              </div>
+            </div>
+
+            <!-- Projects Dropdown -->
+            <div class="dropdown">
+              <button class="dropdown-button">Projects</button>
+              <div class="dropdown-menu">
+                <a href="https://jszolcek.github.io/python.html"
+                  ><button>Habit Tracker Code</button></a
+                >
+                <a href="https://jszolcek.github.io/racing.html"
+                  ><button>Self-Driving Car Simulation</button></a
+                >
+                <a href="Azure VNet and VM Deployment.html"
+                  ><button>Azure &amp; Terraform VM Deployment</button></a
+                >
+                <a
+                  href="https://jszolcek.github.io/vm_sandbox.html"
+                  target="_blank"
+                  ><button>VirtualBox Sandbox Lab</button></a
+                >
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <div class="flex-cert-sections">
+          <!-- Certifications Section -->
+          <section class="certifications-section">
+            <h3>Certifications</h3>
+            <div class="certifications-row">
+              <!-- Network+ -->
+              <div class="cert-card">
+                <div class="card-inner">
+                  <div class="card-front">
+                    <div class="cert-text">
+                      <h4>CompTIA Network+</h4>
+                      <p>
+                        Networking fundamentals, wired/wireless, security
+                        basics.
+                      </p>
+                    </div>
+                    <img
+                      src="images/networkplus.png"
+                      alt="Network+ Badge"
+                      class="cert-img"
+                    />
+                  </div>
+                  <div class="card-back">
+                    <a
+                      href="https://www.comptia.org/certifications/network"
+                      target="_blank"
+                    >
+                      <img
+                        src="images/networkplus.png"
+                        alt="Network+ Badge"
+                        class="cert-back-img"
+                      />
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- A+ -->
+              <div class="cert-card">
+                <div class="card-inner">
+                  <div class="card-front">
+                    <div class="cert-text">
+                      <h4>CompTIA A+</h4>
+                      <p>
+                        Hardware, software, troubleshooting, network
+                        fundamentals.
+                      </p>
+                    </div>
+                    <img
+                      src="images/aplus.png"
+                      alt="A+ Badge"
+                      class="cert-img"
+                    />
+                  </div>
+                  <div class="card-back">
+                    <a
+                      href="https://www.comptia.org/certifications/a"
+                      target="_blank"
+                    >
+                      <img
+                        src="images/aplus.png"
+                        alt="A+ Badge"
+                        class="cert-back-img"
+                      />
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- AZ-900 -->
+              <div class="cert-card">
+                <div class="card-inner">
+                  <div class="card-front">
+                    <div class="cert-text">
+                      <h4>AZ-900</h4>
+                      <p>
+                        Cloud concepts, core Azure services, management &amp;
+                        governance.
+                      </p>
+                    </div>
+                    <img
+                      src="images/az900.png"
+                      alt="AZ-900 Badge"
+                      class="cert-img"
+                    />
+                  </div>
+                  <div class="card-back">
+                    <a
+                      href="https://learn.microsoft.com/en-us/certifications/azure-fundamentals/"
+                      target="_blank"
+                    >
+                      <img
+                        src="images/az900.png"
+                        alt="AZ-900 Badge"
+                        class="cert-back-img"
+                      />
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- ITIL 4 -->
+              <div class="cert-card">
+                <div class="card-inner">
+                  <div class="card-front">
+                    <div class="cert-text">
+                      <h4>ITIL 4 Foundation</h4>
+                      <p>
+                        Service management, four dimensions, guiding principles.
+                      </p>
+                    </div>
+                    <img
+                      src="images/itil4-badge.png"
+                      alt="ITIL 4 Badge"
+                      class="cert-img"
+                    />
+                  </div>
+                  <div class="card-back">
+                    <a
+                      href="https://www.axelos.com/certifications/itil-certifications/itil-foundation"
+                      target="_blank"
+                    >
+                      <img
+                        src="images/itil4-badge.png"
+                        alt="ITIL 4 Badge"
+                        class="cert-back-img"
+                      />
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Training & Skills Section -->
+          <section class="training-skills-section">
+            <h3>Training & Skills</h3>
+            <div class="certifications-row">
+              <!-- Customer Support -->
+              <div class="cert-card self-study">
+                <div class="card-inner">
+                  <div class="card-front">
+                    <div class="cert-text">
+                      <h4>Customer Support &amp; Service</h4>
+                      <p>
+                        Three years of client support experience via email,
+                        phone, in-person.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Network Troubleshooting -->
+              <div class="cert-card">
+                <div class="card-inner">
+                  <div class="card-front">
+                    <div class="cert-text">
+                      <h4>Network Troubleshooting</h4>
+                      <p>
+                        Diagnosing TCP/IP, DHCP, VLAN, routing connectivity
+                        issues.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Infrastructure -->
+              <div class="cert-card">
+                <div class="card-inner">
+                  <div class="card-front">
+                    <div class="cert-text">
+                      <h4>Infrastructure &amp; Configuration</h4>
+                      <p>
+                        Active Directory, virtualization, hardware upgrades
+                        &amp; maintenance.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- IT Security -->
+              <div class="cert-card">
+                <div class="card-inner">
+                  <div class="card-front">
+                    <div class="cert-text">
+                      <h4>IT Security &amp; Firewalls</h4>
+                      <p>
+                        VPNs, firewall setup, network security best practices.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Monitoring -->
+              <div class="cert-card">
+                <div class="card-inner">
+                  <div class="card-front">
+                    <div class="cert-text">
+                      <h4>Monitoring &amp; Documentation</h4>
+                      <p>
+                        Network monitoring tools, ticketing, IT documentation
+                        skills.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Scripting -->
+              <div class="cert-card">
+                <div class="card-inner">
+                  <div class="card-front">
+                    <div class="cert-text">
+                      <h4>Scripting &amp; Automation</h4>
+                      <p>
+                        Pursuing scripting for automation and efficiency
+                        improvements.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <footer class="footer">
+          <p>
+            &copy; 2025 Joe's IT Portfolio |
+            <a href="https://www.linkedin.com/in/joe-szolcek/" target="_blank"
+              >LinkedIn</a
+            >
+          </p>
+        </footer>
+      </div>
     </div>
 
+    <!-- Delayed dropdown script -->
     <script>
-      document.querySelectorAll(".dropdown").forEach((drop) => {
-        const menu = drop.querySelector(".dropdown-menu");
-        let t;
-        drop.addEventListener("mouseenter", () => {
-          clearTimeout(t);
+      function setupDelayedDropdown(dropdownSelector, submenuSelector) {
+        const dropdown = document.querySelector(dropdownSelector);
+        const submenu = dropdown.querySelector(submenuSelector);
+        let timer;
+
+        dropdown.addEventListener("mouseenter", () => {
+          clearTimeout(timer);
+          submenu.classList.add("visible");
+        });
+
+        dropdown.addEventListener("mouseleave", () => {
+          timer = setTimeout(() => {
+            submenu.classList.remove("visible");
+          }, 1000); // 1 second delay
+        });
+      }
+
+      setupDelayedDropdown(".cv-dropdown", ".cv-options");
+      setupDelayedDropdown(".menu", ".submenu");
+    </script>
+
+    <!-- Theme toggle & icon script -->
+    <script>
+      const themeToggle = document.getElementById("theme-toggle");
+      const themeIcon = document.getElementById("theme-icon");
+
+      function setTheme(isLight) {
+        if (isLight) {
+          document.body.classList.add("light-theme");
+          if (themeIcon) themeIcon.textContent = "☀️";
+        } else {
+          document.body.classList.remove("light-theme");
+          if (themeIcon) themeIcon.textContent = "🌙";
+        }
+      }
+
+      // Load theme from localStorage if available
+      if (themeToggle) {
+        const savedTheme = localStorage.getItem("theme");
+        if (savedTheme === "light") {
+          themeToggle.checked = true;
+          setTheme(true);
+        }
+
+        themeToggle.addEventListener("change", () => {
+          setTheme(themeToggle.checked);
+          localStorage.setItem("theme", themeToggle.checked ? "light" : "dark");
+        });
+      }
+    </script>
+
+    <!-- Dropdown hover delay logic for all .dropdown menus -->
+    <script>
+      document.querySelectorAll(".dropdown").forEach((dropdown) => {
+        let timer;
+        const menu = dropdown.querySelector(".dropdown-menu");
+
+        function showMenu() {
+          clearTimeout(timer);
           menu.classList.add("visible");
-        });
-        drop.addEventListener("mouseleave", () => {
-          t = setTimeout(() => menu.classList.remove("visible"), 800);
-        });
+        }
+
+        function hideMenu() {
+          timer = setTimeout(() => {
+            menu.classList.remove("visible");
+          }, 2000); // 2 seconds
+        }
+
+        dropdown.addEventListener("mouseenter", showMenu);
+        dropdown.addEventListener("mouseleave", hideMenu);
+        menu.addEventListener("mouseenter", showMenu);
+        menu.addEventListener("mouseleave", hideMenu);
       });
-      const toggle = document.getElementById("theme-toggle");
-      const icon = document.getElementById("theme-icon");
-      const apply = (light) => {
-        document.body.classList.toggle("light-theme", light);
-        icon.textContent = light ? "☀️" : "🌙";
-      };
-      localStorage.getItem("theme") === "light" &&
-        ((toggle.checked = true), apply(true));
-      toggle.addEventListener("change", () => {
-        apply(toggle.checked);
-        localStorage.setItem("theme", toggle.checked ? "light" : "dark");
-      });
+    </script>
+
+    <!-- Resize background video script -->
+    <script>
+      function resizeBgVideo() {
+        const video = document.querySelector(".bg-3d");
+        if (video) {
+          video.style.height =
+            Math.max(document.body.scrollHeight, window.innerHeight) + "px";
+        }
+      }
+      window.addEventListener("resize", resizeBgVideo);
+      window.addEventListener("DOMContentLoaded", resizeBgVideo);
     </script>
   </body>
 </html>
