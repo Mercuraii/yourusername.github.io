@@ -1,417 +1,93 @@
 /* styles.css */
-
-/* Reset & Base Styles */
+/* Base styles */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-
-html,
 body {
-  height: 100%;
+  font-family: Arial, sans-serif;
+  background-color: #1a1a1a;
+  color: #f0f0f0;
+  min-height: 100vh;
+  position: relative;
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
-/* Base Styles (Dark Theme by Default) */
-body {
-  perspective: 800px; /* add 3D perspective */
-  background-color: #000; /* solid black behind BG image */
-  color: #fff;
-  font-family: sans-serif;
-  transition: background-color 0.3s, color 0.3s;
-  max-width: 100vw; /* Prevent body from going beyond the viewport width */
-  overflow-x: hidden; /* Hide horizontal overflow */
-  height: 100%;
-}
-
-/* Light Theme Styles */
-body.light-theme {
-  background-color: #fff; /* solid white behind BG image */
-  color: #000;
-}
-
-/* Theme Toggle Container */
-.theme-toggle-container {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  z-index: 100;
-  overflow: hidden;
+/* Header & Navigation */
+.nav-bar {
   display: flex;
-  align-items: center; /* Ensures items are vertically centered */
-  gap: 0.5rem; /* Optional: adds space between slider and icon */
-}
-
-/* Theme Toggle Button */
-.theme-toggle-btn {
-  background-color: rgba(0, 0, 0, 0.7);
-  color: #fff;
-  border: none;
-  padding: 10px 15px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 18px;
-}
-
-.theme-toggle-btn:hover {
-  background-color: rgba(0, 0, 0, 0.9);
-}
-
-/* Links */
-.linkedin-link {
-  color: white;
-  text-decoration: underline;
-}
-.linkedin-link:hover {
-}
-.back-link {
-  color: #2400ef;
-  text-decoration: underline;
-  display: inline-block;
-  margin-top: 10px;
-  font-weight: bold;
-}
-.back-link:hover {
-  color: #00c8ff;
-}
-
-/* Container */
-.container {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 20px;
-}
-
-/* Card Components */
-.card {
-  background: rgba(0, 0, 0, 0.5);
-  border: 1px solid #444;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-  padding: 20px;
-  margin-bottom: 30px;
-}
-
-/* Full-width Utility */
-.full-width {
-  width: 100%;
-}
-
-/* Profile Picture */
-.profile-pic {
-  display: block;
-  margin: 0 auto 20px;
-  border-radius: 50%;
-  width: 200px;
-  height: 200px;
-  object-fit: cover;
-  object-position: center -10%;
-}
-
-/* Buttons */
-button {
-  background: #454548;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-weight: bold;
-}
-button:hover {
-  background: #06007e;
-}
-.button-group {
-  display: flex;
-  gap: 15px;
-  justify-content: center;
   align-items: center;
-  position: relative;
-  margin-top: 15px;
+  padding: 20px;
+  background-color: #222;
 }
-
-.button-link {
-  display: inline-block;
-}
-
-.button-link .dropdown-button {
-  width: 200px; /* Match dropdown button width */
-  text-align: center;
-  padding: 10px 20px;
-  border-radius: 8px;
-  font-size: 1rem;
-  background-color: #444;
+.nav-bar .logo {
+  font-size: 1.5rem;
   color: #fff;
-  border: none;
-  cursor: pointer;
-  transition: background 0.2s, color 0.2s;
-}
-
-.button-link .dropdown-button:hover {
-  background-color: #06007e;
-  color: #fff;
-}
-
-/* Ensure dropdown buttons have the same width */
-.dropdown-button {
-  width: 200px;
-  text-align: center;
-}
-
-/* CV Dropdown */
-.cv-dropdown {
-  position: relative;
-  display: inline-block;
-}
-.cv-options {
-  display: none;
-  flex-direction: column;
-  position: absolute;
-  top: 0;
-  left: 110%;
-  background: rgba(0, 0, 0, 0.5);
-  padding: 10px;
-  border: 1px solid #444;
-  border-radius: 5px;
-  gap: 8px;
-  z-index: 10;
-  transition: all 0.3s ease-in-out;
-}
-.cv-options.visible,
-.cv-dropdown:hover .cv-options {
-  display: flex;
-}
-.cv-title {
-  text-decoration: underline;
-  font-size: 1rem;
-  color: #fff;
-  margin-bottom: 5px;
-}
-
-/* Unify dropdown menu styles for both dark and light mode */
-.cv-options,
-.submenu {
-  background-color: #333;
-  color: #fff;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
-  border-radius: 8px;
-  min-width: 200px;
-  font-size: 1rem;
-  font-family: inherit;
-  padding: 0;
-  margin-top: 5px;
-  z-index: 10;
-}
-
-.cv-options a button,
-.submenu a {
-  display: block;
-  width: 100%;
-  background: transparent;
-  color: #fff;
-  padding: 10px 15px;
-  border: none;
-  text-align: left;
-  cursor: pointer;
-  border-radius: 0;
-  font-size: 1rem;
-  font-family: inherit;
-  transition: background 0.2s, color 0.2s;
-  outline: none;
   text-decoration: none;
 }
 
-.cv-options a button:hover,
-.submenu a:hover {
-  background-color: #555;
-  color: #00eaff;
+.menu,
+.cv-dropdown {
+  position: relative;
+  margin-left: 20px;
 }
-
-/* Light Theme Overrides */
-body.light-theme .cv-options,
-body.light-theme .submenu {
-  background-color: #fff !important;
-  color: #222 !important;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-}
-
-body.light-theme .cv-options a button,
-body.light-theme .submenu a {
-  color: #222 !important;
-  background: transparent !important;
-}
-
-body.light-theme .cv-options a button:hover,
-body.light-theme .submenu a:hover {
-  background-color: #ffffff !important;
-  color: #ffffff !important;
-}
-
-/* Section Headers */
-.certifications-section h3,
-.training-skills-section h3 {
-  font-size: 1.4rem;
-  color: #fff; /* Always white in both dark and light modes */
-  margin-bottom: 15px;
-  transition: color 0.3s;
-}
-
-/* Cards Row */
-.certifications-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 30px;
-  margin-bottom: 30px;
-}
-
-/* Certificate & Skill Cards */
-.cert-card {
-  width: 48%;
-  height: 200px;
+.menu-button {
+  background-color: #444;
+  color: white;
+  padding: 10px 20px;
+  cursor: pointer;
+  border: none;
   border-radius: 8px;
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  padding: 10px; /* Prevent text from sticking to edges */
-  box-sizing: border-box; /* Ensure padding/borders are inside the width */
-}
-.certifications-section .cert-card {
-  background: rgba(1, 51, 202, 0.489);
-  border: 1px solid #444;
-}
-.training-skills-section .cert-card {
-  background: rgba(0, 134, 0, 0.489);
-  border: 1px solid #444;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  font-size: 1rem;
 }
 
-/* Fix issue with absolute positioning and text flow */
-.card-inner {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-
-/* Flip Effect for Certifications Only */
-.certifications-section .cert-card .card-inner {
-  transition: transform 2s;
-  transform-style: preserve-3d;
-}
-.certifications-section .cert-card:hover .card-inner {
-  transform: rotateY(180deg);
-}
-
-/* Inner Card Faces */
-.card-front,
-.card-back {
+.submenu,
+.cv-options {
+  display: none;
   position: absolute;
-  width: 100%;
-  height: 100%;
-  padding: 10px 15px;
-  backface-visibility: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-}
-.card-front {
-  background: transparent;
-}
-.card-back {
-  background: #222;
-  transform: rotateY(180deg);
-  justify-content: center;
-}
-
-/* Text inside cards */
-.cert-text {
-  flex: 1;
-  margin-right: 20px;
-}
-.cert-card h4 {
-  font-size: 1.4rem;
-  margin-bottom: 8px;
-}
-.cert-card p {
-  font-size: 1.1rem;
-}
-.cert-img,
-.cert-back-img {
-  width: 140px;
-  height: auto;
-  border-radius: 4px;
-}
-
-/* Light-mode overrides for cards & links */
-body.light-theme .card,
-body.light-theme .cert-card {
-  background: #fff !important;
-  border-color: #ccc !important;
-  color: #000;
-}
-body.light-theme .card h2,
-body.light-theme .card h3,
-body.light-theme .card h4,
-body.light-theme .card p,
-body.light-theme .cert-card .cert-text h4,
-body.light-theme .cert-card .cert-text p {
-  color: #000 !important;
-}
-body.light-theme .linkedin-link,
-body.light-theme .linkedin-link:hover {
-  color: #000 !important;
-}
-body.light-theme .certifications-section h3,
-body.light-theme .training-skills-section h3 {
-  color: #fff !important; /* Keep white in both themes */
-}
-body:not(.light-theme) .certifications-section h3,
-body:not(.light-theme) .training-skills-section h3 {
-  color: #fff !important; /* Keep white in both themes */
-}
-
-/* Footer stays white in light mode */
-body.light-theme .footer p,
-body.light-theme .footer p a {
-  color: #fff !important;
-}
-
-/* Contact Grid */
-.contact-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 30px;
-  margin-top: 30px;
-}
-.contact-card {
-  background: rgba(0, 0, 0, 0.5);
-  border: 1px solid #444;
+  background-color: #333;
+  min-width: 200px;
+  z-index: 1;
   border-radius: 8px;
-  padding: 20px;
-  text-align: center;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-}
-.contact-card h3 {
-  color: #fff;
-  margin-bottom: 15px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  margin-top: 5px;
+  top: 100%;
+  left: 0;
 }
 
-/* Toggle Switch */
+.submenu.visible,
+.cv-options.visible {
+  display: block;
+}
+
+.submenu a,
+.cv-options a button {
+  color: white;
+  padding: 10px 15px;
+  text-decoration: none;
+  display: block;
+  background: transparent;
+  width: 100%;
+  text-align: left;
+}
+.submenu a:hover,
+.cv-options a button:hover {
+  background-color: #555;
+}
+
+/* Theme Toggle */
+.theme-toggle-container {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
 .switch {
   position: relative;
   display: inline-block;
-  width: 50px;
-  height: 28px;
+  width: 60px;
+  height: 34px;
+  margin-right: 10px;
 }
 .switch input {
   opacity: 0;
@@ -427,344 +103,49 @@ body.light-theme .footer p a {
   bottom: 0;
   background-color: #ccc;
   transition: 0.4s;
-  border-radius: 28px;
+  border-radius: 34px;
 }
 .slider:before {
   position: absolute;
   content: "";
-  height: 22px;
-  width: 22px;
-  left: 3px;
-  bottom: 3px;
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
   background-color: white;
-  transition: 0.4s;
   border-radius: 50%;
+  transition: 0.4s;
 }
-.switch input:checked + .slider {
+input:checked + .slider {
   background-color: #2196f3;
 }
-.switch input:checked + .slider:before {
-  transform: translateX(22px);
+input:checked + .slider:before {
+  transform: translateX(26px);
 }
-
-#imageGallery {
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-  max-width: none;
-  margin: 2rem auto;
-  width: 95vw;
-}
-
-#imageGallery figure {
-  flex: 1;
-  color: #000000;
-  text-align: center;
-  margin: 0;
-  aspect-ratio: 16/10;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-}
-
-#imageGallery img {
-  width: 100%;
-  height: 400px;
-  object-fit: cover;
-  border-radius: 8px;
-  display: block;
-}
-
-.gallery-img {
-  width: 100%;
-  height: 400px;
-  object-fit: cover;
-  border-radius: 2px;
-  box-shadow: 0 0 15px 8px rgba(255, 255, 255, 0.6),
-    0 0 20px 4px rgba(255, 255, 255, 0.4);
-  display: block;
-  transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-    transform 0.3s cubic-bezier(0.4, 0, 0.2, 0.8);
-}
-
-.gallery-img:hover {
-  box-shadow: 0 0 60px 10px rgba(255, 255, 255, 1),
-    0 0 60px 16px rgba(255, 255, 255, 0.6);
-  transform: scale(1.05);
-}
-
-/* 3D Video Background Layer: always covers viewport, even on scroll WORKING */
-.bg-3d {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  min-width: 100vw;
-  min-height: 100vh;
-  object-fit: cover;
-  z-index: -1000;
-  pointer-events: none;
-}
-
-.background-wrapper {
-  position: relative;
-  min-height: 100%;
-}
-
-/* Carousel Styles */
-.carousel-container {
-  position: relative;
-  width: 100vw;
-  max-width: 100vw;
-  left: 50%;
-  right: 50%;
-  transform: translateX(-50%);
-  overflow-x: hidden;
-  overflow-y: visible;
-  border-radius: 1rem;
-  box-shadow: none;
-  padding-bottom: 2rem;
-}
-
-.carousel-container:hover {
-  box-shadow: 0 0 60px 10px rgba(255, 255, 255, 1),
-    0 0 60px 16px rgba(255, 255, 255, 0.6);
-  transform: translateX(-50%) scale(1.05);
-  transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-    transform 0.3s cubic-bezier(0.4, 0, 0.2, 0.8);
-}
-
-.carousel-slide {
-  width: 100vw;
-  max-width: 100vw;
-  min-width: 100vw;
-  height: 60vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: center;
-  background: #000;
-  border-radius: 1rem;
-  overflow: hidden;
-  position: relative;
-}
-
-.carousel-slide img {
-  width: 100%;
-  flex: 1 1 0;
-  object-fit: contain;
-  background: #000;
-  display: block;
-  margin: 0 auto;
-}
-
-.carousel-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  width: 100%;
-  height: 100%;
-}
-
-.carousel-content img {
-  max-width: 100%;
-  max-height: 80%;
-  object-fit: contain;
-  background: #000; /* ensures black bars if image doesn't fill */
-  display: block;
-  margin: 0 auto;
-}
-
-.slide-caption {
-  width: 100%;
-  color: #fff;
+.theme-icon {
   font-size: 1.5rem;
-  text-align: center;
-  background: rgba(0, 0, 0, 0.6);
-  padding: 1rem 0 0.5rem 0;
-  min-height: 2.5em;
-  box-sizing: border-box;
-  transition: color 0.3s ease;
-}
-
-/* New Dropdown Styles */
-.dropdown {
-  position: relative;
-  display: inline-block;
-  margin-left: 10px;
-}
-
-.dropdown-button {
-  background-color: #444;
-  color: white;
-  padding: 10px 20px;
-  cursor: pointer;
-  border: none;
-  border-radius: 8px;
-  font-size: 1rem;
-}
-
-.dropdown-menu {
-  display: none;
-  position: absolute;
-  background-color: #333;
-  min-width: 200px;
-  z-index: 10;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
-  margin-top: 5px;
-  top: 100%;
-  left: 0;
-  flex-direction: column;
-  padding: 0;
-}
-
-.dropdown:hover .dropdown-menu,
-.dropdown-menu.visible {
-  display: flex;
-}
-
-.dropdown-menu a button {
-  display: block;
-  width: 100%;
-  background: transparent;
-  color: #fff;
-  padding: 10px 15px;
-  border: none;
-  text-align: left;
-  cursor: pointer;
-  border-radius: 0;
-  font-size: 1rem;
-  font-family: inherit;
-  transition: background 0.2s, color 0.2s;
-  outline: none;
-  text-decoration: none;
-}
-
-.dropdown-menu a button:hover {
-  background-color: #555;
-  color: #fdfdfd;
-}
-
-.dropdown-title {
-  text-decoration: underline;
-  font-size: 1rem;
-  color: #fff;
-  margin: 10px 0 5px 15px;
+  transition: color 0.4s;
 }
 
 /* Light Theme Overrides */
-body.light-theme .dropdown-menu {
-  background-color: #fff !important;
-  color: #222 !important;
+body.light-theme {
+  background-color: #f4f4f9;
+  color: #333;
+}
+body.light-theme .menu-button {
+  background-color: #ddd;
+  color: #222;
+}
+body.light-theme .submenu,
+body.light-theme .cv-options {
+  background-color: #fff;
+  color: #222;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
-
-body.light-theme .dropdown-menu a button {
-  color: #ffffff !important;
-  background: transparent !important;
-}
-
-body.light-theme .dropdown-menu a button:hover {
-  background-color: #ffffff !important;
-  color: #030303 !important;
-}
-
-body.light-theme .dropdown-button:hover {
-  background-color: #14028b !important;
-  color: #fff !important;
-}
-
-body.light-theme p[style*="color: yellow"] {
-  color: rgb(0, 0, 0) !important;
-}
-
-/* Responsive Container all done */
-@media (max-width: 900px) {
-  .container {
-    max-width: 98vw;
-    padding: 10px;
-  }
-  .card,
-  .cert-card {
-    width: 100% !important;
-    min-width: 0 !important;
-  }
-  .certifications-row {
-    flex-direction: column;
-    gap: 16px;
-  }
-  .button-group {
-    flex-direction: column;
-    gap: 10px;
-    align-items: stretch;
-  }
-  .dropdown-button,
-  .button-link .dropdown-button {
-    width: 100%;
-    min-width: 0;
-  }
-}
-
-/* Carousel Responsive */
-@media (max-width: 700px) {
-  .carousel-container,
-  .carousel-slide {
-    width: 100vw !important;
-    min-width: 100vw !important;
-    max-width: 100vw !important;
-    border-radius: 0.5rem;
-  }
-  .carousel-slide img {
-    max-height: 40vh;
-  }
-  .carousel-nav button {
-    padding: 0.3rem 0.7rem;
-    font-size: 1.2rem;
-  }
-  #carousel-caption.slide-caption {
-    font-size: 1.1rem;
-    padding: 0.5rem 0;
-  }
-}
-
-/* Gallery Responsive */
-@media (max-width: 900px) {
-  #imageGallery {
-    flex-direction: column;
-    gap: 1rem;
-    width: 100vw;
-  }
-  #imageGallery figure {
-    aspect-ratio: unset;
-    width: 100%;
-  }
-  .gallery-img {
-    height: 220px;
-    border-radius: 6px;
-  }
-}
-
-/* Theme toggle and header responsive */
-@media (max-width: 600px) {
-  .theme-toggle-container {
-    top: 10px;
-    right: 10px;
-    gap: 0.2rem;
-    font-size: 1rem;
-  }
-  .profile-pic {
-    width: 120px;
-    height: 120px;
-  }
-  h1,
-  h2 {
-    font-size: 1.2rem;
-  }
-  .card {
-    padding: 10px;
-  }
+body.light-theme .submenu a:hover,
+body.light-theme .cv-options a button:hover {
+  background-color: #e3f2fd;
+  color: #1976d2;
 }
 
 /* Footer Responsive */
@@ -773,60 +154,4 @@ body.light-theme p[style*="color: yellow"] {
     font-size: 0.9rem;
     padding: 8px 0;
   }
-}
-
-#imgModal {
-  margin-top: -1vh;
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 90vw;
-  height: 90vh;
-  background: rgba(0, 0, 0, 0.95);
-  z-index: 3000;
-  border-radius: 10px;
-  box-shadow: 0 0 20px white;
-  cursor: pointer;
-  text-align: center;
-  overflow: auto;
-  padding: 0;
-  box-shadow: 0 0 20px white;
-
-  /* Make it a flex container to center content */
-  display: flex;
-  justify-content: center; /* horizontal center */
-  align-items: center;
-}
-
-#modalImg {
-  max-width: 100vw;
-  max-height: 100vh;
-  width: auto;
-  height: auto;
-  margin: auto auto 0 auto;
-  position: fixed;
-  border-radius: 8px;
-  background: #222;
-}
-
-/* GitHub PDF Link Styling */
-.github-link-container {
-  text-align: center;
-  font-size: 1.8rem;
-  margin-top: 1rem;
-  color: yellow;
-  transition: text-shadow 0.3s ease;
-}
-
-.github-link-container a {
-  color: blue;
-  text-decoration: underline;
-  font-weight: bold;
-  transition: text-shadow 0.3s ease;
-}
-
-/* Optional: Only apply glowing effect on link hover */
-.github-link-container a:hover {
-  text-shadow: 0 0 12px gold;
 }
