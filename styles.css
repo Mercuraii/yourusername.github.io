@@ -810,7 +810,6 @@ body.light-theme p[style*="color: yellow"] {
   position: fixed;
   border-radius: 8px;
   background: #222;
-  object-fit: contain;
 }
 
 /* GitHub PDF Link Styling */
