@@ -1,3 +1,4 @@
+<!-- contact.html -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -7,6 +8,12 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
+    <!-- Return Button -->
+    <div class="return-button">
+      <a href="index.html" class="menu-button">← Back to Home</a>
+    </div>
+
+    <!-- Theme Toggle -->
     <div class="theme-toggle-container">
       <label class="switch">
         <input type="checkbox" id="theme-toggle" />
@@ -18,13 +25,12 @@
     <div class="container">
       <header class="header">
         <h1>Contact Me</h1>
-        <p><a href="index.html" class="back-link">← Back to Home</a></p>
       </header>
 
       <section class="card full-width">
         <p>
           If you'd like to get in touch, feel free to reach to me via email or
-          linked in:
+          LinkedIn:
         </p>
         <div class="contact-grid">
           <!-- LinkedIn card -->
@@ -42,8 +48,8 @@
               <a
                 href="https://www.linkedin.com/in/joe-szolcek/"
                 target="_blank"
-                style="color: white"
-                ><u>https://www.linkedin.com/in/joe-szolcek/</u></a
+                class="back-link"
+                >https://www.linkedin.com/in/joe-szolcek/</a
               >
             </p>
           </div>
@@ -60,7 +66,7 @@
             </a>
             <p class="contact-text">
               Drop me a message anytime:<br />
-              <u>jszolcek@yahoo.com</u>
+              <span class="back-link">jszolcek@yahoo.com</span>
             </p>
           </div>
         </div>
