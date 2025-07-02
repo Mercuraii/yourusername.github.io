@@ -368,7 +368,6 @@
         modal.style.display = "none";
         modal.style.top = null;
         document.getElementById("modalImg").src = "";
-        window.removeEventListener("scroll", moveModalWithScroll);
       }
 
       document.querySelectorAll(".sandbox-img").forEach((img) => {
@@ -376,8 +375,6 @@
           const modal = document.getElementById("imgModal");
           document.getElementById("modalImg").src = this.src;
           modal.style.display = "flex";
-
-          window.addEventListener("scroll", moveModalWithScroll);
         });
       });
       document
