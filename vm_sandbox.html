@@ -92,7 +92,7 @@
     </style>
   </head>
   <body>
-    <button id="returnBtn" onclick="history.back()">Return</button>
+    <button id="returnBtn" onclick="smartReturn()">Return</button>
     <!-- 3D Video Background Layer -->
     <video class="bg-3d" autoplay muted loop playsinline>
       <source src="videos/background.mp4" type="video/mp4" />
@@ -375,6 +375,13 @@
         .addEventListener("click", function (e) {
           if (e.target === this) closeModal();
         });
+      function smartReturn() {
+        if (window.history.length > 1) {
+          window.history.back();
+        } else {
+          window.location.href = "index.html";
+        }
+      }
     </script>
   </body>
 </html>
