@@ -782,7 +782,7 @@ body.light-theme p[style*="color: yellow"] {
   display: none;
   position: fixed;
   top: 0;
-  left: 30%;
+  left: 0;
   width: 100vw;
   height: 100vh;
   background: rgba(0, 0, 0, 0.95);
