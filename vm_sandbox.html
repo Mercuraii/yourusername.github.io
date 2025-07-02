@@ -6,6 +6,60 @@
     <title>My VM Network Sandbox</title>
     <link rel="icon" type="image/png" sizes="96x96" href="images/favicon.png" />
     <link rel="stylesheet" href="styles.css" />
+    <!-- Style overrides for light theme text and large images -->
+    <style>
+      /* Make markdown text black in light mode */
+      body.light-theme .card,
+      body.light-theme .card * {
+        color: #111 !important;
+      }
+      /* Make images 3x larger (max-width: 1200px) */
+      .card img.sandbox-img {
+        max-width: 1200px !important;
+        width: 100% !important;
+        height: auto !important;
+        margin: 1em 0;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px #000;
+        cursor: pointer;
+        transition: box-shadow 0.2s, transform 0.2s;
+      }
+      .card img.sandbox-img:hover {
+        box-shadow: 0 0 40px 8px #2196f3;
+        transform: scale(1.03);
+      }
+      /* Modal styles */
+      #imgModal {
+        display: none;
+        position: fixed;
+        top: 0; left: 0;
+        width: 100vw; height: 100vh;
+        background: rgba(0,0,0,0.95);
+        z-index: 2000;
+        justify-content: center;
+        align-items: center;
+      }
+      #imgModal img {
+        max-width: 90vw;
+        max-height: 90vh;
+        border-radius: 12px;
+        box-shadow: 0 0 40px #000;
+        background: #222;
+      }
+      #imgModal:active, #imgModal .close {
+        cursor: pointer;
+      }
+      #imgModal .close {
+        position: absolute;
+        top: 2vh;
+        right: 4vw;
+        font-size: 3rem;
+        color: #fff;
+        z-index: 2100;
+        background: none;
+        border: none;
+      }
+    </style>
   </head>
   <body>
     <!-- 3D Video Background Layer -->
@@ -111,13 +165,8 @@
               <img
                 src="https://raw.githubusercontent.com/jszolcek/Linux-Server-VM-Lab/refs/heads/main/images/Pi-hole.png"
                 alt="Pi-hole screenshot"
-                style="
-                  max-width: 400px;
-                  width: 100%;
-                  margin: 1em 0;
-                  border-radius: 8px;
-                  box-shadow: 0 2px 8px #000;
-                "
+                class="sandbox-img"
+                style="max-width: 400px; width: 100%; margin: 1em 0; border-radius: 8px; box-shadow: 0 2px 8px #000; cursor: pointer;"
               />
             </li>
           </ol>
@@ -208,13 +257,8 @@
                   <img
                     src="https://github.com/jszolcek/Linux-Server-VM-Lab/blob/main/images/pfSense.png?raw=true"
                     alt="pfSense screenshot"
-                    style="
-                      max-width: 400px;
-                      width: 100%;
-                      margin: 1em 0;
-                      border-radius: 8px;
-                      box-shadow: 0 2px 8px #000;
-                    "
+                    class="sandbox-img"
+                    style="max-width: 400px; width: 100%; margin: 1em 0; border-radius: 8px; box-shadow: 0 2px 8px #000; cursor: pointer;"
                   />
                 </li>
               </ul>
@@ -222,6 +266,12 @@
           </ol>
         </section>
       </div>
+    </div>
+
+    <!-- Modal for image popup -->
+    <div id="imgModal">
+      <button class="close" onclick="closeModal()">&times;</button>
+      <img id="modalImg" src="" alt="Large view" />
     </div>
 
     <!-- Theme toggle & icon script -->
@@ -252,6 +302,21 @@
           localStorage.setItem("theme", themeToggle.checked ? "light" : "dark");
         });
       }
+
+      // Modal image logic
+      function closeModal() {
+        document.getElementById('imgModal').style.display = 'none';
+        document.getElementById('modalImg').src = '';
+      }
+      document.querySelectorAll('.sandbox-img').forEach(img => {
+        img.addEventListener('click', function(e) {
+          document.getElementById('modalImg').src = this.src;
+          document.getElementById('imgModal').style.display = 'flex';
+        });
+      });
+      document.getElementById('imgModal').addEventListener('click', function(e) {
+        if (e.target === this) closeModal();
+      });
     </script>
   </body>
 </html>
