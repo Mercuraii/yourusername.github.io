@@ -33,6 +33,9 @@
     <link rel="icon" type="image/png" sizes="96x96" href="images/favicon.png" />
     <link rel="stylesheet" href="styles.css" />
     <style>
+      body {
+        margin: 0;
+      }
       /* Carousel Styles */
       .carousel-container {
         position: relative;
@@ -107,6 +110,22 @@
         background-color: #888;
       }
       /* Modal Styles */
+      #imgModal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.9);
+        z-index: 1000;
+        border-radius: 12px;
+        box-shadow: 0 0 20px white;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
       #imgModal img {
         max-width: 90vw;
         max-height: 90vh;
@@ -121,8 +140,6 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        width: auto;
-        height: auto;
       }
       #imgModal:active,
       #imgModal .close {
