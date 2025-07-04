@@ -4,7 +4,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const themeIcon = document.getElementById("theme-icon");
 
   if (themeToggleButton && themeIcon) {
-    // Apply saved theme from localStorage (default: dark)
     const currentTheme = localStorage.getItem("theme") || "dark";
 
     if (currentTheme === "light") {
@@ -17,7 +16,6 @@ document.addEventListener("DOMContentLoaded", () => {
       themeIcon.textContent = "🌙";
     }
 
-    // Theme toggle click listener
     themeToggleButton.addEventListener("click", () => {
       const isLight = document.body.classList.toggle("light-theme");
       localStorage.setItem("theme", isLight ? "light" : "dark");
@@ -68,9 +66,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const captions = document.querySelectorAll(".pyramid-slide p");
     captions.forEach((cap, i) => {
       if (i === index) {
-        cap.classList.add("caption-hidden");
+        cap.classList.remove("caption-hidden"); // SHOW current
       } else {
-        cap.classList.remove("caption-hidden");
+        cap.classList.add("caption-hidden"); // HIDE others
       }
     });
   }
@@ -92,7 +90,7 @@ document.addEventListener("DOMContentLoaded", () => {
       index = (index + 1) % totalSlides;
       carousel.style.transform = `translateX(-${index * 100}%)`;
       hideCurrentCaption();
-    }, 2000);
+    }, 3000);
   }
 
   images.forEach((img) => {
@@ -114,13 +112,13 @@ document.addEventListener("DOMContentLoaded", () => {
       if (newWidth > maxWidth) {
         const scale = maxWidth / newWidth;
         newWidth = maxWidth;
-        newHeight = newHeight * scale;
+        newHeight *= scale;
       }
 
       if (newHeight > maxHeight) {
         const scale = maxHeight / newHeight;
         newHeight = maxHeight;
-        newWidth = newWidth * scale;
+        newWidth *= scale;
       }
 
       overlayImg.style.width = `${newWidth}px`;
@@ -128,42 +126,27 @@ document.addEventListener("DOMContentLoaded", () => {
 
       overlay.style.display = "flex";
       pauseCarousel();
-
       hideCurrentCaption();
-
       title.style.display = "none";
     });
   });
 
-  overlay.addEventListener("click", () => {
+  function closeOverlay() {
     overlay.style.display = "none";
     overlayImg.src = "";
     overlayImg.style.width = "";
     overlayImg.style.height = "";
     overlayCaption.textContent = "";
-
     resumeCarousel();
-
-    const captions = document.querySelectorAll(".pyramid-slide p");
-    captions.forEach((cap) => cap.classList.remove("caption-hidden"));
-
+    hideCurrentCaption();
     title.style.display = "";
-  });
+  }
+
+  overlay.addEventListener("click", closeOverlay);
 
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape" && overlay.style.display === "flex") {
-      overlay.style.display = "none";
-      overlayImg.src = "";
-      overlayImg.style.width = "";
-      overlayImg.style.height = "";
-      overlayCaption.textContent = "";
-
-      resumeCarousel();
-
-      const captions = document.querySelectorAll(".pyramid-slide p");
-      captions.forEach((cap) => cap.classList.remove("caption-hidden"));
-
-      title.style.display = "";
+      closeOverlay();
     }
   });
 });
