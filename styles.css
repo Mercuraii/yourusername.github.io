@@ -493,15 +493,19 @@ body.light-theme .footer p a {
 
 /* 3D Video Background Layer: always covers viewport, even on scroll WORKING */
 .bg-3d {
-  opacity: 0;
-  animation: fadeIn 1.5s ease forwards;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  min-width: 100vw;
+  min-height: 100vh;
+  object-fit: cover;
+  z-index: -1000;
+  pointer-events: none;
+  will-change: transform; /* Hint to browser for smoother GPU rendering */
 }
 
-@keyframes fadeIn {
-  to {
-    opacity: 1;
-  }
-}
 .background-wrapper {
   position: relative;
   min-height: 100%;
