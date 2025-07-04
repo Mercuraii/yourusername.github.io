@@ -31,13 +31,17 @@ window.addEventListener("load", () => {
   const bg = document.querySelector(".bg-3d");
   if (!bg) return;
 
-  if (bg.readyState >= 3) {
-    // Video already ready
+  // Start fully transparent and set transition
+  bg.style.opacity = "0";
+  bg.style.transition = "opacity 1s ease";
+
+  const fadeIn = () => {
     bg.style.opacity = "1";
+  };
+
+  if (bg.readyState >= 3) {
+    fadeIn();
   } else {
-    // Wait for canplay if not ready
-    bg.addEventListener("canplay", () => {
-      bg.style.setProperty("opacity", "1", "important");
-    });
+    bg.addEventListener("canplay", fadeIn);
   }
 });
