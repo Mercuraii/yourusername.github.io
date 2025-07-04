@@ -28,21 +28,19 @@
 //   const bg = document.querySelector(".bg-3d");
 
 //   if (bg) {
-    // Initial opacity and transition settings
-    bg.style.opacity = "0";
-    bg.style.transition = "opacity 1s ease";
-    bg.style.willChange = "opacity";
+// Initial opacity and transition settings
+bg.style.opacity = "0";
+bg.style.transition = "opacity 1s ease";
+bg.style.willChange = "opacity";
 
-    // Fade-in logic once video is ready
-    const fadeIn = () => {
-      bg.style.opacity = "1";
-    };
+// Fade-in logic once video is ready
+const fadeIn = () => {
+  bg.style.opacity = "1";
+};
 
-    // Video might already be ready
-    if (bg.readyState >= 3) {
-      fadeIn();
-    } else {
-      bg.addEventListener("canplay", fadeIn);
-    }
-  }
-});
+// Video might already be ready
+if (bg.readyState >= 3) {
+  fadeIn();
+} else {
+  bg.addEventListener("canplay", fadeIn);
+}
