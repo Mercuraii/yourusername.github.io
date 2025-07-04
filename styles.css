@@ -829,3 +829,143 @@ body.light-theme p[style*="color: yellow"] {
 .github-link-container a:hover {
   text-shadow: 0 0 12px gold;
 }
+
+/* Carousel Portfolio Styles - Scoped with #carousel-portfolio */
+#carousel-portfolio {
+  height: 100vh;
+  margin: 0;
+  overflow: hidden;
+  background-color: #000000d0;
+  color: white;
+  font-family: sans-serif;
+  padding: 0 2rem 2rem 2rem; /* no top padding so title sits flush */
+}
+
+#carousel-portfolio h1 {
+  font-size: 2rem; /* 3xl in Tailwind */
+  font-weight: 700;
+  text-decoration: underline;
+  margin-top: 0.5rem; /* space from top */
+  margin-bottom: 0.5rem; /* slightly smaller margin */
+  text-align: center;
+}
+
+#carousel-portfolio .carousel-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 100vw;
+  margin: 0 auto;
+  overflow: hidden;
+  height: calc(
+    100vh - 3.5rem - 2rem
+  ); /* viewport minus approx title height and bottom padding */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#carousel-portfolio #carousel {
+  display: flex;
+  transition: transform 0.7s ease-in-out;
+  height: 100%;
+}
+
+#carousel-portfolio .pyramid-slide {
+  min-width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* distribute images and caption vertically */
+  height: 100%;
+}
+
+#carousel-portfolio .image-row {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  flex-grow: 1;
+  gap: 0.1rem;
+  height: auto;
+  background: transparent;
+}
+
+#carousel-portfolio .image-row img {
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+  cursor: zoom-in;
+  transition: transform 0.3s ease;
+  user-select: none;
+  height: 100%;
+  object-fit: contain;
+  background: transparent;
+}
+
+#carousel-portfolio .image-row img.left,
+#carousel-portfolio .image-row img.right {
+  width: 33%;
+  transform-origin: center bottom;
+  scale: 0.95;
+}
+
+#carousel-portfolio .image-row img.left {
+  transform: scale(0.95);
+}
+
+#carousel-portfolio .image-row img.right {
+  transform: scale(0.95);
+}
+
+#carousel-portfolio .image-row img.center {
+  width: 33%;
+  z-index: 10;
+  scale: 1;
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.7);
+}
+
+#carousel-portfolio .pyramid-slide p {
+  margin-top: 1rem;
+  text-align: center;
+  font-size: 2rem;
+  flex-shrink: 0;
+}
+
+#carousel-portfolio .caption-hidden {
+  visibility: hidden;
+}
+
+#carousel-portfolio #overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.85);
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+  cursor: zoom-out;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+#carousel-portfolio #overlay img {
+  border-radius: 0.5rem;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.9);
+  user-select: none;
+  width: auto;
+  height: auto;
+  max-width: 90vw;
+  max-height: 80vh;
+  margin-bottom: 1rem;
+  object-fit: contain;
+}
+
+#carousel-portfolio #overlay p {
+  color: white;
+  font-size: 1.5rem;
+  text-align: center;
+  max-width: 90vw;
+  margin: 0;
+  user-select: none;
+}
