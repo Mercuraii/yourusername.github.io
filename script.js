@@ -31,9 +31,15 @@ window.addEventListener("load", () => {
   const bg = document.querySelector(".bg-3d");
   if (!bg) return;
 
-  // Start fully transparent and set transition
+  // Set start opacity and transition
   bg.style.opacity = "0";
   bg.style.transition = "opacity 1s ease";
+
+  // MutationObserver to watch opacity changes
+  const observer = new MutationObserver(() => {
+    console.log("Opacity changed to:", bg.style.opacity);
+  });
+  observer.observe(bg, { attributes: true, attributeFilter: ["style"] });
 
   const fadeIn = () => {
     bg.style.opacity = "1";
