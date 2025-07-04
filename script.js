@@ -27,6 +27,10 @@ themeToggleButton.addEventListener("click", () => {
 window.addEventListener("load", () => {
   const bg = document.querySelector(".bg-3d");
   if (bg) {
-    bg.style.opacity = 1; // Fade in the video
+    bg.style.opacity = '0'; // Ensure the video is hidden
   }
-});
+  if (bg) {
+  bg.addEventListener('canplay', () => {
+    bg.style.opacity = '1'; // fade in
+  });
+}
