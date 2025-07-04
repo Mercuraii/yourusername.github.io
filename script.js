@@ -24,13 +24,16 @@ themeToggleButton.addEventListener("click", () => {
 });
 
 // Fade-in video background on page load
-window.addEventListener("load", () => {
-  const bg = document.querySelector(".bg-3d");
-  if (bg) {
-    bg.style.opacity = '0'; // Ensure the video is hidden
+const bg = document.querySelector(".bg-3d");
+
+if (bg) {
+  // If video can already play, set opacity immediately
+  if (bg.readyState >= 3) {
+    bg.style.opacity = "1";
+  } else {
+    // Otherwise, wait for canplay event
+    bg.addEventListener("canplay", () => {
+      bg.style.opacity = "1";
+    });
   }
-  if (bg) {
-  bg.addEventListener('canplay', () => {
-    bg.style.opacity = '1'; // fade in
-  });
 }
