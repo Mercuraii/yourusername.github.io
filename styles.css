@@ -504,8 +504,6 @@ body.light-theme .footer p a {
   z-index: -1000;
   pointer-events: none;
   will-change: transform; /* Hint to browser for smoother GPU rendering */
-  opacity: 0.1; /* Start hidden */
-  transition: opacity 1s ease; /* Smooth fade-in */
 }
 
 .background-wrapper {
