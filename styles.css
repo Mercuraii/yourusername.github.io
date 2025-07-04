@@ -498,13 +498,10 @@ body.light-theme .footer p a {
   left: 0;
   width: 100vw;
   height: 100vh;
-  min-width: 100vw;
-  min-height: 100vh;
   object-fit: cover;
-  z-index: -1000;
-  pointer-events: none;
+  opacity: 0;
   animation: fadeIn 2s ease forwards;
-  will-change: transform; /* Hint to browser for smoother GPU rendering */
+  z-index: -1;
 }
 @keyframes fadeIn {
   to {
