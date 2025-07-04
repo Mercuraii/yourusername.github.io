@@ -656,6 +656,36 @@
       }
       window.addEventListener("resize", resizeBgVideo);
       window.addEventListener("DOMContentLoaded", resizeBgVideo);
+
+      window.addEventListener("load", () => {
+        const bg = document.querySelector(".bg-3d");
+        if (!bg) {
+          console.log("No .bg-3d element found");
+          return;
+        }
+
+        // Fade-in video on load
+        bg.style.opacity = "0";
+        bg.style.transition = "opacity 1.2s ease";
+        bg.style.willChange = "opacity"; // GPU-accelerated hint
+
+        const fadeIn = () => {
+          bg.style.opacity = "1";
+        };
+
+        if (bg.readyState >= 3) {
+          fadeIn();
+        } else {
+          bg.addEventListener("canplay", fadeIn);
+        }
+
+        // MutationObserver to track style changes
+        const observer = new MutationObserver(() => {
+          console.log("Opacity changed to:", bg.style.opacity);
+        });
+
+        observer.observe(bg, { attributes: true, attributeFilter: ["style"] });
+      });
     </script>
   </body>
 </html>
