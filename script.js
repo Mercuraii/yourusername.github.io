@@ -37,7 +37,7 @@ window.addEventListener("load", () => {
   } else {
     // Wait for canplay if not ready
     bg.addEventListener("canplay", () => {
-      bg.style.opacity = "1";
+      bg.style.setProperty("opacity", "1", "important");
     });
   }
 });
