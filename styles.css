@@ -494,7 +494,7 @@ body.light-theme .footer p a {
 
 /* 3D Video Background Layer: always covers viewport, even on scroll WORKING */
 .bg-3d {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
