@@ -283,6 +283,16 @@
     </div>
 
     <script>
+      function resizeBgVideo() {
+        const video = document.querySelector(".bg-3d");
+        if (video) {
+          video.style.height =
+            Math.max(document.body.scrollHeight, window.innerHeight) + "px";
+        }
+      }
+      window.addEventListener("resize", resizeBgVideo);
+      window.addEventListener("DOMContentLoaded", resizeBgVideo);
+
       // Modal functions
       function closeModal() {
         const modal = document.getElementById("imgModal");

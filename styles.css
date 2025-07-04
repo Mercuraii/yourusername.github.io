@@ -870,7 +870,8 @@ body.light-theme p[style*="color: yellow"] {
 
 #carousel-portfolio #carousel {
   display: flex;
-  transition: transform 0.7s ease-in-out;
+  transition: transform 1.5s ease-out;
+  width: 100%;
   height: 100%;
 }
 
@@ -926,7 +927,7 @@ body.light-theme p[style*="color: yellow"] {
 }
 
 #carousel-portfolio .pyramid-slide p {
-  margin-top: 1rem;
+  margin-top: 0;
   text-align: center;
   font-size: 2rem;
   flex-shrink: 0;
@@ -983,15 +984,15 @@ body.carousel-page html {
   background-color: #000000d0;
   color: white;
   font-family: sans-serif;
-  padding: 0 2rem 2rem 2rem; /* no top padding so title sits flush */
+  padding: 0.8rem 2rem 2rem 2rem; /* no top padding so title sits flush */
 }
 
 /* Heading */
 body.carousel-page h1 {
-  font-size: 2rem; /* 3xl in Tailwind */
+  font-size: 2rem;
   font-weight: 700;
   text-decoration: underline;
-  margin-top: 0.5rem; /* space from top */
+  margin-top: 0rem;
   margin-bottom: 0.5rem; /* slightly smaller margin */
   text-align: center;
 }
@@ -1014,8 +1015,9 @@ body.carousel-page .carousel-wrapper {
 /* Carousel container */
 body.carousel-page #carousel {
   display: flex;
-  transition: transform 0.7s ease-in-out;
+  transition: transform 3s ease-in-out;
   height: 100%;
+  background: none;
 }
 
 /* Each pyramid slide */
@@ -1023,38 +1025,37 @@ body.carousel-page .pyramid-slide {
   min-width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between; /* distribute images and caption vertically */
+  align-items: center;
+  justify-content: center;
   height: 100%;
+  background: none;
 }
 
 /* Container for images in pyramid */
 body.carousel-page .image-row {
   display: flex;
   justify-content: center;
-  align-items: stretch;
+  align-items: center;
+  flex-direction: row;
   flex-grow: 1;
-  gap: 0.1rem; /* gap-4 */
-  height: auto;
-  background: transparent;
+  gap: 0.2rem;
+  background: none;
 }
 
 /* Images */
 body.carousel-page .image-row img {
-  border-radius: 0.5rem; /* rounded-lg */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
   cursor: zoom-in;
   transition: transform 0.3s ease;
   user-select: none;
   height: 100%;
   object-fit: contain;
-  background: transparent;
 }
 
 /* Left and right images */
 body.carousel-page .image-row img.left,
 body.carousel-page .image-row img.right {
   width: 33%; /* w-1/3 */
-  transform-origin: center bottom;
+
   scale: 0.95;
 }
 
@@ -1070,8 +1071,7 @@ body.carousel-page .image-row img.right {
 body.carousel-page .image-row img.center {
   width: 33%; /* w-1/2 */
   z-index: 10;
-  scale: 1;
-  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.7);
+  scale: 1.1;
 }
 
 /* Caption */
@@ -1093,7 +1093,7 @@ body.carousel-page #overlay {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.85);
+  background: rgba(0, 0, 0, 0.9);
   display: none; /* hidden by default */
   flex-direction: column;
   justify-content: center;

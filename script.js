@@ -79,7 +79,7 @@ document.addEventListener("DOMContentLoaded", () => {
     index = (index + 1) % totalSlides;
     carousel.style.transform = `translateX(-${index * 100}%)`;
     hideCurrentCaption();
-  }, 3000);
+  }, 5000);
 
   function pauseCarousel() {
     clearInterval(carouselInterval);
