@@ -24,6 +24,7 @@ body {
   font-family: sans-serif;
   max-width: 100vw; /* Prevent body from going beyond the viewport width */
   overflow-x: hidden; /* Hide horizontal overflow */
+  overflow-y: hidden;
   height: 100%;
 }
 
