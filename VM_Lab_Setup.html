@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Pyramid Screenshot Carousel</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      /* Overlay styles */
+      #overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.85);
+        display: none;
+        justify-content: center;
+        align-items: center;
+        z-index: 10000;
+        cursor: zoom-out;
+      }
+      #overlay img {
+        max-width: 90vw;
+        max-height: 90vh;
+        border-radius: 0.5rem;
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.9);
+        user-select: none;
+      }
+    </style>
+  </head>
+  <script src="script.js"></script>
+  <body class="carousel-page">
+    <h1>Homelab Portfolio: Screenshot Pyramid</h1>
+
+    <!-- Carousel Wrapper -->
+    <div class="carousel-wrapper">
+      <div id="carousel">
+        <!-- Pyramid Slides (unchanged) -->
+        <div class="pyramid-slide">
+          <div class="image-row">
+            <img
+              src="https://placehold.co/300x200?text=Left+1"
+              alt="Left 1"
+              class="left"
+            />
+            <img
+              src="https://placehold.co/400x250?text=Center+1"
+              alt="Center 1"
+              class="center"
+            />
+            <img
+              src="https://placehold.co/300x200?text=Right+1"
+              alt="Right 1"
+              class="right"
+            />
+          </div>
+          <p>Caption for Pyramid 1</p>
+        </div>
+        <div class="pyramid-slide">
+          <div class="image-row">
+            <img
+              src="https://placehold.co/300x200?text=Left+2"
+              alt="Left 2"
+              class="left"
+            />
+            <img
+              src="https://placehold.co/400x250?text=Center+2"
+              alt="Center 2"
+              class="center"
+            />
+            <img
+              src="https://placehold.co/300x200?text=Right+2"
+              alt="Right 2"
+              class="right"
+            />
+          </div>
+          <p>Caption for Pyramid 2</p>
+        </div>
+        <div class="pyramid-slide">
+          <div class="image-row">
+            <img
+              src="https://placehold.co/300x200?text=Left+3"
+              alt="Left 3"
+              class="left"
+            />
+            <img
+              src="https://placehold.co/400x250?text=Center+3"
+              alt="Center 3"
+              class="center"
+            />
+            <img
+              src="https://placehold.co/300x200?text=Right+3"
+              alt="Right 3"
+              class="right"
+            />
+          </div>
+          <p>Caption for Pyramid 3</p>
+        </div>
+        <div class="pyramid-slide">
+          <div class="image-row">
+            <img
+              src="https://placehold.co/300x200?text=Left+4"
+              alt="Left 4"
+              class="left"
+            />
+            <img
+              src="https://placehold.co/400x250?text=Center+4"
+              alt="Center 4"
+              class="center"
+            />
+            <img
+              src="https://placehold.co/300x200?text=Right+4"
+              alt="Right 4"
+              class="right"
+            />
+          </div>
+          <p>Caption for Pyramid 4</p>
+        </div>
+        <div class="pyramid-slide">
+          <div class="image-row">
+            <img
+              src="https://placehold.co/300x200?text=Left+5"
+              alt="Left 5"
+              class="left"
+            />
+            <img
+              src="https://placehold.co/400x250?text=Center+5"
+              alt="Center 5"
+              class="center"
+            />
+            <img
+              src="https://placehold.co/300x200?text=Right+5"
+              alt="Right 5"
+              class="right"
+            />
+          </div>
+          <p>Caption for Pyramid 5</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Overlay for zoomed image -->
+    <div id="overlay">
+      <img id="overlay-img" src="" alt="Zoomed screenshot" />
+      <p id="overlay-caption"></p>
+    </div>
+  </body>
+</html>

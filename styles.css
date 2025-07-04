@@ -973,3 +973,154 @@ body.light-theme p[style*="color: yellow"] {
   margin: 0;
   user-select: none;
 }
+
+/* VM Lab Page Only Stylin'*/
+body.carousel-page,
+body.carousel-page html {
+  height: 100vh;
+  margin: 0;
+  overflow: hidden;
+  background-color: #000000d0;
+  color: white;
+  font-family: sans-serif;
+  padding: 0 2rem 2rem 2rem; /* no top padding so title sits flush */
+}
+
+/* Heading */
+body.carousel-page h1 {
+  font-size: 2rem; /* 3xl in Tailwind */
+  font-weight: 700;
+  text-decoration: underline;
+  margin-top: 0.5rem; /* space from top */
+  margin-bottom: 0.5rem; /* slightly smaller margin */
+  text-align: center;
+}
+
+/* Outer container for carousel */
+body.carousel-page .carousel-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 100vw;
+  margin: 0 auto;
+  overflow: hidden;
+  height: calc(
+    100vh - 3.5rem - 2rem
+  ); /* viewport minus approx title height and bottom padding */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Carousel container */
+body.carousel-page #carousel {
+  display: flex;
+  transition: transform 0.7s ease-in-out;
+  height: 100%;
+}
+
+/* Each pyramid slide */
+body.carousel-page .pyramid-slide {
+  min-width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* distribute images and caption vertically */
+  height: 100%;
+}
+
+/* Container for images in pyramid */
+body.carousel-page .image-row {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  flex-grow: 1;
+  gap: 0.1rem; /* gap-4 */
+  height: auto;
+  background: transparent;
+}
+
+/* Images */
+body.carousel-page .image-row img {
+  border-radius: 0.5rem; /* rounded-lg */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+  cursor: zoom-in;
+  transition: transform 0.3s ease;
+  user-select: none;
+  height: 100%;
+  object-fit: contain;
+  background: transparent;
+}
+
+/* Left and right images */
+body.carousel-page .image-row img.left,
+body.carousel-page .image-row img.right {
+  width: 33%; /* w-1/3 */
+  transform-origin: center bottom;
+  scale: 0.95;
+}
+
+body.carousel-page .image-row img.left {
+  transform: scale(0.95);
+}
+
+body.carousel-page .image-row img.right {
+  transform: scale(0.95);
+}
+
+/* Center image */
+body.carousel-page .image-row img.center {
+  width: 33%; /* w-1/2 */
+  z-index: 10;
+  scale: 1;
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.7);
+}
+
+/* Caption */
+body.carousel-page .pyramid-slide p {
+  margin-top: 1rem;
+  text-align: center;
+  font-size: 2rem;
+  flex-shrink: 0;
+}
+
+body.carousel-page .caption-hidden {
+  visibility: hidden;
+}
+
+/* Overlay styles */
+body.carousel-page #overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.85);
+  display: none; /* hidden by default */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+  cursor: zoom-out;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+body.carousel-page #overlay img {
+  border-radius: 0.5rem;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.9);
+  user-select: none;
+  width: auto;
+  height: auto;
+  max-width: 90vw;
+  max-height: 80vh;
+  margin-bottom: 1rem;
+  object-fit: contain;
+}
+
+body.carousel-page #overlay p {
+  color: white;
+  font-size: 1.5rem;
+  text-align: center;
+  max-width: 90vw;
+  margin: 0;
+  user-select: none;
+}
