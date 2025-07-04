@@ -657,7 +657,7 @@ body.light-theme .footer p a {
   margin: 10px 0 5px 15px;
 }
 
-/* Light Theme Overrides */
+/* Light Theme Overrides
 body.light-theme .dropdown-menu {
   background-color: #fff !important;
   color: #222 !important;
@@ -672,7 +672,7 @@ body.light-theme .dropdown-menu a button {
 body.light-theme .dropdown-menu a button:hover {
   background-color: #ffffff !important;
   color: #030303 !important;
-}
+} */
 
 body.light-theme .dropdown-button:hover {
   background-color: #14028b !important;
