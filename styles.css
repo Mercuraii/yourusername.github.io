@@ -503,7 +503,13 @@ body.light-theme .footer p a {
   object-fit: cover;
   z-index: -1000;
   pointer-events: none;
+  animation: fadeIn 2s ease forwards;
   will-change: transform; /* Hint to browser for smoother GPU rendering */
+}
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
 }
 
 .background-wrapper {
