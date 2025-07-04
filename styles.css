@@ -19,7 +19,7 @@ html {
 /* Base Styles (Dark Theme by Default) */
 body {
   perspective: 800px; /* add 3D perspective */
-  background-color: transparent; /* solid black behind BG image */
+  background-color: black; /* solid black behind BG image */
   color: #fff;
   font-family: sans-serif;
   max-width: 100vw; /* Prevent body from going beyond the viewport width */
