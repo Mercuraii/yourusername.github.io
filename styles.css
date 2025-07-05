@@ -846,7 +846,7 @@ body.light-theme p[style*="color: yellow"] {
 }
 
 #carousel-portfolio h1 {
-  font-size: 2rem; /* 3xl in Tailwind */
+  font-size: 2rem;
   font-weight: 700;
   text-decoration: underline;
   margin-top: 0.5rem; /* space from top */
@@ -1123,4 +1123,45 @@ body.carousel-page #overlay p {
   max-width: 90vw;
   margin: 0;
   user-select: none;
+}
+
+/* Carousel Buttons */
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2rem;
+  background: rgba(0, 0, 0, 0.5);
+  color: rgba(255, 255, 255, 0.779);
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  z-index: 9999;
+  border-radius: 0.3rem;
+}
+
+.carousel-btn:hover {
+  background-color: rgb(0, 153, 255); /* lighter semi-transparent white */
+  color: white; /* make arrow fully white */
+  transition: background-color 0.6s ease;
+}
+
+.left-btn {
+  left: 1rem;
+}
+
+.right-btn {
+  right: 1rem;
+}
+
+.pyramid-slide {
+  display: none;
+}
+
+body.carousel-page h1,
+body.carousel-page .pyramid-slide p {
+  color: #fff;
+  text-shadow: 2px 2px 0 #000;
+  font-size: 2.5rem;
+  font-weight: 600;
 }

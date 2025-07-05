@@ -41,107 +41,77 @@
 
     <!-- Carousel Wrapper -->
     <div class="carousel-wrapper">
+      <button id="prevBtn" class="carousel-btn left-btn">&#10094;</button>
+      <button id="nextBtn" class="carousel-btn right-btn">&#10095;</button>
+
       <div id="carousel">
-        <!-- Pyramid Slides (unchanged) -->
+        <!-- First slide -->
         <div class="pyramid-slide">
           <div class="image-row">
             <img
-              src="https://placehold.co/300x200?text=Left+1"
+              src="images/Testing Pi-Hole 3.1.webp"
               alt="Left 1"
               class="left"
             />
             <img
-              src="https://placehold.co/400x250?text=Center+1"
+              src="images/Testing Pi-Hole 3.2.webp"
               alt="Center 1"
               class="center"
             />
             <img
-              src="https://placehold.co/300x200?text=Right+1"
+              src="images/Testing Pi-Hole pfSense 3.3.webp"
               alt="Right 1"
               class="right"
             />
           </div>
-          <p>Caption for Pyramid 1</p>
+          <p>Checking that Pi-Hole is blocking listed ads</p>
         </div>
+
+        <!-- Swapped: original third slide now second -->
         <div class="pyramid-slide">
           <div class="image-row">
             <img
-              src="https://placehold.co/300x200?text=Left+2"
-              alt="Left 2"
-              class="left"
-            />
-            <img
-              src="https://placehold.co/400x250?text=Center+2"
-              alt="Center 2"
-              class="center"
-            />
-            <img
-              src="https://placehold.co/300x200?text=Right+2"
-              alt="Right 2"
-              class="right"
-            />
-          </div>
-          <p>Caption for Pyramid 2</p>
-        </div>
-        <div class="pyramid-slide">
-          <div class="image-row">
-            <img
-              src="https://placehold.co/300x200?text=Left+3"
+              src="images/Before Malicious Test pfSense Log 1.1.webp"
               alt="Left 3"
               class="left"
             />
             <img
-              src="https://placehold.co/400x250?text=Center+3"
+              src="images/Before Checking pfSense 1.2.webp"
               alt="Center 3"
               class="center"
             />
             <img
-              src="https://placehold.co/300x200?text=Right+3"
+              src="images/Before Checking pfSense (running) 1.3.webp"
               alt="Right 3"
               class="right"
             />
           </div>
-          <p>Caption for Pyramid 3</p>
+          <p>Checking that pfSense is running</p>
         </div>
+
+        <!-- Swapped: original second slide now third -->
         <div class="pyramid-slide">
           <div class="image-row">
             <img
-              src="https://placehold.co/300x200?text=Left+4"
-              alt="Left 4"
+              src="images/Blocking known malicious site log 2.1.webp"
+              alt="Left 2"
               class="left"
             />
             <img
-              src="https://placehold.co/400x250?text=Center+4"
-              alt="Center 4"
+              src="images/Blocked Connection to Malicious Site via pfSense VM 2.2.webp"
+              alt="Center 2"
               class="center"
             />
             <img
-              src="https://placehold.co/300x200?text=Right+4"
-              alt="Right 4"
+              src="images/pfSense firewall running 2.3.webp"
+              alt="Right 2"
               class="right"
             />
           </div>
-          <p>Caption for Pyramid 4</p>
-        </div>
-        <div class="pyramid-slide">
-          <div class="image-row">
-            <img
-              src="https://placehold.co/300x200?text=Left+5"
-              alt="Left 5"
-              class="left"
-            />
-            <img
-              src="https://placehold.co/400x250?text=Center+5"
-              alt="Center 5"
-              class="center"
-            />
-            <img
-              src="https://placehold.co/300x200?text=Right+5"
-              alt="Right 5"
-              class="right"
-            />
-          </div>
-          <p>Caption for Pyramid 5</p>
+          <p>
+            Testing pfSense is actively blocking the Rocky VM Client from
+            accessing known malicious sites
+          </p>
         </div>
       </div>
     </div>
